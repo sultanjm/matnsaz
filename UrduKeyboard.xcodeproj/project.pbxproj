@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15DB7C9D2032AD5100A84C7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */; };
+		15DB7C9F2032AD5100A84C7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7C9E2032AD5100A84C7E /* ViewController.swift */; };
+		15DB7CA22032AD5100A84C7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA02032AD5100A84C7E /* Main.storyboard */; };
+		15DB7CA42032AD5100A84C7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA32032AD5100A84C7E /* Assets.xcassets */; };
+		15DB7CA72032AD5100A84C7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA52032AD5100A84C7E /* LaunchScreen.storyboard */; };
+		15DB7CB22032AD5100A84C7E /* UrduKeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7CB12032AD5100A84C7E /* UrduKeyboardTests.swift */; };
+		15DB7CBD2032AD5100A84C7E /* UrduKeyboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7CBC2032AD5100A84C7E /* UrduKeyboardUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		15DB7CAE2032AD5100A84C7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15DB7C912032AD5100A84C7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15DB7C982032AD5100A84C7E;
+			remoteInfo = UrduKeyboard;
+		};
+		15DB7CB92032AD5100A84C7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15DB7C912032AD5100A84C7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15DB7C982032AD5100A84C7E;
+			remoteInfo = UrduKeyboard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15DB7C992032AD5100A84C7E /* UrduKeyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrduKeyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		15DB7C9E2032AD5100A84C7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		15DB7CA12032AD5100A84C7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		15DB7CA32032AD5100A84C7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		15DB7CA62032AD5100A84C7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		15DB7CA82032AD5100A84C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15DB7CAD2032AD5100A84C7E /* UrduKeyboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UrduKeyboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15DB7CB12032AD5100A84C7E /* UrduKeyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrduKeyboardTests.swift; sourceTree = "<group>"; };
+		15DB7CB32032AD5100A84C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15DB7CB82032AD5100A84C7E /* UrduKeyboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UrduKeyboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15DB7CBC2032AD5100A84C7E /* UrduKeyboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrduKeyboardUITests.swift; sourceTree = "<group>"; };
+		15DB7CBE2032AD5100A84C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15DB7C962032AD5100A84C7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15DB7CAA2032AD5100A84C7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15DB7CB52032AD5100A84C7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15DB7C902032AD5100A84C7E = {
+			isa = PBXGroup;
+			children = (
+				15DB7C9B2032AD5100A84C7E /* UrduKeyboard */,
+				15DB7CB02032AD5100A84C7E /* UrduKeyboardTests */,
+				15DB7CBB2032AD5100A84C7E /* UrduKeyboardUITests */,
+				15DB7C9A2032AD5100A84C7E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15DB7C9A2032AD5100A84C7E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15DB7C992032AD5100A84C7E /* UrduKeyboard.app */,
+				15DB7CAD2032AD5100A84C7E /* UrduKeyboardTests.xctest */,
+				15DB7CB82032AD5100A84C7E /* UrduKeyboardUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15DB7C9B2032AD5100A84C7E /* UrduKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */,
+				15DB7C9E2032AD5100A84C7E /* ViewController.swift */,
+				15DB7CA02032AD5100A84C7E /* Main.storyboard */,
+				15DB7CA32032AD5100A84C7E /* Assets.xcassets */,
+				15DB7CA52032AD5100A84C7E /* LaunchScreen.storyboard */,
+				15DB7CA82032AD5100A84C7E /* Info.plist */,
+			);
+			path = UrduKeyboard;
+			sourceTree = "<group>";
+		};
+		15DB7CB02032AD5100A84C7E /* UrduKeyboardTests */ = {
+			isa = PBXGroup;
+			children = (
+				15DB7CB12032AD5100A84C7E /* UrduKeyboardTests.swift */,
+				15DB7CB32032AD5100A84C7E /* Info.plist */,
+			);
+			path = UrduKeyboardTests;
+			sourceTree = "<group>";
+		};
+		15DB7CBB2032AD5100A84C7E /* UrduKeyboardUITests */ = {
+			isa = PBXGroup;
+			children = (
+				15DB7CBC2032AD5100A84C7E /* UrduKeyboardUITests.swift */,
+				15DB7CBE2032AD5100A84C7E /* Info.plist */,
+			);
+			path = UrduKeyboardUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15DB7C982032AD5100A84C7E /* UrduKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15DB7CC12032AD5100A84C7E /* Build configuration list for PBXNativeTarget "UrduKeyboard" */;
+			buildPhases = (
+				15DB7C952032AD5100A84C7E /* Sources */,
+				15DB7C962032AD5100A84C7E /* Frameworks */,
+				15DB7C972032AD5100A84C7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UrduKeyboard;
+			productName = UrduKeyboard;
+			productReference = 15DB7C992032AD5100A84C7E /* UrduKeyboard.app */;
+			productType = "com.apple.product-type.application";
+		};
+		15DB7CAC2032AD5100A84C7E /* UrduKeyboardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15DB7CC42032AD5100A84C7E /* Build configuration list for PBXNativeTarget "UrduKeyboardTests" */;
+			buildPhases = (
+				15DB7CA92032AD5100A84C7E /* Sources */,
+				15DB7CAA2032AD5100A84C7E /* Frameworks */,
+				15DB7CAB2032AD5100A84C7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15DB7CAF2032AD5100A84C7E /* PBXTargetDependency */,
+			);
+			name = UrduKeyboardTests;
+			productName = UrduKeyboardTests;
+			productReference = 15DB7CAD2032AD5100A84C7E /* UrduKeyboardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		15DB7CB72032AD5100A84C7E /* UrduKeyboardUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15DB7CC72032AD5100A84C7E /* Build configuration list for PBXNativeTarget "UrduKeyboardUITests" */;
+			buildPhases = (
+				15DB7CB42032AD5100A84C7E /* Sources */,
+				15DB7CB52032AD5100A84C7E /* Frameworks */,
+				15DB7CB62032AD5100A84C7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15DB7CBA2032AD5100A84C7E /* PBXTargetDependency */,
+			);
+			name = UrduKeyboardUITests;
+			productName = UrduKeyboardUITests;
+			productReference = 15DB7CB82032AD5100A84C7E /* UrduKeyboardUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15DB7C912032AD5100A84C7E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Zeerak Ahmed";
+				TargetAttributes = {
+					15DB7C982032AD5100A84C7E = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					15DB7CAC2032AD5100A84C7E = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 15DB7C982032AD5100A84C7E;
+					};
+					15DB7CB72032AD5100A84C7E = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 15DB7C982032AD5100A84C7E;
+					};
+				};
+			};
+			buildConfigurationList = 15DB7C942032AD5100A84C7E /* Build configuration list for PBXProject "UrduKeyboard" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 15DB7C902032AD5100A84C7E;
+			productRefGroup = 15DB7C9A2032AD5100A84C7E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15DB7C982032AD5100A84C7E /* UrduKeyboard */,
+				15DB7CAC2032AD5100A84C7E /* UrduKeyboardTests */,
+				15DB7CB72032AD5100A84C7E /* UrduKeyboardUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15DB7C972032AD5100A84C7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15DB7CA72032AD5100A84C7E /* LaunchScreen.storyboard in Resources */,
+				15DB7CA42032AD5100A84C7E /* Assets.xcassets in Resources */,
+				15DB7CA22032AD5100A84C7E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15DB7CAB2032AD5100A84C7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15DB7CB62032AD5100A84C7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15DB7C952032AD5100A84C7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15DB7C9F2032AD5100A84C7E /* ViewController.swift in Sources */,
+				15DB7C9D2032AD5100A84C7E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15DB7CA92032AD5100A84C7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15DB7CB22032AD5100A84C7E /* UrduKeyboardTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15DB7CB42032AD5100A84C7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15DB7CBD2032AD5100A84C7E /* UrduKeyboardUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		15DB7CAF2032AD5100A84C7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15DB7C982032AD5100A84C7E /* UrduKeyboard */;
+			targetProxy = 15DB7CAE2032AD5100A84C7E /* PBXContainerItemProxy */;
+		};
+		15DB7CBA2032AD5100A84C7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15DB7C982032AD5100A84C7E /* UrduKeyboard */;
+			targetProxy = 15DB7CB92032AD5100A84C7E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		15DB7CA02032AD5100A84C7E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15DB7CA12032AD5100A84C7E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		15DB7CA52032AD5100A84C7E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15DB7CA62032AD5100A84C7E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		15DB7CBF2032AD5100A84C7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		15DB7CC02032AD5100A84C7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		15DB7CC22032AD5100A84C7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NMWM6M9GTL;
+				INFOPLIST_FILE = UrduKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = UrduProject.UrduKeyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15DB7CC32032AD5100A84C7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NMWM6M9GTL;
+				INFOPLIST_FILE = UrduKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = UrduProject.UrduKeyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		15DB7CC52032AD5100A84C7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NMWM6M9GTL;
+				INFOPLIST_FILE = UrduKeyboardTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = UrduProject.UrduKeyboardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UrduKeyboard.app/UrduKeyboard";
+			};
+			name = Debug;
+		};
+		15DB7CC62032AD5100A84C7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NMWM6M9GTL;
+				INFOPLIST_FILE = UrduKeyboardTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = UrduProject.UrduKeyboardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UrduKeyboard.app/UrduKeyboard";
+			};
+			name = Release;
+		};
+		15DB7CC82032AD5100A84C7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NMWM6M9GTL;
+				INFOPLIST_FILE = UrduKeyboardUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = UrduProject.UrduKeyboardUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = UrduKeyboard;
+			};
+			name = Debug;
+		};
+		15DB7CC92032AD5100A84C7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NMWM6M9GTL;
+				INFOPLIST_FILE = UrduKeyboardUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = UrduProject.UrduKeyboardUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = UrduKeyboard;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15DB7C942032AD5100A84C7E /* Build configuration list for PBXProject "UrduKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15DB7CBF2032AD5100A84C7E /* Debug */,
+				15DB7CC02032AD5100A84C7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15DB7CC12032AD5100A84C7E /* Build configuration list for PBXNativeTarget "UrduKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15DB7CC22032AD5100A84C7E /* Debug */,
+				15DB7CC32032AD5100A84C7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15DB7CC42032AD5100A84C7E /* Build configuration list for PBXNativeTarget "UrduKeyboardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15DB7CC52032AD5100A84C7E /* Debug */,
+				15DB7CC62032AD5100A84C7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15DB7CC72032AD5100A84C7E /* Build configuration list for PBXNativeTarget "UrduKeyboardUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15DB7CC82032AD5100A84C7E /* Debug */,
+				15DB7CC92032AD5100A84C7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15DB7C912032AD5100A84C7E /* Project object */;
+}
