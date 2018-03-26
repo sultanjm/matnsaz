@@ -11,84 +11,82 @@ import UIKit
 class KeyboardViewController: UIInputViewController {
 
     var nextKeyboardButton: UIButton!
+    var keys: [Key]!
+    var spaceTimer: Timer!
+    
+    var DoubleTapSpaceBarShortcutActive = true
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
         
         // custom view sizing constraints
-        let expandedHeight:CGFloat = 280.0
+        let expandedHeight:CGFloat = 268.0
         let heightConstraint = NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0.0, constant: expandedHeight)
         self.view.addConstraint(heightConstraint)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.keys = []
+
+        // keyboard selector
+        addKey(type: Key.KeyType.KeyboardSelection, title: "🌐", x: 330, y: 222, width: 42, height: 42)
         
-        // Perform custom UI setup here
+        // space
+        addKey(type: Key.KeyType.Space, title: "فاصلہ", x: 99, y: 222, width: 129, height: 42)
         
-        // add next keyboard button
-        self.nextKeyboardButton = UIButton(type: .system)
-        self.nextKeyboardButton.setTitle("🌐", for: [])
-        self.nextKeyboardButton.setBackgroundImage(UIImage(named: "keycap"), for: UIControlState())
-//        self.nextKeyboardButton.frame = CGRect(x: 5, y: 226, width: 32, height: 42)
-        self.nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-        self.view.addSubview(self.nextKeyboardButton)
+        // backspace
+        addKey(type: Key.KeyType.Backspace, title: "→", x: 3.0, y: 169, width: 31.5, height: 42)
         
-        let guide = inputView!.layoutMarginsGuide
-        self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false;
-        self.nextKeyboardButton.leftAnchor.constraint(equalTo: guide.leftAnchor).isActive = true
-        self.nextKeyboardButton.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -8.0).isActive = true
-        self.nextKeyboardButton.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
-        self.nextKeyboardButton.widthAnchor.constraint(equalToConstant: 25.0).isActive = true
+        // return
+        addKey(type: Key.KeyType.Return, title: "⮑", x: 3.0, y: 222, width: 90, height: 42)
         
-        // add next keyboard button
-        let button = UIButton(type: .system)
-        button.setTitle("→", for: [])
-        button.setBackgroundImage(UIImage(named: "keycap"), for: UIControlState())
-        button.frame = CGRect(x: 5, y: 172, width: 32, height: 42)
-        button.addTarget(self, action: #selector(backspace(sender:)), for: .allTouchEvents)
-        self.view.addSubview(button)
+        // number
+        addKey(type: Key.KeyType.Number, title: "123", x: 234, y: 222, width: 42, height: 42)
         
-        // add keys
-        addButton(title: "ا", x: 339, y: 10, width: 32, height: 42)
-        addButton(title: "ب", x: 301, y: 10, width: 32, height: 42)
-        addButton(title: "پ", x: 264, y: 10, width: 32, height: 42)
-        addButton(title: "ت", x: 227, y: 10, width: 32, height: 42)
-        addButton(title: "ٹ", x: 190, y: 10, width: 32, height: 42)
-        addButton(title: "ث", x: 153, y: 10, width: 32, height: 42)
-        addButton(title: "ج", x: 116, y: 10, width: 32, height: 42)
-        addButton(title: "چ", x: 79, y: 10, width: 32, height: 42)
-        addButton(title: "ح", x: 42, y: 10, width: 32, height: 42)
-        addButton(title: "خ", x: 5, y: 10, width: 32, height: 42)
-        addButton(title: "د", x: 339, y: 64, width: 32, height: 42)
-        addButton(title: "ڈ", x: 301, y: 64, width: 32, height: 42)
-        addButton(title: "ذ", x: 264, y: 64, width: 32, height: 42)
-        addButton(title: "ر", x: 227, y: 64, width: 32, height: 42)
-        addButton(title: "ڑ", x: 190, y: 64, width: 32, height: 42)
-        addButton(title: "ز", x: 153, y: 64, width: 32, height: 42)
-        addButton(title: "ژ", x: 116, y: 64, width: 32, height: 42)
-        addButton(title: "س", x: 79, y: 64, width: 32, height: 42)
-        addButton(title: "ش", x: 42, y: 64, width: 32, height: 42)
-        addButton(title: "ص", x: 5, y: 64, width: 32, height: 42)
-        addButton(title: "ض", x: 339, y: 118, width: 32, height: 42)
-        addButton(title: "ط", x: 301, y: 118, width: 32, height: 42)
-        addButton(title: "ظ", x: 264, y: 118, width: 32, height: 42)
-        addButton(title: "ع", x: 227, y: 118, width: 32, height: 42)
-        addButton(title: "غ", x: 190, y: 118, width: 32, height: 42)
-        addButton(title: "ف", x: 153, y: 118, width: 32, height: 42)
-        addButton(title: "ق", x: 116, y: 118, width: 32, height: 42)
-        addButton(title: "ک", x: 79, y: 118, width: 32, height: 42)
-        addButton(title: "گ", x: 42, y: 118, width: 32, height: 42)
-        addButton(title: "ل", x: 5, y: 118, width: 32, height: 42)
-        addButton(title: "م", x: 339, y: 172, width: 32, height: 42)
-        addButton(title: "ن", x: 301, y: 172, width: 32, height: 42)
-        addButton(title: "ں", x: 264, y: 172, width: 32, height: 42)
-        addButton(title: "و", x: 227, y: 172, width: 32, height: 42)
-        addButton(title: "ه", x: 190, y: 172, width: 32, height: 42)
-        addButton(title: "ھ", x: 153, y: 172, width: 32, height: 42)
-        addButton(title: "ء", x: 116, y: 172, width: 32, height: 42)
-        addButton(title: "ی", x: 79, y: 172, width: 32, height: 42)
-        addButton(title: "ے", x: 42, y: 172, width: 32, height: 42)
+        // settings
+        addKey(type: Key.KeyType.Settings, title: "⚙︎", x: 282, y: 222, width: 42, height: 42)
+        
+        // letters
+        addKey(type: Key.KeyType.Letter, title: "ا", x: 340.5, y: 10 , width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ب", x: 303.0, y: 10 , width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "پ", x: 265.5, y: 10 , width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ت", x: 228.0, y: 10 , width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ٹ", x: 190.5, y: 10 , width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ث", x: 153.0, y: 10 , width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ج", x: 115.5, y: 10 , width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "چ", x: 78.0, y: 10 , width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ح", x: 40.5, y: 10 , width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "خ", x: 3.0, y: 10 , width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "د", x: 340.5, y: 63, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ڈ", x: 303.0, y: 63, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ذ", x: 265.5, y: 63, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ر", x: 228.0, y: 63, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ڑ", x: 190.5, y: 63, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ز", x: 153.0, y: 63, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ژ", x: 115.5, y: 63, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "س", x: 78.0, y: 63, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ش", x: 40.5, y: 63, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ص", x: 3.0, y: 63, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ض", x: 340.5, y: 116, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ط", x: 303.0, y: 116, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ظ", x: 265.5, y: 116, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ع", x: 228.0, y: 116, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "غ", x: 190.5, y: 116, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ف", x: 153.0, y: 116, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ق", x: 115.5, y: 116, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ک", x: 78.0, y: 116, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "گ", x: 40.5, y: 116, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ل", x: 3.0, y: 116, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "م", x: 340.5, y: 169, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ن", x: 303.0, y: 169, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ں", x: 265.5, y: 169, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "و", x: 228.0, y: 169, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ہ", x: 190.5, y: 169, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ھ", x: 153.0, y: 169, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ء", x: 115.5, y: 169, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ی", x: 78.0, y: 169, width: 31.5, height: 42)
+        addKey(type: Key.KeyType.Letter, title: "ے", x: 40.5, y: 169, width: 31.5, height: 42)
     }
     
     override func didReceiveMemoryWarning() {
@@ -103,33 +101,83 @@ class KeyboardViewController: UIInputViewController {
     override func textDidChange(_ textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
         
-        var textColor: UIColor
         let proxy = self.textDocumentProxy
+
+        // dark mode
         if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
-            textColor = UIColor.white
-        } else {
-            textColor = UIColor.black
+            for key in self.keys {
+                key.handleDarkMode()
+            }
         }
-        self.nextKeyboardButton.setTitleColor(textColor, for: [])
     }
     
-    func addButton(title: String, x: Int, y: Int, width: Int, height: Int) {
-        let button = UIButton(type: .system)
-        button.setTitle(title, for: [])
-        button.addTarget(self, action: #selector(keyPressed(sender:)), for: .touchUpInside)
-        button.setBackgroundImage(UIImage(named: "keycap"), for: UIControlState())
-        button.frame = CGRect(x: x, y: y, width: width, height: height)
-        button.setTitleColor(UIColor.black, for:UIControlState())
-        self.view.addSubview(button)
+    func addKey(type: Key.KeyType, title: String, x: Double, y: Double, width: Double, height: Double) {
+        let key = Key(type: type, title: title, x: x, y: y, width: width, height: height)
+        self.keys.append(key)
+        self.view.addSubview(key)
+        switch key.type {
+        case Key.KeyType.KeyboardSelection:
+            key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+            // need something to have autolayout for height to work, should be removed when adding other autolayout stuff
+            let guide = inputView!.layoutMarginsGuide
+            key.translatesAutoresizingMaskIntoConstraints = false;
+            key.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -4.0).isActive = true
+            key.rightAnchor.constraint(equalTo: inputView!.rightAnchor, constant: -3.0).isActive = true
+            key.widthAnchor.constraint(equalToConstant: 42.0).isActive = true
+            key.heightAnchor.constraint(equalToConstant: 42.0).isActive = true
+        case Key.KeyType.Backspace:
+            key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
+        default:
+            key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
+        }
     }
     
-    @objc func backspace(sender: UIButton) {
-        self.textDocumentProxy.deleteBackward()
+    @objc func keyTouchUp(sender: Key) {
+        switch sender.type {
+        case Key.KeyType.Letter:
+            let title = sender.title(for: UIControlState.normal)
+            self.textDocumentProxy.insertText(title!)
+        case Key.KeyType.Space:
+            // "." shortcut
+            if DoubleTapSpaceBarShortcutActive {
+                let precedingCharacter = self.textDocumentProxy.documentContextBeforeInput?.suffix(1)
+                if precedingCharacter == " " {
+                    if self.spaceTimer != nil {
+                        if self.spaceTimer.isValid {
+                            self.textDocumentProxy.deleteBackward()
+                            self.textDocumentProxy.insertText("۔")
+                            self.spaceTimer.invalidate()
+                        }
+                    }
+                } else if precedingCharacter?.rangeOfCharacter(from: NSCharacterSet.punctuationCharacters) == nil {
+                    self.startSpaceTimer()
+                }
+            }
+            self.textDocumentProxy.insertText(" ")
+        case Key.KeyType.Backspace:
+            self.textDocumentProxy.deleteBackward()
+        case Key.KeyType.Return:
+            self.textDocumentProxy.insertText("\n")
+        default:
+            break
+        }
     }
     
-    @objc func keyPressed(sender: UIButton) {
-        let title = sender.title(for: UIControlState.normal)
-        self.textDocumentProxy.insertText(title!)
+    @objc func allTouchEvents(sender: Key) {
+        switch sender.type {
+        case Key.KeyType.Backspace:
+            self.textDocumentProxy.deleteBackward()
+        default:
+            break
+        }
     }
 
+    func startSpaceTimer() {
+        self.spaceTimer = Timer.scheduledTimer(timeInterval: 0.7, target: self, selector: #selector(spaceTimerFired(timer:)), userInfo: nil, repeats: false)
+    }
+    
+    @objc func spaceTimerFired(timer: Timer) {
+        self.spaceTimer.invalidate()
+    }
+    
 }

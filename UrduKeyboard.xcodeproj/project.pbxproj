@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		155257A7203AA38100B57DE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA32032AD5100A84C7E /* Assets.xcassets */; };
+		156333372068A9E0004F823C /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156333352068A9DC004F823C /* Key.swift */; };
 		15DB7C9D2032AD5100A84C7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */; };
 		15DB7C9F2032AD5100A84C7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7C9E2032AD5100A84C7E /* ViewController.swift */; };
 		15DB7CA22032AD5100A84C7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA02032AD5100A84C7E /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		155257A5203AA26C00B57DE7 /* UrduKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UrduKeyboard.entitlements; sourceTree = "<group>"; };
+		156333352068A9DC004F823C /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		15DB7C992032AD5100A84C7E /* UrduKeyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrduKeyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15DB7C9E2032AD5100A84C7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				15DB7CD02032ADC500A84C7E /* KeyboardViewController.swift */,
+				156333352068A9DC004F823C /* Key.swift */,
 				15DB7CD22032ADC500A84C7E /* Info.plist */,
 			);
 			path = "Z 0.1";
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15DB7CD12032ADC500A84C7E /* KeyboardViewController.swift in Sources */,
+				156333372068A9E0004F823C /* Key.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +383,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NMWM6M9GTL;
 				INFOPLIST_FILE = UrduKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = UrduProject.UrduKeyboard;
@@ -395,7 +399,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NMWM6M9GTL;
 				INFOPLIST_FILE = UrduKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = UrduProject.UrduKeyboard;
@@ -409,7 +413,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NMWM6M9GTL;
 				INFOPLIST_FILE = "Z 0.1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "UrduProject.UrduKeyboard.Z-0-1";
@@ -424,7 +428,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NMWM6M9GTL;
 				INFOPLIST_FILE = "Z 0.1/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "UrduProject.UrduKeyboard.Z-0-1";
