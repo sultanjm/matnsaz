@@ -125,6 +125,9 @@ class KeyboardViewController: UIInputViewController {
             key.rightAnchor.constraint(equalTo: inputView!.rightAnchor, constant: -3.0).isActive = true
             key.widthAnchor.constraint(equalToConstant: 42.0).isActive = true
             key.heightAnchor.constraint(equalToConstant: 42.0).isActive = true
+        case Key.KeyType.Letter:
+            key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
+            key.addTarget(self, action: #selector(keyTouchDown(sender:)), for: .touchDown)
         case Key.KeyType.Backspace:
             key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
         default:
@@ -135,6 +138,7 @@ class KeyboardViewController: UIInputViewController {
     @objc func keyTouchUp(sender: Key) {
         switch sender.type {
         case Key.KeyType.Letter:
+            sender.hidePopUp()
             let title = sender.title(for: UIControlState.normal)
             self.textDocumentProxy.insertText(title!)
         case Key.KeyType.Space:
@@ -158,6 +162,15 @@ class KeyboardViewController: UIInputViewController {
             self.textDocumentProxy.deleteBackward()
         case Key.KeyType.Return:
             self.textDocumentProxy.insertText("\n")
+        default:
+            break
+        }
+    }
+    
+    @objc func keyTouchDown(sender: Key) {
+        switch sender.type {
+        case Key.KeyType.Letter:
+            sender.showPopUp()
         default:
             break
         }
