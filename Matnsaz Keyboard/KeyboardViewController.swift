@@ -58,15 +58,6 @@ class KeyboardViewController: UIInputViewController {
         case KeyboardLayouts.RasmBased:
             setUpRasmBasedLayout()
         }
-        
-        // read plist
-        if let path = Bundle.main.path(forResource: "AlphabeticalLayout", ofType: "plist") {
-            let dictRoot = NSDictionary(contentsOfFile: path)
-            if let dict = dictRoot {
-                debugPrint(dict["Name"] as! String)
-            }
-        }
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -225,64 +216,25 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func setUpAlphabeticalKeyLayout() {
-        // keyboard selector
-        addKey(type: Key.KeyType.KeyboardSelection, action: "🌐", x: 330, y: 222, width: 42, height: 42)
         
-        // space
-        addKey(type: Key.KeyType.Space, action: "فاصلہ", x: 99, y: 222, width: 129, height: 42)
-        
-        // backspace
-        addKey(type: Key.KeyType.Backspace, action: "→", x: 3.0, y: 169, width: 31.5, height: 42)
-        
-        // return
-        addKey(type: Key.KeyType.Return, action: "⮑", x: 3.0, y: 222, width: 90, height: 42)
-        
-        // number
-        addKey(type: Key.KeyType.Number, action: "۱۲۳", x: 234, y: 222, width: 42, height: 42)
-        
-        // settings
-        addKey(type: Key.KeyType.Settings, action: "⚙︎", x: 282, y: 222, width: 42, height: 42)
-        
-        // letters
-        addKey(type: Key.KeyType.Letter, action: "ا", x: 340.5, y: 10 , width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ب", x: 303.0, y: 10 , width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "پ", x: 265.5, y: 10 , width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ت", x: 228.0, y: 10 , width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ٹ", x: 190.5, y: 10 , width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ث", x: 153.0, y: 10 , width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ج", x: 115.5, y: 10 , width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "چ", x: 78.0, y: 10 , width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ح", x: 40.5, y: 10 , width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "خ", x: 3.0, y: 10 , width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "د", x: 340.5, y: 63, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ڈ", x: 303.0, y: 63, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ذ", x: 265.5, y: 63, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ر", x: 228.0, y: 63, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ڑ", x: 190.5, y: 63, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ز", x: 153.0, y: 63, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ژ", x: 115.5, y: 63, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "س", x: 78.0, y: 63, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ش", x: 40.5, y: 63, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ص", x: 3.0, y: 63, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ض", x: 340.5, y: 116, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ط", x: 303.0, y: 116, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ظ", x: 265.5, y: 116, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ع", x: 228.0, y: 116, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "غ", x: 190.5, y: 116, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ف", x: 153.0, y: 116, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ق", x: 115.5, y: 116, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ک", x: 78.0, y: 116, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "گ", x: 40.5, y: 116, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ل", x: 3.0, y: 116, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "م", x: 340.5, y: 169, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ن", x: 303.0, y: 169, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ں", x: 265.5, y: 169, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "و", x: 228.0, y: 169, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ہ", x: 190.5, y: 169, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ھ", x: 153.0, y: 169, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ء", x: 115.5, y: 169, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ی", x: 78.0, y: 169, width: 31.5, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ے", x: 40.5, y: 169, width: 31.5, height: 42)
+        // read plist
+        let path = Bundle.main.path(forResource: "AlphabeticalLayout", ofType: "plist")
+        if let dict = NSDictionary(contentsOfFile: path!) {
+            for (_, value) in dict {
+                
+                // for every key in the dictionary set up values
+                let info = value as! Dictionary<String, Any>
+                let action = info["action"] as! String
+                let type = Key.KeyType(rawValue: info["type"] as! String)!
+                let x = info["x"] as! Double
+                let y = info["y"] as! Double
+                let width = info["width"] as! Double
+                let height = info["height"] as! Double
+                
+                // add key
+                addKey(type: type, action: action, x: x, y: y, width: width, height: height)
+            }
+        }
     }
     
     func setUpRasmBasedLayout() {

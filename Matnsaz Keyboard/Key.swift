@@ -19,7 +19,7 @@ class Key: UIButton {
     var cornerRadius = 4.0
     var characterVariantsEnabled: Bool
     
-    enum KeyType {
+    enum KeyType: String {
         case Letter
         case Space
         case Backspace
