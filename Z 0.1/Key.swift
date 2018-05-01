@@ -15,8 +15,9 @@ class Key: UIButton {
     var popUpLabel: UILabel
     var popUpBackgroundLayer: CAShapeLayer
     var x, y, width, height: Double
-    var title: String
+    var action: String
     var cornerRadius = 4.0
+    var characterVariantsEnabled: Bool
     
     enum KeyType {
         case Letter
@@ -42,7 +43,7 @@ class Key: UIButton {
     let darkModeSpecialKeyBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.12)
     let disabledTextColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     
-    init(type: KeyType, title: String, x: Double, y: Double, width: Double, height: Double) {
+    init(type: KeyType, action: String, x: Double, y: Double, width: Double, height: Double, characterVariantsEnabled: Bool) {
         
         // instance setup
         self.type = type
@@ -53,7 +54,8 @@ class Key: UIButton {
         self.y = y
         self.width = width
         self.height = height
-        self.title = title
+        self.action = action
+        self.characterVariantsEnabled = characterVariantsEnabled
         
         // frame & init
         let frameRect = CGRect(x: x, y: y, width: width, height: height)
@@ -62,11 +64,10 @@ class Key: UIButton {
         self.clipsToBounds = false
         
         // title
-        self.setTitle(title, for: [])
+        self.setTitle(nextInputVariant: ArabicScript.CharacterVariant.Initial)
         self.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         self.titleEdgeInsets = UIEdgeInsets.zero
         self.contentEdgeInsets = UIEdgeInsets.zero
-        self.popUpLabel.text = title
         self.popUpLabel.font = UIFont.systemFont(ofSize: 24)
         self.popUpLabel.isHidden = false
         self.popUpLabel.textAlignment = NSTextAlignment.center
@@ -94,6 +95,17 @@ class Key: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func setTitle(nextInputVariant: ArabicScript.CharacterVariant) {
+        var title: String
+        if self.characterVariantsEnabled && self.type == KeyType.Letter {
+            title = ArabicScript.getCharacterVariant(string: self.action, variant: nextInputVariant)
+        } else {
+            title = self.action
+        }
+        self.setTitle(title, for: [])
+        self.popUpLabel.text = title
+    }
+    
     func setColors(mode: KeyboardColorMode) {
         self.setTitleColor(mode: mode)
         self.setBackgroundColor(mode: mode)
