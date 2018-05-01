@@ -87,13 +87,6 @@ class KeyboardViewController: UIInputViewController {
         switch key.type {
         case Key.KeyType.KeyboardSelection:
             key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-            // need something to have autolayout for height to work, should be removed when adding other autolayout stuff
-//            let guide = inputView!.layoutMarginsGuide
-//            key.translatesAutoresizingMaskIntoConstraints = false;
-//            key.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -4.0).isActive = true
-//            key.rightAnchor.constraint(equalTo: inputView!.rightAnchor, constant: -3.0).isActive = true
-//            key.widthAnchor.constraint(equalToConstant: 42.0).isActive = true
-//            key.heightAnchor.constraint(equalToConstant: 42.0).isActive = true
         case Key.KeyType.Letter:
             key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
             key.addTarget(self, action: #selector(keyTouchDown(sender:)), for: .touchDown)
