@@ -42,12 +42,14 @@ class KeyboardViewController: UIInputViewController {
     override func viewDidLoad() {
         // boilerplate setup
         super.viewDidLoad()
+        
         // add transparent view so autolayout works
         let guide = inputView!.layoutMarginsGuide
         let transparentView = UIView.init(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize.init(width: 0, height: 0)))
         self.view.addSubview(transparentView)
         transparentView.translatesAutoresizingMaskIntoConstraints = false;
         transparentView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -4.0).isActive = true
+        
         // set up keys
         self.keys = []
         switch KeyboardLayout {
@@ -56,6 +58,17 @@ class KeyboardViewController: UIInputViewController {
         case KeyboardLayouts.RasmBased:
             setUpRasmBasedLayout()
         }
+        
+        // read plist
+        print("hello")
+        if let path = Bundle.main.path(forResource: "AlphabeticalLayout", ofType: "plist") {
+            print(path)
+            let dictRoot = NSDictionary(contentsOfFile: path)
+            if let dict = dictRoot {
+                debugPrint(dict["Name"] as! String)
+            }
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		154F907D20981E640068445F /* AlphabeticalLayout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 154F907C20981E640068445F /* AlphabeticalLayout.plist */; };
 		155257A7203AA38100B57DE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA32032AD5100A84C7E /* Assets.xcassets */; };
 		156333372068A9E0004F823C /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156333352068A9DC004F823C /* Key.swift */; };
 		15633339206A08C8004F823C /* ArabicScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15633338206A08C8004F823C /* ArabicScript.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		154F907C20981E640068445F /* AlphabeticalLayout.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AlphabeticalLayout.plist; sourceTree = "<group>"; };
 		155257A5203AA26C00B57DE7 /* Matnsaz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Matnsaz.entitlements; sourceTree = "<group>"; };
 		156333352068A9DC004F823C /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		15633338206A08C8004F823C /* ArabicScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArabicScript.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				156333352068A9DC004F823C /* Key.swift */,
 				15DB7CD22032ADC500A84C7E /* Info.plist */,
 				15633338206A08C8004F823C /* ArabicScript.swift */,
+				154F907C20981E640068445F /* AlphabeticalLayout.plist */,
 			);
 			path = "Matnsaz Keyboard";
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				154F907D20981E640068445F /* AlphabeticalLayout.plist in Resources */,
 				155257A7203AA38100B57DE7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
