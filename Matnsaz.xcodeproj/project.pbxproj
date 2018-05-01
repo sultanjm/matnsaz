@@ -16,7 +16,7 @@
 		15DB7CA42032AD5100A84C7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA32032AD5100A84C7E /* Assets.xcassets */; };
 		15DB7CA72032AD5100A84C7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA52032AD5100A84C7E /* LaunchScreen.storyboard */; };
 		15DB7CD12032ADC500A84C7E /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7CD02032ADC500A84C7E /* KeyboardViewController.swift */; };
-		15DB7CD52032ADC500A84C7E /* Z 0.1.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 15DB7CCE2032ADC500A84C7E /* Z 0.1.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		15DB7CD52032ADC500A84C7E /* Matnsaz Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 15DB7CCE2032ADC500A84C7E /* Matnsaz Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				15DB7CD52032ADC500A84C7E /* Z 0.1.appex in Embed App Extensions */,
+				15DB7CD52032ADC500A84C7E /* Matnsaz Keyboard.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,17 +44,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		155257A5203AA26C00B57DE7 /* UrduKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UrduKeyboard.entitlements; sourceTree = "<group>"; };
+		155257A5203AA26C00B57DE7 /* Matnsaz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Matnsaz.entitlements; sourceTree = "<group>"; };
 		156333352068A9DC004F823C /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		15633338206A08C8004F823C /* ArabicScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArabicScript.swift; sourceTree = "<group>"; };
-		15DB7C992032AD5100A84C7E /* UrduKeyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrduKeyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		15DB7C992032AD5100A84C7E /* Matnsaz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matnsaz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15DB7C9E2032AD5100A84C7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		15DB7CA12032AD5100A84C7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		15DB7CA32032AD5100A84C7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15DB7CA62032AD5100A84C7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15DB7CA82032AD5100A84C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		15DB7CCE2032ADC500A84C7E /* Z 0.1.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Z 0.1.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15DB7CCE2032ADC500A84C7E /* Matnsaz Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Matnsaz Keyboard.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB7CD02032ADC500A84C7E /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		15DB7CD22032ADC500A84C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,8 +80,8 @@
 		15DB7C902032AD5100A84C7E = {
 			isa = PBXGroup;
 			children = (
-				15DB7C9B2032AD5100A84C7E /* UrduKeyboard */,
-				15DB7CCF2032ADC500A84C7E /* Z 0.1 */,
+				15DB7C9B2032AD5100A84C7E /* Matnsaz */,
+				15DB7CCF2032ADC500A84C7E /* Matnsaz Keyboard */,
 				15DB7C9A2032AD5100A84C7E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,16 +89,16 @@
 		15DB7C9A2032AD5100A84C7E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				15DB7C992032AD5100A84C7E /* UrduKeyboard.app */,
-				15DB7CCE2032ADC500A84C7E /* Z 0.1.appex */,
+				15DB7C992032AD5100A84C7E /* Matnsaz.app */,
+				15DB7CCE2032ADC500A84C7E /* Matnsaz Keyboard.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		15DB7C9B2032AD5100A84C7E /* UrduKeyboard */ = {
+		15DB7C9B2032AD5100A84C7E /* Matnsaz */ = {
 			isa = PBXGroup;
 			children = (
-				155257A5203AA26C00B57DE7 /* UrduKeyboard.entitlements */,
+				155257A5203AA26C00B57DE7 /* Matnsaz.entitlements */,
 				15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */,
 				15DB7C9E2032AD5100A84C7E /* ViewController.swift */,
 				15DB7CA02032AD5100A84C7E /* Main.storyboard */,
@@ -106,10 +106,10 @@
 				15DB7CA52032AD5100A84C7E /* LaunchScreen.storyboard */,
 				15DB7CA82032AD5100A84C7E /* Info.plist */,
 			);
-			path = UrduKeyboard;
+			path = Matnsaz;
 			sourceTree = "<group>";
 		};
-		15DB7CCF2032ADC500A84C7E /* Z 0.1 */ = {
+		15DB7CCF2032ADC500A84C7E /* Matnsaz Keyboard */ = {
 			isa = PBXGroup;
 			children = (
 				15DB7CD02032ADC500A84C7E /* KeyboardViewController.swift */,
@@ -117,15 +117,15 @@
 				15DB7CD22032ADC500A84C7E /* Info.plist */,
 				15633338206A08C8004F823C /* ArabicScript.swift */,
 			);
-			path = "Z 0.1";
+			path = "Matnsaz Keyboard";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		15DB7C982032AD5100A84C7E /* UrduKeyboard */ = {
+		15DB7C982032AD5100A84C7E /* Matnsaz */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15DB7CC12032AD5100A84C7E /* Build configuration list for PBXNativeTarget "UrduKeyboard" */;
+			buildConfigurationList = 15DB7CC12032AD5100A84C7E /* Build configuration list for PBXNativeTarget "Matnsaz" */;
 			buildPhases = (
 				15DB7C952032AD5100A84C7E /* Sources */,
 				15DB7C962032AD5100A84C7E /* Frameworks */,
@@ -137,14 +137,14 @@
 			dependencies = (
 				15DB7CD42032ADC500A84C7E /* PBXTargetDependency */,
 			);
-			name = UrduKeyboard;
+			name = Matnsaz;
 			productName = UrduKeyboard;
-			productReference = 15DB7C992032AD5100A84C7E /* UrduKeyboard.app */;
+			productReference = 15DB7C992032AD5100A84C7E /* Matnsaz.app */;
 			productType = "com.apple.product-type.application";
 		};
-		15DB7CCD2032ADC500A84C7E /* Z 0.1 */ = {
+		15DB7CCD2032ADC500A84C7E /* Matnsaz Keyboard */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15DB7CD62032ADC500A84C7E /* Build configuration list for PBXNativeTarget "Z 0.1" */;
+			buildConfigurationList = 15DB7CD62032ADC500A84C7E /* Build configuration list for PBXNativeTarget "Matnsaz Keyboard" */;
 			buildPhases = (
 				15DB7CCA2032ADC500A84C7E /* Sources */,
 				15DB7CCB2032ADC500A84C7E /* Frameworks */,
@@ -154,9 +154,9 @@
 			);
 			dependencies = (
 			);
-			name = "Z 0.1";
+			name = "Matnsaz Keyboard";
 			productName = "Z 0.1";
-			productReference = 15DB7CCE2032ADC500A84C7E /* Z 0.1.appex */;
+			productReference = 15DB7CCE2032ADC500A84C7E /* Matnsaz Keyboard.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -166,7 +166,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Zeerak Ahmed";
 				TargetAttributes = {
 					15DB7C982032AD5100A84C7E = {
@@ -184,7 +184,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 15DB7C942032AD5100A84C7E /* Build configuration list for PBXProject "UrduKeyboard" */;
+			buildConfigurationList = 15DB7C942032AD5100A84C7E /* Build configuration list for PBXProject "Matnsaz" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -197,8 +197,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				15DB7C982032AD5100A84C7E /* UrduKeyboard */,
-				15DB7CCD2032ADC500A84C7E /* Z 0.1 */,
+				15DB7C982032AD5100A84C7E /* Matnsaz */,
+				15DB7CCD2032ADC500A84C7E /* Matnsaz Keyboard */,
 			);
 		};
 /* End PBXProject section */
@@ -249,7 +249,7 @@
 /* Begin PBXTargetDependency section */
 		15DB7CD42032ADC500A84C7E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 15DB7CCD2032ADC500A84C7E /* Z 0.1 */;
+			target = 15DB7CCD2032ADC500A84C7E /* Matnsaz Keyboard */;
 			targetProxy = 15DB7CD32032ADC500A84C7E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -288,6 +288,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -295,6 +296,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -345,6 +347,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -352,6 +355,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -388,9 +392,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NMWM6M9GTL;
-				INFOPLIST_FILE = UrduKeyboard/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Matnsaz/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = UrduProject.UrduKeyboard;
+				PRODUCT_BUNDLE_IDENTIFIER = Matnsaz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -404,9 +408,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NMWM6M9GTL;
-				INFOPLIST_FILE = UrduKeyboard/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Matnsaz/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = UrduProject.UrduKeyboard;
+				PRODUCT_BUNDLE_IDENTIFIER = Matnsaz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -418,9 +422,9 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NMWM6M9GTL;
-				INFOPLIST_FILE = "Z 0.1/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Matnsaz Keyboard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "UrduProject.UrduKeyboard.Z-0-1";
+				PRODUCT_BUNDLE_IDENTIFIER = Matnsaz.Keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -433,9 +437,9 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NMWM6M9GTL;
-				INFOPLIST_FILE = "Z 0.1/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Matnsaz Keyboard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "UrduProject.UrduKeyboard.Z-0-1";
+				PRODUCT_BUNDLE_IDENTIFIER = Matnsaz.Keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -446,7 +450,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		15DB7C942032AD5100A84C7E /* Build configuration list for PBXProject "UrduKeyboard" */ = {
+		15DB7C942032AD5100A84C7E /* Build configuration list for PBXProject "Matnsaz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				15DB7CBF2032AD5100A84C7E /* Debug */,
@@ -455,7 +459,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		15DB7CC12032AD5100A84C7E /* Build configuration list for PBXNativeTarget "UrduKeyboard" */ = {
+		15DB7CC12032AD5100A84C7E /* Build configuration list for PBXNativeTarget "Matnsaz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				15DB7CC22032AD5100A84C7E /* Debug */,
@@ -464,7 +468,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		15DB7CD62032ADC500A84C7E /* Build configuration list for PBXNativeTarget "Z 0.1" */ = {
+		15DB7CD62032ADC500A84C7E /* Build configuration list for PBXNativeTarget "Matnsaz Keyboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				15DB7CD72032ADC500A84C7E /* Debug */,
