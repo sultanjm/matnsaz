@@ -79,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		154F907E209825420068445F /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				154F907C20981E640068445F /* AlphabeticalLayout.plist */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
 		15DB7C902032AD5100A84C7E = {
 			isa = PBXGroup;
 			children = (
@@ -114,11 +122,11 @@
 		15DB7CCF2032ADC500A84C7E /* Matnsaz Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				154F907E209825420068445F /* Layouts */,
 				15DB7CD02032ADC500A84C7E /* KeyboardViewController.swift */,
 				156333352068A9DC004F823C /* Key.swift */,
 				15DB7CD22032ADC500A84C7E /* Info.plist */,
 				15633338206A08C8004F823C /* ArabicScript.swift */,
-				154F907C20981E640068445F /* AlphabeticalLayout.plist */,
 			);
 			path = "Matnsaz Keyboard";
 			sourceTree = "<group>";

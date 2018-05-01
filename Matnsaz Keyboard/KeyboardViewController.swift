@@ -60,9 +60,7 @@ class KeyboardViewController: UIInputViewController {
         }
         
         // read plist
-        print("hello")
         if let path = Bundle.main.path(forResource: "AlphabeticalLayout", ofType: "plist") {
-            print(path)
             let dictRoot = NSDictionary(contentsOfFile: path)
             if let dict = dictRoot {
                 debugPrint(dict["Name"] as! String)
