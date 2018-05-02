@@ -52,12 +52,7 @@ class KeyboardViewController: UIInputViewController {
         
         // set up keys
         self.keys = []
-        switch KeyboardLayout {
-        case KeyboardLayouts.Alphabetical:
-            setUpAlphabeticalKeyLayout()
-        case KeyboardLayouts.RasmBased:
-            setUpRasmBasedLayout()
-        }
+        setUpKeys(layout: KeyboardLayout)
     }
     
     override func didReceiveMemoryWarning() {
@@ -249,25 +244,16 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    func setUpAlphabeticalKeyLayout() {
-        
+    func setUpKeys(layout: KeyboardLayouts) {
+        // filepath
+        let fileName = KeyboardLayout.rawValue + "Layout-Keys"
+        let path = Bundle.main.path(forResource: fileName, ofType: "plist")
         // read plist
-        let path = Bundle.main.path(forResource: "AlphabeticalLayout-Keys", ofType: "plist")
         if let dict = NSDictionary(contentsOfFile: path!) {
+            // create key for every item in dictionary
             for (key, value) in dict {
-                // for every key in the dictionary set up values
                 let info = value as! Dictionary<String, String>
-                
                 addKey(name: key as! String, type: Key.KeyType(rawValue: info["type"]!)!, label: info["label"]!)
-//                let action = info["action"] as! String
-//                let type = Key.KeyType(rawValue: info["type"] as! String)!
-//                let x = info["x"] as! Double
-//                let y = info["y"] as! Double
-//                let width = info["width"] as! Double
-//                let height = info["height"] as! Double
-//
-//                // add key
-//                addKey(type: type, action: action, x: x, y: y, width: width, height: height)
             }
         }
     }

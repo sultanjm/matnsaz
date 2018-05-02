@@ -123,9 +123,6 @@ class Key: UIButton {
         self.popUpLabel.isHidden = false
         self.popUpLabel.textAlignment = NSTextAlignment.center
         
-        // set up popUp
-        self.createPopUp()
-        
         // shadow
         let shadowColor = UIColor(red: 0.1, green: 0.15, blue: 0.06, alpha: 0.36).cgColor
         self.layer.shadowColor = shadowColor
@@ -152,6 +149,7 @@ class Key: UIButton {
         self.width = width
         self.height = height
         super.frame = CGRect(x: x, y: y, width: width, height: height)
+        self.createPopUp()
     }
     
     func hide() {
@@ -270,6 +268,7 @@ class Key: UIButton {
     func showPopUp() {
         self.layer.addSublayer(self.popUpBackgroundLayer)
         self.addSubview(self.popUpLabel)
+        self.superview?.bringSubview(toFront: self)
     }
     
     func hidePopUp()  {
