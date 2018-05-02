@@ -14,7 +14,7 @@ class KeyboardViewController: UIInputViewController {
     var keys: [Key]!
     var spaceTimer: Timer!
     
-    enum KeyboardLayouts {
+    enum KeyboardLayouts: String {
         case Alphabetical
         case RasmBased
     }
@@ -82,8 +82,42 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    func addKey(type: Key.KeyType, action: String, x: Double, y: Double, width: Double, height: Double) {
-        let key = Key(type: type, action: action, x: x, y: y, width: width, height: height, characterVariantsEnabled: CharacterVariantsEnabled)
+    override func viewWillLayoutSubviews() {
+        let screenWidth = Int(self.view.frame.width)
+        let layoutFileName = KeyboardLayout.rawValue + "Layout-w" + String(describing: screenWidth)
+        
+        // read plist
+        let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
+        if let dict = NSDictionary(contentsOfFile: path!) {
+            for key in keys {
+                if let info = dict[key.name] as? Dictionary<String, Double> {
+                    key.setLayout(x: info["x"]!, y: info["y"]!, width: info["width"]!, height: info["height"]!)
+                } else {
+                    key.hide()
+                }
+            }
+        }
+    }
+    
+//    func addKey(type: Key.KeyType, action: String, x: Double, y: Double, width: Double, height: Double) {
+//        let key = Key(type: type, action: action, x: x, y: y, width: width, height: height, characterVariantsEnabled: CharacterVariantsEnabled)
+//        self.keys.append(key)
+//        self.view.addSubview(key)
+//        switch key.type {
+//        case Key.KeyType.KeyboardSelection:
+//            key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+//        case Key.KeyType.Letter:
+//            key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
+//            key.addTarget(self, action: #selector(keyTouchDown(sender:)), for: .touchDown)
+//        case Key.KeyType.Backspace:
+//            key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
+//        default:
+//            key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
+//        }
+//    }
+
+    func addKey(name: String, type: Key.KeyType, label: String) {
+        let key = Key(name: name, type: type, label: label, characterVariantsEnabled: CharacterVariantsEnabled)
         self.keys.append(key)
         self.view.addSubview(key)
         switch key.type {
@@ -104,7 +138,7 @@ class KeyboardViewController: UIInputViewController {
         switch sender.type {
         case Key.KeyType.Letter:
             sender.hidePopUp()
-            let action = sender.action
+            let action = sender.label
             self.textDocumentProxy.insertText(action)
         case Key.KeyType.Space:
             // "." shortcut
@@ -218,53 +252,54 @@ class KeyboardViewController: UIInputViewController {
     func setUpAlphabeticalKeyLayout() {
         
         // read plist
-        let path = Bundle.main.path(forResource: "AlphabeticalLayout", ofType: "plist")
+        let path = Bundle.main.path(forResource: "AlphabeticalLayout-Keys", ofType: "plist")
         if let dict = NSDictionary(contentsOfFile: path!) {
-            for (_, value) in dict {
-                
+            for (key, value) in dict {
                 // for every key in the dictionary set up values
-                let info = value as! Dictionary<String, Any>
-                let action = info["action"] as! String
-                let type = Key.KeyType(rawValue: info["type"] as! String)!
-                let x = info["x"] as! Double
-                let y = info["y"] as! Double
-                let width = info["width"] as! Double
-                let height = info["height"] as! Double
+                let info = value as! Dictionary<String, String>
                 
-                // add key
-                addKey(type: type, action: action, x: x, y: y, width: width, height: height)
+                addKey(name: key as! String, type: Key.KeyType(rawValue: info["type"]!)!, label: info["label"]!)
+//                let action = info["action"] as! String
+//                let type = Key.KeyType(rawValue: info["type"] as! String)!
+//                let x = info["x"] as! Double
+//                let y = info["y"] as! Double
+//                let width = info["width"] as! Double
+//                let height = info["height"] as! Double
+//
+//                // add key
+//                addKey(type: type, action: action, x: x, y: y, width: width, height: height)
             }
         }
     }
     
     func setUpRasmBasedLayout() {
-        addKey(type: Key.KeyType.KeyboardSelection, action: "🌐", x: 324, y: 169, width: 48, height: 42)
-        addKey(type: Key.KeyType.Number, action: "۱۲۳", x: 269, y: 169, width: 48, height: 42)
-        addKey(type: Key.KeyType.Space, action: "فاصلہ", x: 100, y: 169, width: 162, height: 42)
-        addKey(type: Key.KeyType.Return, action: "⮑", x: 3, y: 169, width: 90, height: 42)
-        addKey(type: Key.KeyType.Settings, action: "⚙︎", x: 324, y: 115, width: 48, height: 42)
-        addKey(type: Key.KeyType.Backspace, action: "→", x: 3, y: 115, width: 48, height: 42)
-        
-        addKey(type: Key.KeyType.Letter, action: "ا", x: 332, y: 10 , width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ٮ", x: 285, y: 10 , width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ح", x: 238, y: 10 , width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "د", x: 191, y: 10, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ر", x: 144, y: 10, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "س", x: 97, y: 10, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ص", x: 50, y: 10, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ط", x: 3, y: 10, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ع", x: 332, y: 63, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ڡ", x: 285, y: 63, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ٯ", x: 238, y: 63, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ک", x: 191, y: 63, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ل", x: 144, y: 63, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "م", x: 97, y: 63, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ں", x: 50, y: 63, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "و", x: 3, y: 63, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ہ", x: 261.5, y: 116, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ھ", x: 214.5, y: 116, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ء", x: 167.5, y: 116, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ی", x: 120.5, y: 116, width: 40, height: 42)
-        addKey(type: Key.KeyType.Letter, action: "ے", x: 73.5, y: 116, width: 40, height: 42)
+//        addKey(type: Key.KeyType.KeyboardSelection, action: "🌐", x: 324, y: 169, width: 48, height: 42)
+//        addKey(type: Key.KeyType.Number, action: "۱۲۳", x: 269, y: 169, width: 48, height: 42)
+//        addKey(type: Key.KeyType.Space, action: "فاصلہ", x: 100, y: 169, width: 162, height: 42)
+//        addKey(type: Key.KeyType.Return, action: "⮑", x: 3, y: 169, width: 90, height: 42)
+//        addKey(type: Key.KeyType.Settings, action: "⚙︎", x: 324, y: 115, width: 48, height: 42)
+//        addKey(type: Key.KeyType.Backspace, action: "→", x: 3, y: 115, width: 48, height: 42)
+//
+//        addKey(type: Key.KeyType.Letter, action: "ا", x: 332, y: 10 , width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ٮ", x: 285, y: 10 , width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ح", x: 238, y: 10 , width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "د", x: 191, y: 10, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ر", x: 144, y: 10, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "س", x: 97, y: 10, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ص", x: 50, y: 10, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ط", x: 3, y: 10, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ع", x: 332, y: 63, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ڡ", x: 285, y: 63, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ٯ", x: 238, y: 63, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ک", x: 191, y: 63, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ل", x: 144, y: 63, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "م", x: 97, y: 63, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ں", x: 50, y: 63, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "و", x: 3, y: 63, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ہ", x: 261.5, y: 116, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ھ", x: 214.5, y: 116, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ء", x: 167.5, y: 116, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ی", x: 120.5, y: 116, width: 40, height: 42)
+//        addKey(type: Key.KeyType.Letter, action: "ے", x: 73.5, y: 116, width: 40, height: 42)
     }
 }
