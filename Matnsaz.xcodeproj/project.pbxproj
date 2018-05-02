@@ -19,6 +19,8 @@
 		15DB7CA72032AD5100A84C7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA52032AD5100A84C7E /* LaunchScreen.storyboard */; };
 		15DB7CD12032ADC500A84C7E /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7CD02032ADC500A84C7E /* KeyboardViewController.swift */; };
 		15DB7CD52032ADC500A84C7E /* Matnsaz Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 15DB7CCE2032ADC500A84C7E /* Matnsaz Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		15FD2D22209998D900F41ED6 /* RasmLayout-Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D21209998D900F41ED6 /* RasmLayout-Keys.plist */; };
+		15FD2D2420999AAE00F41ED6 /* RasmLayout-w375.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D2320999AAE00F41ED6 /* RasmLayout-w375.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		15DB7CCE2032ADC500A84C7E /* Matnsaz Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Matnsaz Keyboard.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB7CD02032ADC500A84C7E /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		15DB7CD22032ADC500A84C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15FD2D21209998D900F41ED6 /* RasmLayout-Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RasmLayout-Keys.plist"; sourceTree = "<group>"; };
+		15FD2D2320999AAE00F41ED6 /* RasmLayout-w375.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RasmLayout-w375.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				1557161B20995D2500B0E7D4 /* Alphabetical */,
+				15FD2D20209998B500F41ED6 /* Rasm */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -140,6 +145,15 @@
 				15633338206A08C8004F823C /* ArabicScript.swift */,
 			);
 			path = "Matnsaz Keyboard";
+			sourceTree = "<group>";
+		};
+		15FD2D20209998B500F41ED6 /* Rasm */ = {
+			isa = PBXGroup;
+			children = (
+				15FD2D21209998D900F41ED6 /* RasmLayout-Keys.plist */,
+				15FD2D2320999AAE00F41ED6 /* RasmLayout-w375.plist */,
+			);
+			path = Rasm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +255,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1557161F20995DB200B0E7D4 /* AlphabeticalLayout-w375.plist in Resources */,
+				15FD2D22209998D900F41ED6 /* RasmLayout-Keys.plist in Resources */,
+				15FD2D2420999AAE00F41ED6 /* RasmLayout-w375.plist in Resources */,
 				1557161D20995D4200B0E7D4 /* AlphabeticalLayout-Keys.plist in Resources */,
 				155257A7203AA38100B57DE7 /* Assets.xcassets in Resources */,
 			);

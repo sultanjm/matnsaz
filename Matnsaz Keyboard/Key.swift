@@ -47,54 +47,6 @@ class Key: UIButton {
     let darkModeSpecialKeyBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.12)
     let disabledTextColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     
-//    init(type: KeyType, label: String, x: Double, y: Double, width: Double, height: Double, characterVariantsEnabled: Bool) {
-//        
-//        // instance setup
-//        self.type = type
-//        self.popUpPath = UIBezierPath()
-//        self.popUpBackgroundLayer = CAShapeLayer()
-//        self.popUpLabel = UILabel()
-//        self.x = x
-//        self.y = y
-//        self.width = width
-//        self.height = height
-//        self.label = label
-//        self.characterVariantsEnabled = characterVariantsEnabled
-//        
-//        // frame & init
-//        let frameRect = CGRect(x: x, y: y, width: width, height: height)
-//        super.init(frame: frameRect)
-//        self.layer.cornerRadius = CGFloat(self.cornerRadius)
-//        self.clipsToBounds = false
-//        
-//        // title
-//        self.setTitle(nextInputVariant: ArabicScript.CharacterVariant.Initial)
-//        self.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-//        self.titleEdgeInsets = UIEdgeInsets.zero
-//        self.contentEdgeInsets = UIEdgeInsets.zero
-//        self.popUpLabel.font = UIFont.systemFont(ofSize: 24)
-//        self.popUpLabel.isHidden = false
-//        self.popUpLabel.textAlignment = NSTextAlignment.center
-//      
-//        // set up popUp
-//        self.createPopUp()
-//        
-//        // shadow
-//        let shadowColor = UIColor(red: 0.1, green: 0.15, blue: 0.06, alpha: 0.36).cgColor
-//        self.layer.shadowColor = shadowColor
-//        self.layer.shadowOpacity = 1.0
-//        self.layer.shadowRadius = 0
-//        self.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-//        self.layer.masksToBounds = false
-//        
-//        // colors
-//        self.setColors(mode: KeyboardColorMode.Light)
-//        
-//        // popUp shadow
-//        self.popUpBackgroundLayer.strokeColor = shadowColor
-//        self.popUpBackgroundLayer.lineWidth = 0.5
-//    }
-    
     init(name: String, type: KeyType, label: String, characterVariantsEnabled: Bool) {
         
         // instance setup
