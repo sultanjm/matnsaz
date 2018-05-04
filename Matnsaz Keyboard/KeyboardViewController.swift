@@ -14,6 +14,7 @@ class KeyboardViewController: UIInputViewController {
     var keys: [Key]!
     var spaceTimer: Timer!
     var heightConstraint: NSLayoutConstraint?
+    var keyboardMode = KeyboardMode.primary
     
     enum Orientation: String {
         case portrait
@@ -23,6 +24,11 @@ class KeyboardViewController: UIInputViewController {
     enum KeyboardLayouts: String {
         case Alphabetical
         case Rasm
+    }
+    
+    enum KeyboardMode: String {
+        case primary
+        case secondary
     }
     
     // Config
@@ -80,9 +86,12 @@ class KeyboardViewController: UIInputViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        
+        layoutKeys()
+    }
+    
+    func layoutKeys() {
         // get layout file
-        let layoutFileName = KeyboardLayout.rawValue + "-" + self.getDeviceType() + "-layout"
+        let layoutFileName = KeyboardLayout.rawValue + "-" + self.getDeviceType() + "-layout-" + self.keyboardMode.rawValue
         
         // read plist and update layout
         let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
@@ -95,6 +104,15 @@ class KeyboardViewController: UIInputViewController {
                 }
             }
         }
+    }
+    
+    func switchKeyboardMode() {
+        if self.keyboardMode == KeyboardMode.primary {
+            self.keyboardMode = KeyboardMode.secondary
+        } else {
+            self.keyboardMode = KeyboardMode.primary
+        }
+        self.layoutKeys()
     }
     
     func getCurrentOrientation() -> Orientation {
@@ -192,10 +210,16 @@ class KeyboardViewController: UIInputViewController {
     @objc func keyTouchUp(sender: Key) {
         // handle input
         switch sender.type {
-        case Key.KeyType.Letter:
+        case Key.KeyType.Letter,
+             Key.KeyType.Number,
+             Key.KeyType.Punctuation,
+             Key.KeyType.Diacritic:
             sender.hidePopUp()
             let action = sender.label
             self.textDocumentProxy.insertText(action)
+        case Key.KeyType.SwitchToPrimaryMode,
+             Key.KeyType.SwitchToSecondaryMode:
+            self.switchKeyboardMode()
         case Key.KeyType.Space:
             // "." shortcut
             if DoubleTapSpaceBarShortcutActive {
@@ -229,7 +253,10 @@ class KeyboardViewController: UIInputViewController {
     
     @objc func keyTouchDown(sender: Key) {
         switch sender.type {
-        case Key.KeyType.Letter:
+        case Key.KeyType.Letter,
+             Key.KeyType.Number,
+             Key.KeyType.Punctuation,
+             Key.KeyType.Diacritic:
             sender.showPopUp()
         default:
             break

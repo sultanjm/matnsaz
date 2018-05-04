@@ -31,6 +31,10 @@ class Key: UIButton {
         case KeyboardSelection
         case Number
         case Settings
+        case SwitchToPrimaryMode
+        case SwitchToSecondaryMode
+        case Punctuation
+        case Diacritic
     }
     
     enum KeyboardColorMode {
@@ -68,10 +72,10 @@ class Key: UIButton {
         
         // title
         self.setTitle(nextInputVariant: ArabicScript.CharacterVariant.Initial)
-        self.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        self.titleEdgeInsets = UIEdgeInsets.zero
+        self.titleLabel?.font = UIFont(name: "Noto Nastaliq Urdu", size: 14)
+        self.titleEdgeInsets = UIEdgeInsetsMake(-8, 0, 0, 0)
         self.contentEdgeInsets = UIEdgeInsets.zero
-        self.popUpLabel.font = UIFont.systemFont(ofSize: 24)
+        self.popUpLabel.font = UIFont(name: "Noto Nastaliq Urdu", size: 24)
         self.popUpLabel.isHidden = false
         self.popUpLabel.textAlignment = NSTextAlignment.center
         
@@ -109,6 +113,7 @@ class Key: UIButton {
         self.y = 0
         self.width = 0
         self.height = 0
+        super.frame = CGRect(x: x, y: y, width: width, height: height)
     }
 
     func setTitle(nextInputVariant: ArabicScript.CharacterVariant) {
@@ -139,21 +144,21 @@ class Key: UIButton {
             self.setTitleColor(darkModeTextColor, for: [])
             self.popUpLabel.textColor = darkModeTextColor
         }
-        if self.type == KeyType.Number || self.type == KeyType.Settings {
+        if self.type == KeyType.Settings {
             self.setTitleColor(disabledTextColor, for: [])
         }
     }
     
     func setBackgroundColor(mode:KeyboardColorMode) {
         if mode == KeyboardColorMode.Light {
-            if self.type == KeyType.Letter || self.type == KeyType.Space {
+            if self.type == KeyType.Letter || self.type == KeyType.Number || self.type == KeyType.Punctuation || self.type == KeyType.Diacritic || self.type == KeyType.Space {
                 self.backgroundColor = lightModeBackgroundColor
                 self.popUpBackgroundLayer.fillColor = lightModeBackgroundColor.cgColor
             } else {
                 self.backgroundColor = lightModeSpecialKeyBackgroundColor
             }
         } else {
-            if self.type == KeyType.Letter || self.type == KeyType.Space {
+            if self.type == KeyType.Letter || self.type == KeyType.Number || self.type == KeyType.Punctuation || self.type == KeyType.Diacritic || self.type == KeyType.Space {
                 self.backgroundColor = darkModeBackgroundColor
                 self.popUpBackgroundLayer.fillColor = darkModeBackgroundColor.cgColor
             } else {
