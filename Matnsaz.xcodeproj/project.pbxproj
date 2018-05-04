@@ -39,6 +39,7 @@
 		15C327CE209C4BDD008EC82C /* Alphabetical-medium-tablet-portrait-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327CD209C4BDC008EC82C /* Alphabetical-medium-tablet-portrait-layout.plist */; };
 		15C327D0209C4CC4008EC82C /* Alphabetical-large-tablet-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327CF209C4CC4008EC82C /* Alphabetical-large-tablet-landscape-meta.plist */; };
 		15C327D2209C4CCC008EC82C /* Alphabetical-large-tablet-landscape-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327D1209C4CCC008EC82C /* Alphabetical-large-tablet-landscape-layout.plist */; };
+		15C327D4209C5486008EC82C /* App Icons in Resources */ = {isa = PBXBuildFile; fileRef = 15C327D3209C5486008EC82C /* App Icons */; };
 		15DB7C9D2032AD5100A84C7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */; };
 		15DB7C9F2032AD5100A84C7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7C9E2032AD5100A84C7E /* ViewController.swift */; };
 		15DB7CA22032AD5100A84C7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA02032AD5100A84C7E /* Main.storyboard */; };
@@ -108,6 +109,7 @@
 		15C327CD209C4BDC008EC82C /* Alphabetical-medium-tablet-portrait-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-medium-tablet-portrait-layout.plist"; sourceTree = "<group>"; };
 		15C327CF209C4CC4008EC82C /* Alphabetical-large-tablet-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-large-tablet-landscape-meta.plist"; sourceTree = "<group>"; };
 		15C327D1209C4CCC008EC82C /* Alphabetical-large-tablet-landscape-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-large-tablet-landscape-layout.plist"; sourceTree = "<group>"; };
+		15C327D3209C5486008EC82C /* App Icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "App Icons"; sourceTree = "<group>"; };
 		15DB7C992032AD5100A84C7E /* Matnsaz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matnsaz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15DB7C9E2032AD5100A84C7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				15DB7C9E2032AD5100A84C7E /* ViewController.swift */,
 				15DB7CA02032AD5100A84C7E /* Main.storyboard */,
 				15DB7CA32032AD5100A84C7E /* Assets.xcassets */,
+				15C327D3209C5486008EC82C /* App Icons */,
 				15DB7CA52032AD5100A84C7E /* LaunchScreen.storyboard */,
 				15DB7CA82032AD5100A84C7E /* Info.plist */,
 			);
@@ -334,6 +337,7 @@
 			files = (
 				15DB7CA72032AD5100A84C7E /* LaunchScreen.storyboard in Resources */,
 				15DB7CA42032AD5100A84C7E /* Assets.xcassets in Resources */,
+				15C327D4209C5486008EC82C /* App Icons in Resources */,
 				15DB7CA22032AD5100A84C7E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
