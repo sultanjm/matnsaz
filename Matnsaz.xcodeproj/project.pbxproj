@@ -63,6 +63,10 @@
 		15FD2D5A209C818400F41ED6 /* Alphabetical-plus-phone-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D4C209C818400F41ED6 /* Alphabetical-plus-phone-landscape-layout-secondary.plist */; };
 		15FD2D5B209C818400F41ED6 /* Alphabetical-standard-phone-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D4D209C818400F41ED6 /* Alphabetical-standard-phone-portrait-layout-secondary.plist */; };
 		15FD2D5C209C818400F41ED6 /* Alphabetical-standard-tablet-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D4E209C818400F41ED6 /* Alphabetical-standard-tablet-portrait-layout-secondary.plist */; };
+		15FD2D6B209C891C00F41ED6 /* Return.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D67209C891C00F41ED6 /* Return.png */; };
+		15FD2D6C209C891C00F41ED6 /* Globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D68209C891C00F41ED6 /* Globe.png */; };
+		15FD2D6D209C891C00F41ED6 /* Backspace.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D69209C891C00F41ED6 /* Backspace.png */; };
+		15FD2D6F209C8A0900F41ED6 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D6E209C8A0900F41ED6 /* Settings.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +154,10 @@
 		15FD2D4C209C818400F41ED6 /* Alphabetical-plus-phone-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-plus-phone-landscape-layout-secondary.plist"; sourceTree = "<group>"; };
 		15FD2D4D209C818400F41ED6 /* Alphabetical-standard-phone-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-phone-portrait-layout-secondary.plist"; sourceTree = "<group>"; };
 		15FD2D4E209C818400F41ED6 /* Alphabetical-standard-tablet-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-tablet-portrait-layout-secondary.plist"; sourceTree = "<group>"; };
+		15FD2D67209C891C00F41ED6 /* Return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Return.png; sourceTree = "<group>"; };
+		15FD2D68209C891C00F41ED6 /* Globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Globe.png; sourceTree = "<group>"; };
+		15FD2D69209C891C00F41ED6 /* Backspace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Backspace.png; sourceTree = "<group>"; };
+		15FD2D6E209C8A0900F41ED6 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +279,7 @@
 				156333352068A9DC004F823C /* Key.swift */,
 				15DB7CD22032ADC500A84C7E /* Info.plist */,
 				15633338206A08C8004F823C /* ArabicScript.swift */,
+				15FD2D5D209C876200F41ED6 /* Button Images */,
 			);
 			path = "Matnsaz Keyboard";
 			sourceTree = "<group>";
@@ -282,6 +291,17 @@
 				15FD2D2320999AAE00F41ED6 /* RasmLayout-w375.plist */,
 			);
 			path = Rasm;
+			sourceTree = "<group>";
+		};
+		15FD2D5D209C876200F41ED6 /* Button Images */ = {
+			isa = PBXGroup;
+			children = (
+				15FD2D69209C891C00F41ED6 /* Backspace.png */,
+				15FD2D68209C891C00F41ED6 /* Globe.png */,
+				15FD2D67209C891C00F41ED6 /* Return.png */,
+				15FD2D6E209C8A0900F41ED6 /* Settings.png */,
+			);
+			path = "Button Images";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,6 +419,7 @@
 				15AFD423209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout-primary.plist in Resources */,
 				15AFD41D209C1EEA00184F36 /* Alphabetical-X-phone-landscape-meta.plist in Resources */,
 				15FD2D4F209C818400F41ED6 /* Alphabetical-plus-phone-portrait-layout-secondary.plist in Resources */,
+				15FD2D6D209C891C00F41ED6 /* Backspace.png in Resources */,
 				15C327D2209C4CCC008EC82C /* Alphabetical-large-tablet-landscape-layout-primary.plist in Resources */,
 				15FD2D59209C818400F41ED6 /* Alphabetical-standard-phone-landscape-layout-secondary.plist in Resources */,
 				15FD2D5A209C818400F41ED6 /* Alphabetical-plus-phone-landscape-layout-secondary.plist in Resources */,
@@ -416,8 +437,11 @@
 				15AFD409209C0E5F00184F36 /* Alphabetical-small-phone-landscape-meta.plist in Resources */,
 				15AFD411209C138E00184F36 /* Alphabetical-plus-phone-portrait-meta.plist in Resources */,
 				15FD2D5C209C818400F41ED6 /* Alphabetical-standard-tablet-portrait-layout-secondary.plist in Resources */,
+				15FD2D6B209C891C00F41ED6 /* Return.png in Resources */,
+				15FD2D6F209C8A0900F41ED6 /* Settings.png in Resources */,
 				155257A7203AA38100B57DE7 /* Assets.xcassets in Resources */,
 				15FD2D50209C818400F41ED6 /* Alphabetical-large-tablet-portrait-layout-secondary.plist in Resources */,
+				15FD2D6C209C891C00F41ED6 /* Globe.png in Resources */,
 				15C327C7209C492C008EC82C /* Alphabetical-medium-tablet-portrait-meta.plist in Resources */,
 				15AFD417209C181E00184F36 /* Alphabetical-plus-phone-landscape-layout-primary.plist in Resources */,
 				15FD2D55209C818400F41ED6 /* Alphabetical-small-phone-portrait-layout-secondary.plist in Resources */,

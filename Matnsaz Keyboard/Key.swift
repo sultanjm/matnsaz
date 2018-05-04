@@ -123,6 +123,29 @@ class Key: UIButton {
         } else {
             title = self.label
         }
+
+        // set button images
+        switch self.type {
+        case KeyType.Backspace:
+            title = ""
+            self.setImage(UIImage(named: "Backspace.png"), for: UIControlState.normal)
+            self.imageView?.contentMode = .scaleAspectFit
+        case KeyType.Return:
+            title = ""
+            self.setImage(UIImage(named: "Return.png"), for: UIControlState.normal)
+            self.imageView?.contentMode = .scaleAspectFit
+        case KeyType.KeyboardSelection:
+            title = ""
+            self.setImage(UIImage(named: "Globe.png"), for: UIControlState.normal)
+            self.imageView?.contentMode = .scaleAspectFit
+        case KeyType.Settings:
+            title = ""
+            self.setImage(UIImage(named: "Settings.png"), for: UIControlState.normal)
+            self.imageView?.contentMode = .scaleAspectFit
+        default:
+            break
+        }
+        
         self.setTitle(title, for: [])
         self.popUpLabel.text = title
     }
