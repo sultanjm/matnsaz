@@ -29,6 +29,16 @@
 		15AFD41F209C1F0800184F36 /* Alphabetical-X-phone-landscape-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD41E209C1F0800184F36 /* Alphabetical-X-phone-landscape-layout.plist */; };
 		15AFD421209C3C3100184F36 /* Alphabetical-standard-tablet-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD420209C3C3100184F36 /* Alphabetical-standard-tablet-portrait-meta.plist */; };
 		15AFD423209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD422209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout.plist */; };
+		15C327BB209C4572008EC82C /* Alphabetical-standard-tablet-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327BA209C4572008EC82C /* Alphabetical-standard-tablet-landscape-meta.plist */; };
+		15C327BD209C4588008EC82C /* Alphabetical-standard-tablet-landscape-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327BC209C4588008EC82C /* Alphabetical-standard-tablet-landscape-layout.plist */; };
+		15C327BF209C47D6008EC82C /* Alphabetical-large-tablet-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327BE209C47D6008EC82C /* Alphabetical-large-tablet-portrait-meta.plist */; };
+		15C327C1209C47E1008EC82C /* Alphabetical-large-tablet-portrait-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327C0209C47E1008EC82C /* Alphabetical-large-tablet-portrait-layout.plist */; };
+		15C327C3209C4800008EC82C /* Alphabetical-medium-tablet-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327C2209C4800008EC82C /* Alphabetical-medium-tablet-landscape-meta.plist */; };
+		15C327C5209C4807008EC82C /* Alphabetical-medium-tablet-landscape-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327C4209C4807008EC82C /* Alphabetical-medium-tablet-landscape-layout.plist */; };
+		15C327C7209C492C008EC82C /* Alphabetical-medium-tablet-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327C6209C492C008EC82C /* Alphabetical-medium-tablet-portrait-meta.plist */; };
+		15C327CE209C4BDD008EC82C /* Alphabetical-medium-tablet-portrait-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327CD209C4BDC008EC82C /* Alphabetical-medium-tablet-portrait-layout.plist */; };
+		15C327D0209C4CC4008EC82C /* Alphabetical-large-tablet-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327CF209C4CC4008EC82C /* Alphabetical-large-tablet-landscape-meta.plist */; };
+		15C327D2209C4CCC008EC82C /* Alphabetical-large-tablet-landscape-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15C327D1209C4CCC008EC82C /* Alphabetical-large-tablet-landscape-layout.plist */; };
 		15DB7C9D2032AD5100A84C7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */; };
 		15DB7C9F2032AD5100A84C7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7C9E2032AD5100A84C7E /* ViewController.swift */; };
 		15DB7CA22032AD5100A84C7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA02032AD5100A84C7E /* Main.storyboard */; };
@@ -88,6 +98,16 @@
 		15AFD41E209C1F0800184F36 /* Alphabetical-X-phone-landscape-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-X-phone-landscape-layout.plist"; sourceTree = "<group>"; };
 		15AFD420209C3C3100184F36 /* Alphabetical-standard-tablet-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-tablet-portrait-meta.plist"; sourceTree = "<group>"; };
 		15AFD422209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-tablet-portrait-layout.plist"; sourceTree = "<group>"; };
+		15C327BA209C4572008EC82C /* Alphabetical-standard-tablet-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-tablet-landscape-meta.plist"; sourceTree = "<group>"; };
+		15C327BC209C4588008EC82C /* Alphabetical-standard-tablet-landscape-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-tablet-landscape-layout.plist"; sourceTree = "<group>"; };
+		15C327BE209C47D6008EC82C /* Alphabetical-large-tablet-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-large-tablet-portrait-meta.plist"; sourceTree = "<group>"; };
+		15C327C0209C47E1008EC82C /* Alphabetical-large-tablet-portrait-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-large-tablet-portrait-layout.plist"; sourceTree = "<group>"; };
+		15C327C2209C4800008EC82C /* Alphabetical-medium-tablet-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-medium-tablet-landscape-meta.plist"; sourceTree = "<group>"; };
+		15C327C4209C4807008EC82C /* Alphabetical-medium-tablet-landscape-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-medium-tablet-landscape-layout.plist"; sourceTree = "<group>"; };
+		15C327C6209C492C008EC82C /* Alphabetical-medium-tablet-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-medium-tablet-portrait-meta.plist"; sourceTree = "<group>"; };
+		15C327CD209C4BDC008EC82C /* Alphabetical-medium-tablet-portrait-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-medium-tablet-portrait-layout.plist"; sourceTree = "<group>"; };
+		15C327CF209C4CC4008EC82C /* Alphabetical-large-tablet-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-large-tablet-landscape-meta.plist"; sourceTree = "<group>"; };
+		15C327D1209C4CCC008EC82C /* Alphabetical-large-tablet-landscape-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-large-tablet-landscape-layout.plist"; sourceTree = "<group>"; };
 		15DB7C992032AD5100A84C7E /* Matnsaz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matnsaz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15DB7C9E2032AD5100A84C7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +171,16 @@
 				15AFD41E209C1F0800184F36 /* Alphabetical-X-phone-landscape-layout.plist */,
 				15AFD420209C3C3100184F36 /* Alphabetical-standard-tablet-portrait-meta.plist */,
 				15AFD422209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout.plist */,
+				15C327BA209C4572008EC82C /* Alphabetical-standard-tablet-landscape-meta.plist */,
+				15C327BC209C4588008EC82C /* Alphabetical-standard-tablet-landscape-layout.plist */,
+				15C327C6209C492C008EC82C /* Alphabetical-medium-tablet-portrait-meta.plist */,
+				15C327CD209C4BDC008EC82C /* Alphabetical-medium-tablet-portrait-layout.plist */,
+				15C327C2209C4800008EC82C /* Alphabetical-medium-tablet-landscape-meta.plist */,
+				15C327C4209C4807008EC82C /* Alphabetical-medium-tablet-landscape-layout.plist */,
+				15C327BE209C47D6008EC82C /* Alphabetical-large-tablet-portrait-meta.plist */,
+				15C327C0209C47E1008EC82C /* Alphabetical-large-tablet-portrait-layout.plist */,
+				15C327CF209C4CC4008EC82C /* Alphabetical-large-tablet-landscape-meta.plist */,
+				15C327D1209C4CCC008EC82C /* Alphabetical-large-tablet-landscape-layout.plist */,
 			);
 			path = Alphabetical;
 			sourceTree = "<group>";
@@ -320,8 +350,11 @@
 				15AFD3FC209BFBD100184F36 /* Alphabetical-standard-phone-portrait-meta.plist in Resources */,
 				15AFD423209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout.plist in Resources */,
 				15AFD41D209C1EEA00184F36 /* Alphabetical-X-phone-landscape-meta.plist in Resources */,
+				15C327D2209C4CCC008EC82C /* Alphabetical-large-tablet-landscape-layout.plist in Resources */,
 				15AFD415209C180D00184F36 /* Alphabetical-plus-phone-landscape-meta.plist in Resources */,
+				15C327BD209C4588008EC82C /* Alphabetical-standard-tablet-landscape-layout.plist in Resources */,
 				15FD2D2420999AAE00F41ED6 /* RasmLayout-w375.plist in Resources */,
+				15C327BF209C47D6008EC82C /* Alphabetical-large-tablet-portrait-meta.plist in Resources */,
 				15AFD3FE209C008300184F36 /* Alphabetical-standard-phone-landscape-meta.plist in Resources */,
 				15AFD41F209C1F0800184F36 /* Alphabetical-X-phone-landscape-layout.plist in Resources */,
 				15AFD421209C3C3100184F36 /* Alphabetical-standard-tablet-portrait-meta.plist in Resources */,
@@ -330,10 +363,17 @@
 				15AFD409209C0E5F00184F36 /* Alphabetical-small-phone-landscape-meta.plist in Resources */,
 				15AFD411209C138E00184F36 /* Alphabetical-plus-phone-portrait-meta.plist in Resources */,
 				155257A7203AA38100B57DE7 /* Assets.xcassets in Resources */,
+				15C327C7209C492C008EC82C /* Alphabetical-medium-tablet-portrait-meta.plist in Resources */,
 				15AFD417209C181E00184F36 /* Alphabetical-plus-phone-landscape-layout.plist in Resources */,
+				15C327CE209C4BDD008EC82C /* Alphabetical-medium-tablet-portrait-layout.plist in Resources */,
+				15C327BB209C4572008EC82C /* Alphabetical-standard-tablet-landscape-meta.plist in Resources */,
 				15AFD413209C139800184F36 /* Alphabetical-plus-phone-portrait-layout.plist in Resources */,
 				15AFD403209C09B100184F36 /* Alphabetical-small-phone-portrait-meta.plist in Resources */,
+				15C327C1209C47E1008EC82C /* Alphabetical-large-tablet-portrait-layout.plist in Resources */,
 				15AFD419209C1C9E00184F36 /* Alphabetical-X-phone-portrait-meta.plist in Resources */,
+				15C327D0209C4CC4008EC82C /* Alphabetical-large-tablet-landscape-meta.plist in Resources */,
+				15C327C3209C4800008EC82C /* Alphabetical-medium-tablet-landscape-meta.plist in Resources */,
+				15C327C5209C4807008EC82C /* Alphabetical-medium-tablet-landscape-layout.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
