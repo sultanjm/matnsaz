@@ -8,10 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		155257A7203AA38100B57DE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA32032AD5100A84C7E /* Assets.xcassets */; };
-		1557161D20995D4200B0E7D4 /* AlphabeticalLayout-Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1557161C20995D4200B0E7D4 /* AlphabeticalLayout-Keys.plist */; };
-		1557161F20995DB200B0E7D4 /* AlphabeticalLayout-w375.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1557161E20995DB200B0E7D4 /* AlphabeticalLayout-w375.plist */; };
+		1557161D20995D4200B0E7D4 /* Alphabetical-keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1557161C20995D4200B0E7D4 /* Alphabetical-keys.plist */; };
+		1557161F20995DB200B0E7D4 /* Alphabetical-standard-phone-portrait-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1557161E20995DB200B0E7D4 /* Alphabetical-standard-phone-portrait-layout.plist */; };
 		156333372068A9E0004F823C /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156333352068A9DC004F823C /* Key.swift */; };
 		15633339206A08C8004F823C /* ArabicScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15633338206A08C8004F823C /* ArabicScript.swift */; };
+		15AFD3FC209BFBD100184F36 /* Alphabetical-standard-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD3FB209BFBD100184F36 /* Alphabetical-standard-phone-portrait-meta.plist */; };
+		15AFD3FE209C008300184F36 /* Alphabetical-standard-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD3FD209C008300184F36 /* Alphabetical-standard-phone-landscape-meta.plist */; };
+		15AFD400209C00B100184F36 /* Alphabetical-standard-phone-landscape-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD3FF209C00B100184F36 /* Alphabetical-standard-phone-landscape-layout.plist */; };
+		15AFD403209C09B100184F36 /* Alphabetical-small-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD402209C09B100184F36 /* Alphabetical-small-phone-portrait-meta.plist */; };
+		15AFD405209C09E400184F36 /* Alphabetical-small-phone-portrait-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD404209C09E400184F36 /* Alphabetical-small-phone-portrait-layout.plist */; };
+		15AFD409209C0E5F00184F36 /* Alphabetical-small-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD408209C0E5F00184F36 /* Alphabetical-small-phone-landscape-meta.plist */; };
+		15AFD40F209C0F1E00184F36 /* Alphabetical-small-phone-landscape-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD40E209C0F1E00184F36 /* Alphabetical-small-phone-landscape-layout.plist */; };
+		15AFD411209C138E00184F36 /* Alphabetical-plus-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD410209C138E00184F36 /* Alphabetical-plus-phone-portrait-meta.plist */; };
+		15AFD413209C139800184F36 /* Alphabetical-plus-phone-portrait-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD412209C139800184F36 /* Alphabetical-plus-phone-portrait-layout.plist */; };
+		15AFD415209C180D00184F36 /* Alphabetical-plus-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD414209C180D00184F36 /* Alphabetical-plus-phone-landscape-meta.plist */; };
+		15AFD417209C181E00184F36 /* Alphabetical-plus-phone-landscape-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD416209C181E00184F36 /* Alphabetical-plus-phone-landscape-layout.plist */; };
+		15AFD419209C1C9E00184F36 /* Alphabetical-X-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD418209C1C9E00184F36 /* Alphabetical-X-phone-portrait-meta.plist */; };
+		15AFD41B209C1D0300184F36 /* Alphabetical-X-phone-portrait-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD41A209C1D0300184F36 /* Alphabetical-X-phone-portrait-layout.plist */; };
+		15AFD41D209C1EEA00184F36 /* Alphabetical-X-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD41C209C1EEA00184F36 /* Alphabetical-X-phone-landscape-meta.plist */; };
+		15AFD41F209C1F0800184F36 /* Alphabetical-X-phone-landscape-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD41E209C1F0800184F36 /* Alphabetical-X-phone-landscape-layout.plist */; };
+		15AFD421209C3C3100184F36 /* Alphabetical-standard-tablet-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD420209C3C3100184F36 /* Alphabetical-standard-tablet-portrait-meta.plist */; };
+		15AFD423209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD422209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout.plist */; };
 		15DB7C9D2032AD5100A84C7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */; };
 		15DB7C9F2032AD5100A84C7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7C9E2032AD5100A84C7E /* ViewController.swift */; };
 		15DB7CA22032AD5100A84C7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA02032AD5100A84C7E /* Main.storyboard */; };
@@ -49,10 +66,28 @@
 
 /* Begin PBXFileReference section */
 		155257A5203AA26C00B57DE7 /* Matnsaz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Matnsaz.entitlements; sourceTree = "<group>"; };
-		1557161C20995D4200B0E7D4 /* AlphabeticalLayout-Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AlphabeticalLayout-Keys.plist"; sourceTree = "<group>"; };
-		1557161E20995DB200B0E7D4 /* AlphabeticalLayout-w375.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AlphabeticalLayout-w375.plist"; sourceTree = "<group>"; };
+		1557161C20995D4200B0E7D4 /* Alphabetical-keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Alphabetical-keys.plist"; sourceTree = "<group>"; };
+		1557161E20995DB200B0E7D4 /* Alphabetical-standard-phone-portrait-layout.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-phone-portrait-layout.plist"; sourceTree = "<group>"; };
 		156333352068A9DC004F823C /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		15633338206A08C8004F823C /* ArabicScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArabicScript.swift; sourceTree = "<group>"; };
+		15AFD3FB209BFBD100184F36 /* Alphabetical-standard-phone-portrait-meta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-phone-portrait-meta.plist"; sourceTree = "<group>"; };
+		15AFD3FD209C008300184F36 /* Alphabetical-standard-phone-landscape-meta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-phone-landscape-meta.plist"; sourceTree = "<group>"; };
+		15AFD3FF209C00B100184F36 /* Alphabetical-standard-phone-landscape-layout.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-phone-landscape-layout.plist"; sourceTree = "<group>"; };
+		15AFD401209C08C600184F36 /* Matnsaz Keyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Matnsaz Keyboard.entitlements"; sourceTree = "<group>"; };
+		15AFD402209C09B100184F36 /* Alphabetical-small-phone-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-small-phone-portrait-meta.plist"; sourceTree = "<group>"; };
+		15AFD404209C09E400184F36 /* Alphabetical-small-phone-portrait-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-small-phone-portrait-layout.plist"; sourceTree = "<group>"; };
+		15AFD408209C0E5F00184F36 /* Alphabetical-small-phone-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-small-phone-landscape-meta.plist"; sourceTree = "<group>"; };
+		15AFD40E209C0F1E00184F36 /* Alphabetical-small-phone-landscape-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-small-phone-landscape-layout.plist"; sourceTree = "<group>"; };
+		15AFD410209C138E00184F36 /* Alphabetical-plus-phone-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-plus-phone-portrait-meta.plist"; sourceTree = "<group>"; };
+		15AFD412209C139800184F36 /* Alphabetical-plus-phone-portrait-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-plus-phone-portrait-layout.plist"; sourceTree = "<group>"; };
+		15AFD414209C180D00184F36 /* Alphabetical-plus-phone-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-plus-phone-landscape-meta.plist"; sourceTree = "<group>"; };
+		15AFD416209C181E00184F36 /* Alphabetical-plus-phone-landscape-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-plus-phone-landscape-layout.plist"; sourceTree = "<group>"; };
+		15AFD418209C1C9E00184F36 /* Alphabetical-X-phone-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-X-phone-portrait-meta.plist"; sourceTree = "<group>"; };
+		15AFD41A209C1D0300184F36 /* Alphabetical-X-phone-portrait-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-X-phone-portrait-layout.plist"; sourceTree = "<group>"; };
+		15AFD41C209C1EEA00184F36 /* Alphabetical-X-phone-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-X-phone-landscape-meta.plist"; sourceTree = "<group>"; };
+		15AFD41E209C1F0800184F36 /* Alphabetical-X-phone-landscape-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-X-phone-landscape-layout.plist"; sourceTree = "<group>"; };
+		15AFD420209C3C3100184F36 /* Alphabetical-standard-tablet-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-tablet-portrait-meta.plist"; sourceTree = "<group>"; };
+		15AFD422209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-tablet-portrait-layout.plist"; sourceTree = "<group>"; };
 		15DB7C992032AD5100A84C7E /* Matnsaz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matnsaz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB7C9C2032AD5100A84C7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15DB7C9E2032AD5100A84C7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,8 +132,25 @@
 		1557161B20995D2500B0E7D4 /* Alphabetical */ = {
 			isa = PBXGroup;
 			children = (
-				1557161C20995D4200B0E7D4 /* AlphabeticalLayout-Keys.plist */,
-				1557161E20995DB200B0E7D4 /* AlphabeticalLayout-w375.plist */,
+				1557161C20995D4200B0E7D4 /* Alphabetical-keys.plist */,
+				15AFD402209C09B100184F36 /* Alphabetical-small-phone-portrait-meta.plist */,
+				15AFD404209C09E400184F36 /* Alphabetical-small-phone-portrait-layout.plist */,
+				15AFD408209C0E5F00184F36 /* Alphabetical-small-phone-landscape-meta.plist */,
+				15AFD40E209C0F1E00184F36 /* Alphabetical-small-phone-landscape-layout.plist */,
+				15AFD3FB209BFBD100184F36 /* Alphabetical-standard-phone-portrait-meta.plist */,
+				1557161E20995DB200B0E7D4 /* Alphabetical-standard-phone-portrait-layout.plist */,
+				15AFD3FD209C008300184F36 /* Alphabetical-standard-phone-landscape-meta.plist */,
+				15AFD3FF209C00B100184F36 /* Alphabetical-standard-phone-landscape-layout.plist */,
+				15AFD410209C138E00184F36 /* Alphabetical-plus-phone-portrait-meta.plist */,
+				15AFD412209C139800184F36 /* Alphabetical-plus-phone-portrait-layout.plist */,
+				15AFD414209C180D00184F36 /* Alphabetical-plus-phone-landscape-meta.plist */,
+				15AFD416209C181E00184F36 /* Alphabetical-plus-phone-landscape-layout.plist */,
+				15AFD418209C1C9E00184F36 /* Alphabetical-X-phone-portrait-meta.plist */,
+				15AFD41A209C1D0300184F36 /* Alphabetical-X-phone-portrait-layout.plist */,
+				15AFD41C209C1EEA00184F36 /* Alphabetical-X-phone-landscape-meta.plist */,
+				15AFD41E209C1F0800184F36 /* Alphabetical-X-phone-landscape-layout.plist */,
+				15AFD420209C3C3100184F36 /* Alphabetical-standard-tablet-portrait-meta.plist */,
+				15AFD422209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout.plist */,
 			);
 			path = Alphabetical;
 			sourceTree = "<group>";
@@ -138,6 +190,7 @@
 		15DB7CCF2032ADC500A84C7E /* Matnsaz Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				15AFD401209C08C600184F36 /* Matnsaz Keyboard.entitlements */,
 				154F907E209825420068445F /* Layouts */,
 				15DB7CD02032ADC500A84C7E /* KeyboardViewController.swift */,
 				156333352068A9DC004F823C /* Key.swift */,
@@ -217,6 +270,11 @@
 					15DB7CCD2032ADC500A84C7E = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -254,11 +312,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1557161F20995DB200B0E7D4 /* AlphabeticalLayout-w375.plist in Resources */,
+				15AFD405209C09E400184F36 /* Alphabetical-small-phone-portrait-layout.plist in Resources */,
+				15AFD41B209C1D0300184F36 /* Alphabetical-X-phone-portrait-layout.plist in Resources */,
+				1557161F20995DB200B0E7D4 /* Alphabetical-standard-phone-portrait-layout.plist in Resources */,
 				15FD2D22209998D900F41ED6 /* RasmLayout-Keys.plist in Resources */,
+				15AFD40F209C0F1E00184F36 /* Alphabetical-small-phone-landscape-layout.plist in Resources */,
+				15AFD3FC209BFBD100184F36 /* Alphabetical-standard-phone-portrait-meta.plist in Resources */,
+				15AFD423209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout.plist in Resources */,
+				15AFD41D209C1EEA00184F36 /* Alphabetical-X-phone-landscape-meta.plist in Resources */,
+				15AFD415209C180D00184F36 /* Alphabetical-plus-phone-landscape-meta.plist in Resources */,
 				15FD2D2420999AAE00F41ED6 /* RasmLayout-w375.plist in Resources */,
-				1557161D20995D4200B0E7D4 /* AlphabeticalLayout-Keys.plist in Resources */,
+				15AFD3FE209C008300184F36 /* Alphabetical-standard-phone-landscape-meta.plist in Resources */,
+				15AFD41F209C1F0800184F36 /* Alphabetical-X-phone-landscape-layout.plist in Resources */,
+				15AFD421209C3C3100184F36 /* Alphabetical-standard-tablet-portrait-meta.plist in Resources */,
+				1557161D20995D4200B0E7D4 /* Alphabetical-keys.plist in Resources */,
+				15AFD400209C00B100184F36 /* Alphabetical-standard-phone-landscape-layout.plist in Resources */,
+				15AFD409209C0E5F00184F36 /* Alphabetical-small-phone-landscape-meta.plist in Resources */,
+				15AFD411209C138E00184F36 /* Alphabetical-plus-phone-portrait-meta.plist in Resources */,
 				155257A7203AA38100B57DE7 /* Assets.xcassets in Resources */,
+				15AFD417209C181E00184F36 /* Alphabetical-plus-phone-landscape-layout.plist in Resources */,
+				15AFD413209C139800184F36 /* Alphabetical-plus-phone-portrait-layout.plist in Resources */,
+				15AFD403209C09B100184F36 /* Alphabetical-small-phone-portrait-meta.plist in Resources */,
+				15AFD419209C1C9E00184F36 /* Alphabetical-X-phone-portrait-meta.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -417,7 +492,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -466,6 +541,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Matnsaz.Keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -481,6 +557,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Matnsaz.Keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

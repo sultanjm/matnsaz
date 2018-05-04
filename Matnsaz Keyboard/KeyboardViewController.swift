@@ -13,6 +13,12 @@ class KeyboardViewController: UIInputViewController {
     var nextKeyboardButton: UIButton!
     var keys: [Key]!
     var spaceTimer: Timer!
+    var heightConstraint: NSLayoutConstraint?
+    
+    enum Orientation: String {
+        case portrait
+        case landscape
+    }
     
     enum KeyboardLayouts: String {
         case Alphabetical
@@ -20,7 +26,7 @@ class KeyboardViewController: UIInputViewController {
     }
     
     // Config
-    var KeyboardLayout = KeyboardLayouts.Rasm
+    var KeyboardLayout = KeyboardLayouts.Alphabetical
     var DoubleTapSpaceBarShortcutActive = true
     var CharacterVariantsEnabled = false
     
@@ -28,15 +34,7 @@ class KeyboardViewController: UIInputViewController {
         super.updateViewConstraints()
         
         // custom view sizing constraints
-        let expandedHeight:CGFloat
-        switch KeyboardLayout {
-        case KeyboardLayouts.Alphabetical:
-            expandedHeight = 268.0
-        case KeyboardLayouts.Rasm:
-            expandedHeight = 215.0
-        }
-        let heightConstraint = NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 0.0, constant: expandedHeight)
-        self.view.addConstraint(heightConstraint)
+        setHeight()
     }
     
     override func viewDidLoad() {
@@ -77,11 +75,16 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.updateViewConstraints()
+    }
+    
     override func viewWillLayoutSubviews() {
-        let screenWidth = Int(self.view.frame.width)
-        let layoutFileName = KeyboardLayout.rawValue + "Layout-w" + String(describing: screenWidth)
         
-        // read plist
+        // get layout file
+        let layoutFileName = KeyboardLayout.rawValue + "-" + self.getDeviceType() + "-layout"
+        
+        // read plist and update layout
         let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
         if let dict = NSDictionary(contentsOfFile: path!) {
             for key in keys {
@@ -90,6 +93,81 @@ class KeyboardViewController: UIInputViewController {
                 } else {
                     key.hide()
                 }
+            }
+        }
+    }
+    
+    func getCurrentOrientation() -> Orientation {
+        if UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height {
+            return Orientation.portrait
+        } else {
+            return Orientation.landscape
+        }
+    }
+    
+    func getDeviceType() -> String {
+       
+        // get modelName
+        var modelName: String
+        if TARGET_OS_SIMULATOR != 0 {
+            modelName = ProcessInfo.processInfo.environment["SIMULATOR_MODEL_IDENTIFIER"] ?? ""
+        } else {
+            var size = 0
+            sysctlbyname("hw.machine", nil, &size, nil, 0)
+            var machine = [CChar](repeating: 0, count: size)
+            sysctlbyname("hw.machine", &machine, &size, nil, 0)
+            modelName = String(cString: machine)
+        }
+        
+        // switch model name to model type
+        var type: String
+        switch modelName {
+        case "iPhone3,1", "iPhone3,2", "iPhone3,3", "iPhone4,1", "iPhone5,1", "iPhone5,2", "iPhone5,3", "iPhone5,4", "iPhone6,1", "iPhone6,2", "iPhone8,4":
+            type = "small-phone"
+        case "iPhone7,2", "iPhone8,1", "iPhone9,1", "iPhone9,3", "iPhone10,1", "iPhone10,4":
+            type = "standard-phone"
+        case "iPhone7,1", "iPhone8,2", "iPhone9,2", "iPhone9,4", "iPhone10,2", "iPhone10,5":
+            type = "plus-phone"
+        case "iPhone10,3", "iPhone10,6":
+            type = "X-phone"
+        case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4", "iPad3,1", "iPad3,2", "iPad3,3", "iPad3,4", "iPad3,5", "iPad3,6", "iPad4,1", "iPad4,2", "iPad4,3", "iPad5,3", "iPad5,4", "iPad6,11", "iPad6,12",  "iPad7,5", "iPad7,6", "iPad2,5", "iPad2,6", "iPad2,7", "iPad4,4", "iPad4,5", "iPad4,6", "iPad4,7", "iPad4,8", "iPad4,9", "iPad5,1", "iPad5,2", "iPad6,3", "iPad6,4":
+            type = "standard-tablet"
+        case "iPad6,7", "iPad6,8", "iPad7,1", "iPad7,2":
+            type = "large-tablet"
+        case "iPad7,3", "iPad7,4":
+            type = "medium-tablet"
+        default:
+            type = "unknown"
+        }
+        
+        type += "-" + getCurrentOrientation().rawValue
+        return type
+    }
+    
+    func setHeight() {
+        
+        let expandedHeight: CGFloat
+        let layoutFileName = KeyboardLayout.rawValue + "-" + getDeviceType() + "-meta"
+        
+        // read plist
+        let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
+        if let dict = NSDictionary(contentsOfFile: path!) {
+            if let height = dict["primary-height"] as? CGFloat {
+                expandedHeight = height
+                if (self.heightConstraint == nil) {
+                    self.heightConstraint = NSLayoutConstraint(item: self.view,
+                                                               attribute: NSLayoutAttribute.height,
+                                                               relatedBy: NSLayoutRelation.equal,
+                                                               toItem: nil,
+                                                               attribute: NSLayoutAttribute.notAnAttribute,
+                                                               multiplier: 1.0,
+                                                               constant: expandedHeight)
+                    self.heightConstraint?.priority = UILayoutPriority(rawValue: 999.0)
+                    self.heightConstraint?.isActive = true
+                } else {
+                    self.heightConstraint!.constant = expandedHeight
+                }
+                self.view.addConstraint(heightConstraint!)
             }
         }
     }
@@ -229,7 +307,7 @@ class KeyboardViewController: UIInputViewController {
     
     func setUpKeys(layout: KeyboardLayouts) {
         // filepath
-        let fileName = KeyboardLayout.rawValue + "Layout-Keys"
+        let fileName = KeyboardLayout.rawValue + "-keys"
         let path = Bundle.main.path(forResource: fileName, ofType: "plist")
         // read plist
         if let dict = NSDictionary(contentsOfFile: path!) {
