@@ -633,7 +633,7 @@
 				DEVELOPMENT_TEAM = NMWM6M9GTL;
 				INFOPLIST_FILE = "$(SRCROOT)/Matnsaz/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Matnsaz;
+				PRODUCT_BUNDLE_IDENTIFIER = net.matnsaz.keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -649,7 +649,7 @@
 				DEVELOPMENT_TEAM = NMWM6M9GTL;
 				INFOPLIST_FILE = "$(SRCROOT)/Matnsaz/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Matnsaz;
+				PRODUCT_BUNDLE_IDENTIFIER = net.matnsaz.keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -663,7 +663,7 @@
 				DEVELOPMENT_TEAM = NMWM6M9GTL;
 				INFOPLIST_FILE = "$(SRCROOT)/Matnsaz Keyboard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Matnsaz.Keyboard;
+				PRODUCT_BUNDLE_IDENTIFIER = net.matnsaz.keyboard.ext;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -679,7 +679,7 @@
 				DEVELOPMENT_TEAM = NMWM6M9GTL;
 				INFOPLIST_FILE = "$(SRCROOT)/Matnsaz Keyboard/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Matnsaz.Keyboard;
+				PRODUCT_BUNDLE_IDENTIFIER = net.matnsaz.keyboard.ext;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
