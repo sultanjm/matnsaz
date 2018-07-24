@@ -162,6 +162,14 @@ class KeyboardViewController: UIInputViewController {
         return type
     }
     
+    func isPhone() -> Bool {
+        return getDeviceType().contains("phone")
+    }
+    
+    func isTablet() -> Bool {
+        return getDeviceType().contains("tablet")
+    }
+    
     func setHeight() {
         
         let expandedHeight: CGFloat
@@ -197,13 +205,10 @@ class KeyboardViewController: UIInputViewController {
         switch key.type {
         case Key.KeyType.KeyboardSelection:
             key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-        case Key.KeyType.Letter:
-            key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
-            key.addTarget(self, action: #selector(keyTouchDown(sender:)), for: .touchDown)
-        case Key.KeyType.Backspace:
-            key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
         default:
             key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
+            key.addTarget(self, action: #selector(keyTouchDown(sender:)), for: .touchDown)
+            key.addTarget(self, action: #selector(keyDragExit(sender:)), for: .touchDragExit)
         }
     }
     
@@ -214,13 +219,18 @@ class KeyboardViewController: UIInputViewController {
              Key.KeyType.Number,
              Key.KeyType.Punctuation,
              Key.KeyType.Diacritic:
-            sender.hidePopUp()
-            let action = sender.label
+            if isPhone() {
+                sender.hidePopUp()
+            }
+            var action = sender.label
+            mergeHamzaForward(currentChar: sender.label)
+            action = mergeHamzaBackward(currentChar: sender.label)
             self.textDocumentProxy.insertText(action)
         case Key.KeyType.SwitchToPrimaryMode,
              Key.KeyType.SwitchToSecondaryMode:
             self.switchKeyboardMode()
         case Key.KeyType.Space:
+            let action = " "
             // "." shortcut
             if DoubleTapSpaceBarShortcutActive {
                 let precedingCharacter = self.textDocumentProxy.documentContextBeforeInput?.suffix(1)
@@ -236,7 +246,7 @@ class KeyboardViewController: UIInputViewController {
                     self.startSpaceTimer()
                 }
             }
-            self.textDocumentProxy.insertText(" ")
+            self.textDocumentProxy.insertText(action)
         case Key.KeyType.Backspace:
             self.textDocumentProxy.deleteBackward()
         case Key.KeyType.Return:
@@ -257,9 +267,18 @@ class KeyboardViewController: UIInputViewController {
              Key.KeyType.Number,
              Key.KeyType.Punctuation,
              Key.KeyType.Diacritic:
-            sender.showPopUp()
+            if isPhone() {
+                sender.showPopUp()
+            }
         default:
             break
+        }
+    }
+    
+    @objc func keyDragExit(sender: Key) {
+        switch sender.type {
+        default:
+            sender.hidePopUp()
         }
     }
     
@@ -302,6 +321,37 @@ class KeyboardViewController: UIInputViewController {
         var s = String()
         s.append(lastCharacter()!)
         return s.rangeOfCharacter(from: NSCharacterSet.punctuationCharacters) != nil
+        if lastCharacter() == nil {
+            return false
+        }
+        else {
+            var s = String()
+            s.append(lastCharacter()!)
+            return s.rangeOfCharacter(from: NSCharacterSet.punctuationCharacters) != nil
+        }
+    }
+    
+    func mergeHamzaForward(currentChar: String) {
+        if inWord() && lastCharacter() == "ء" {
+            self.textDocumentProxy.deleteBackward()
+            self.textDocumentProxy.insertText("ئ")
+        }
+    }
+    
+    func mergeHamzaBackward(currentChar: String) -> String {
+        if currentChar != "ء" {
+            return currentChar
+        }
+        switch lastCharacter() {
+        case "و":
+            self.textDocumentProxy.deleteBackward()
+            return "ؤ"
+        case "ا":
+            self.textDocumentProxy.deleteBackward()
+            return "أ"
+        default:
+            return currentChar
+        }
     }
     
     func updateKeyTitles() {

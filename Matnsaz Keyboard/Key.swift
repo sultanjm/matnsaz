@@ -15,6 +15,7 @@ class Key: UIButton {
     var popUpPath: UIBezierPath
     var popUpLabel: UILabel
     var popUpBackgroundLayer: CAShapeLayer
+    var popUpVisible: Bool
     var x = 0.0
     var y = 0.0
     var width = 0.0
@@ -58,6 +59,7 @@ class Key: UIButton {
         self.popUpPath = UIBezierPath()
         self.popUpBackgroundLayer = CAShapeLayer()
         self.popUpLabel = UILabel()
+        self.popUpVisible = false
         
         // other variables
         self.name = name
@@ -75,7 +77,7 @@ class Key: UIButton {
         self.titleLabel?.font = UIFont(name: "Noto Nastaliq Urdu", size: 14)
         self.titleEdgeInsets = UIEdgeInsetsMake(-8, 0, 0, 0)
         self.contentEdgeInsets = UIEdgeInsets.zero
-        self.popUpLabel.font = UIFont(name: "Noto Nastaliq Urdu", size: 24)
+        self.popUpLabel.font = UIFont(name: "Noto Nastaliq Urdu", size: 26)
         self.popUpLabel.isHidden = false
         self.popUpLabel.textAlignment = NSTextAlignment.center
         
@@ -191,55 +193,79 @@ class Key: UIButton {
     }
     
     func createPopUp() {
-        let popUpWidthHang = 8.0
-        let popUpHeightHang = 54.0
-        let popUpBaselineDistance = 8.0
-        let popUpCornerRadius = 8.0
-        let popUpTextBaselineOffset = 4.0
+        let popUpWidthHang = 12.0 // how much the pop up hangs off the side of the key
+        let popUpHeightHang = self.height + 18.0 // how far in total the pop up goes above the key
+        let popUpBaselineDistance = 16.0 // the bottom edge of the pop up (where the corners of the curve are)
+        let popUpCornerRadius = 12.0
+        let popUpTextBaselineOffset = -0.0 // how much lower than the bottom edge of the pop up the baseline of the text should be
         let pi = CGFloat(Double.pi)
         
+        // start at bottom left corner of key
         self.popUpPath = UIBezierPath.init(
             arcCenter: CGPoint.init(x: self.cornerRadius, y: self.height - self.cornerRadius),
             radius: CGFloat(self.cornerRadius),
             startAngle: pi,
             endAngle: pi/2,
             clockwise: false)
+        
+        // horizontal line to bottom right of key
         self.popUpPath.addLine(to: CGPoint.init(x: self.width - self.cornerRadius, y: self.height))
+        
+        // arc around bottom right corner
         self.popUpPath.addArc(
             withCenter: CGPoint.init(x: self.width - self.cornerRadius, y: self.height - self.cornerRadius),
             radius: CGFloat(self.cornerRadius),
             startAngle: pi/2,
             endAngle: 0,
             clockwise: false)
+        
+        // line back up to top right of key
         self.popUpPath.addLine(to: CGPoint.init(x: self.width, y: self.cornerRadius))
+        
+        // curve to bottom right of pop up
         self.popUpPath.addCurve(
             to: CGPoint.init(x: self.width + popUpWidthHang, y: -popUpBaselineDistance),
             controlPoint1: CGPoint.init(x: self.width, y: -popUpBaselineDistance/2),
             controlPoint2: CGPoint.init(x: self.width + popUpWidthHang, y: -popUpBaselineDistance/2))
+        
+        // right edge of pop up
         self.popUpPath.addLine(to: CGPoint.init(x: self.width + popUpWidthHang, y: 0 - popUpHeightHang + popUpCornerRadius))
+        
+        // top right corner of pop up
         self.popUpPath.addArc(
             withCenter: CGPoint.init(x: self.width + popUpWidthHang - popUpCornerRadius, y: 0 - popUpHeightHang + popUpCornerRadius),
             radius: CGFloat(popUpCornerRadius),
             startAngle: 0,
             endAngle: pi * 3/2,
             clockwise: false)
+        
+        // line to top left of pop up
         self.popUpPath.addLine(to: CGPoint.init(x: 0 - popUpWidthHang + popUpCornerRadius, y: 0 - popUpHeightHang))
+        
+        // top left corner
         self.popUpPath.addArc(
             withCenter: CGPoint.init(x: 0 - popUpWidthHang + popUpCornerRadius, y: 0 - popUpHeightHang + popUpCornerRadius),
             radius: CGFloat(popUpCornerRadius),
             startAngle: pi * 3/2,
             endAngle: pi,
             clockwise: false)
+        
+        // left edge of pop up
         self.popUpPath.addLine(to: CGPoint.init(x: 0 - popUpWidthHang, y: -popUpBaselineDistance))
+        
+        // bottom left corner of pop up
         self.popUpPath.addCurve(
             to: CGPoint.init(x: 0, y: self.cornerRadius),
             controlPoint1: CGPoint.init(x: -popUpWidthHang, y: -popUpBaselineDistance/2),
             controlPoint2: CGPoint.init(x: 0, y: -popUpBaselineDistance/2))
+        
+        // left edge of button
         self.popUpPath.close()
         
+        // frame for pop up label
         self.popUpLabel.frame = CGRect.init(
-            origin: CGPoint.init(x: -popUpWidthHang, y: -popUpHeightHang + popUpTextBaselineOffset),
-            size: CGSize(width: self.width + 2 * popUpWidthHang, height: popUpHeightHang - popUpBaselineDistance))
+            origin: CGPoint.init(x: -popUpWidthHang, y: -popUpHeightHang + cornerRadius + popUpTextBaselineOffset),
+            size: CGSize(width: self.width + 2 * popUpWidthHang, height: popUpHeightHang - cornerRadius - popUpBaselineDistance))
         
         self.popUpBackgroundLayer.path = self.popUpPath.cgPath
         self.popUpBackgroundLayer.position = CGPoint(x: 0, y: 0)
@@ -249,10 +275,16 @@ class Key: UIButton {
         self.layer.addSublayer(self.popUpBackgroundLayer)
         self.addSubview(self.popUpLabel)
         self.superview?.bringSubview(toFront: self)
+        self.popUpVisible = true
     }
     
     func hidePopUp()  {
-        self.popUpBackgroundLayer.removeFromSuperlayer()
-        self.popUpLabel.removeFromSuperview()
+        if !self.popUpVisible {
+            return
+        } else {
+            self.popUpBackgroundLayer.removeFromSuperlayer()
+            self.popUpLabel.removeFromSuperview()
+            self.popUpVisible = false
+        }
     }
 }
