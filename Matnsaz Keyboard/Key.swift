@@ -19,6 +19,8 @@ class Key: UIButton {
     var y = 0.0
     var width = 0.0
     var height = 0.0
+    var horizontalBleed = 0.0
+    var verticalBleed = 0.0
     var label: String
     var cornerRadius = 4.0
     var characterVariantsEnabled: Bool
@@ -74,7 +76,6 @@ class Key: UIButton {
         self.setTitle(nextInputVariant: ArabicScript.CharacterVariant.Initial)
         self.titleLabel?.font = UIFont(name: "Noto Nastaliq Urdu", size: 14)
         self.titleEdgeInsets = UIEdgeInsetsMake(-8, 0, 0, 0)
-        self.contentEdgeInsets = UIEdgeInsets.zero
         self.popUpLabel.font = UIFont(name: "Noto Nastaliq Urdu", size: 24)
         self.popUpLabel.isHidden = false
         self.popUpLabel.textAlignment = NSTextAlignment.center
@@ -99,13 +100,15 @@ class Key: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setLayout(x: Double, y: Double, width: Double, height: Double) {
+    func setLayout(x: Double, y: Double, width: Double, height: Double, horizontalBleed: Double, verticalBleed: Double) {
         self.x = x
         self.y = y
         self.width = width
         self.height = height
         super.frame = CGRect(x: x, y: y, width: width, height: height)
         self.createPopUp()
+        self.horizontalBleed = horizontalBleed
+        self.verticalBleed = verticalBleed
     }
     
     func hide() {
@@ -254,5 +257,13 @@ class Key: UIButton {
     func hidePopUp()  {
         self.popUpBackgroundLayer.removeFromSuperlayer()
         self.popUpLabel.removeFromSuperview()
+    }
+    
+    // This bleed should add offsets but doesn't work
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let hBleed = -1 * CGFloat(self.horizontalBleed)
+        let vBleed = -1 * CGFloat(self.verticalBleed)
+        let hitFrame = self.bounds.insetBy(dx: hBleed, dy: vBleed)
+        return hitFrame.contains(point)
     }
 }

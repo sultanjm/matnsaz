@@ -52,7 +52,7 @@ class KeyboardViewController: UIInputViewController {
         let transparentView = UIView.init(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize.init(width: 0, height: 0)))
         self.view.addSubview(transparentView)
         transparentView.translatesAutoresizingMaskIntoConstraints = false;
-        transparentView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -4.0).isActive = true
+        transparentView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: 0.0).isActive = true
         
         // set up keys
         self.keys = []
@@ -90,15 +90,35 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func layoutKeys() {
+        
+        // get default bleed numbers from meta plist
+        var hBleed = 0.0
+        var vBleed = 0.0
+        let metaFileName = KeyboardLayout.rawValue + "-" + getDeviceType() + "-meta"
+        var path = Bundle.main.path(forResource: metaFileName, ofType: "plist")
+        if let dict = NSDictionary(contentsOfFile: path!) {
+            if let h = dict["key-bleed-default-horizontal"] as? Double {
+                hBleed = h
+            }
+            if let v = dict["key-bleed-default-vertical"] as? Double {
+                vBleed = v
+            }
+        }
+        
         // get layout file
         let layoutFileName = KeyboardLayout.rawValue + "-" + self.getDeviceType() + "-layout-" + self.keyboardMode.rawValue
         
         // read plist and update layout
-        let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
+        path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
         if let dict = NSDictionary(contentsOfFile: path!) {
             for key in keys {
                 if let info = dict[key.name] as? Dictionary<String, Double> {
-                    key.setLayout(x: info["x"]!, y: info["y"]!, width: info["width"]!, height: info["height"]!)
+                    key.setLayout(x: info["x"]!,
+                                  y: info["y"]!,
+                                  width: info["width"]!,
+                                  height: info["height"]!,
+                                  horizontalBleed: hBleed,
+                                  verticalBleed: vBleed)
                 } else {
                     key.hide()
                 }
