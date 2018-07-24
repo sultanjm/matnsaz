@@ -72,14 +72,21 @@ class Key: UIButton {
         self.layer.cornerRadius = CGFloat(self.cornerRadius)
         self.clipsToBounds = false
         
-        // title
+        // label placement
         self.setTitle(nextInputVariant: ArabicScript.CharacterVariant.Initial)
-        self.titleLabel?.font = UIFont(name: "Noto Nastaliq Urdu", size: 14)
-        self.titleEdgeInsets = UIEdgeInsetsMake(-8, 0, 0, 0)
-        self.contentEdgeInsets = UIEdgeInsets.zero
-        self.popUpLabel.font = UIFont(name: "Noto Nastaliq Urdu", size: 26)
         self.popUpLabel.isHidden = false
         self.popUpLabel.textAlignment = NSTextAlignment.center
+    
+        // label fonts
+        if ArabicScript.isNastaliqEnabled() {
+            self.titleLabel?.font = UIFont(name: "Noto Nastaliq Urdu", size: 14)
+            self.titleEdgeInsets = UIEdgeInsetsMake(-8, 0, 0, 0)
+            self.popUpLabel.font = UIFont(name: "Noto Nastaliq Urdu", size: 26)
+        }
+        else {
+            self.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+            self.popUpLabel.font = UIFont.systemFont(ofSize: 26)
+        }
         
         // shadow
         let shadowColor = UIColor(red: 0.1, green: 0.15, blue: 0.06, alpha: 0.36).cgColor
@@ -120,6 +127,8 @@ class Key: UIButton {
 
     func setTitle(nextInputVariant: ArabicScript.CharacterVariant) {
         var title: String
+        
+        // set character variants
         if self.characterVariantsEnabled && self.type == KeyType.Letter {
             title = ArabicScript.getCharacterVariant(string: self.label, variant: nextInputVariant)
         } else {
@@ -194,7 +203,7 @@ class Key: UIButton {
     
     func createPopUp() {
         let popUpWidthHang = 12.0 // how much the pop up hangs off the side of the key
-        let popUpHeightHang = self.height + 18.0 // how far in total the pop up goes above the key
+        let popUpHeightHang = max(self.height, self.width) + 18.0 // how far in total the pop up goes above the key
         let popUpBaselineDistance = 16.0 // the bottom edge of the pop up (where the corners of the curve are)
         let popUpCornerRadius = 12.0
         let popUpTextBaselineOffset = -0.0 // how much lower than the bottom edge of the pop up the baseline of the text should be

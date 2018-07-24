@@ -430,4 +430,13 @@ class ArabicScript {
             fatalError(String(format: "Unknown Character %s", string))
         }
     }
+    
+    class func isUrduPreferredLanguage() -> Bool {
+        let preferredLanguages = NSLocale.preferredLanguages
+        return preferredLanguages.contains("ur")
+    }
+    
+    class func isNastaliqEnabled() -> Bool {
+        return isUrduPreferredLanguage()
+    }
 }
