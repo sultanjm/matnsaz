@@ -76,17 +76,6 @@ class Key: UIButton {
         self.setTitle(nextInputVariant: ArabicScript.CharacterVariant.Initial)
         self.popUpLabel.isHidden = false
         self.popUpLabel.textAlignment = NSTextAlignment.center
-    
-        // label fonts
-        if ArabicScript.isNastaliqEnabled() {
-            self.titleLabel?.font = UIFont(name: "Noto Nastaliq Urdu", size: 14)
-            self.titleEdgeInsets = UIEdgeInsetsMake(-8, 0, 0, 0)
-            self.popUpLabel.font = UIFont(name: "Noto Nastaliq Urdu", size: 26)
-        }
-        else {
-            self.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-            self.popUpLabel.font = UIFont.systemFont(ofSize: 26)
-        }
         
         // shadow
         let shadowColor = UIColor(red: 0.1, green: 0.15, blue: 0.06, alpha: 0.36).cgColor
@@ -115,6 +104,7 @@ class Key: UIButton {
         self.height = height
         super.frame = CGRect(x: x, y: y, width: width, height: height)
         self.createPopUp()
+        self.titleLabel?.font = UIFont.systemFont(ofSize: CGFloat(self.height * 0.4))
     }
     
     func hide() {
@@ -206,7 +196,7 @@ class Key: UIButton {
         let popUpHeightHang = max(self.height, self.width) + 18.0 // how far in total the pop up goes above the key
         let popUpBaselineDistance = 16.0 // the bottom edge of the pop up (where the corners of the curve are)
         let popUpCornerRadius = 12.0
-        let popUpTextBaselineOffset = -0.0 // how much lower than the bottom edge of the pop up the baseline of the text should be
+        let popUpTextBaselineOffset = 4.0 // how much lower than the bottom edge of the pop up the baseline of the text should be
         let pi = CGFloat(Double.pi)
         
         // start at bottom left corner of key
@@ -275,6 +265,7 @@ class Key: UIButton {
         self.popUpLabel.frame = CGRect.init(
             origin: CGPoint.init(x: -popUpWidthHang, y: -popUpHeightHang + cornerRadius + popUpTextBaselineOffset),
             size: CGSize(width: self.width + 2 * popUpWidthHang, height: popUpHeightHang - cornerRadius - popUpBaselineDistance))
+        self.popUpLabel.font = UIFont.systemFont(ofSize: self.popUpLabel.frame.height * 0.6)
         
         self.popUpBackgroundLayer.path = self.popUpPath.cgPath
         self.popUpBackgroundLayer.position = CGPoint(x: 0, y: 0)
