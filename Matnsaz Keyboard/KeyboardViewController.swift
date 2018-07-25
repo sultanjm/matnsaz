@@ -13,6 +13,8 @@ class KeyboardViewController: UIInputViewController {
     var nextKeyboardButton: UIButton!
     var keys: [Key]!
     var spaceTimer: Timer!
+    var backspaceTimer: Timer!
+    var backspaceCount = 0
     var heightConstraint: NSLayoutConstraint?
     var keyboardMode = KeyboardMode.primary
     
@@ -205,6 +207,10 @@ class KeyboardViewController: UIInputViewController {
         switch key.type {
         case Key.KeyType.KeyboardSelection:
             key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+        case Key.KeyType.Backspace:
+            let cancelEvents: UIControlEvents = [UIControlEvents.touchUpInside, UIControlEvents.touchUpInside, UIControlEvents.touchDragExit, UIControlEvents.touchUpOutside, UIControlEvents.touchCancel, UIControlEvents.touchDragOutside]
+            key.addTarget(self, action: #selector(startBackspace(sender:)), for: .touchDown)
+            key.addTarget(self, action: #selector(stopBackspace(sender:)), for: cancelEvents)
         default:
             key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
             key.addTarget(self, action: #selector(keyTouchDown(sender:)), for: .touchDown)
@@ -247,8 +253,6 @@ class KeyboardViewController: UIInputViewController {
                 }
             }
             self.textDocumentProxy.insertText(action)
-        case Key.KeyType.Backspace:
-            self.textDocumentProxy.deleteBackward()
         case Key.KeyType.Return:
             self.textDocumentProxy.insertText("\n")
         default:
@@ -270,6 +274,8 @@ class KeyboardViewController: UIInputViewController {
             if isPhone() {
                 sender.showPopUp()
             }
+        case Key.KeyType.Backspace:
+            self.textDocumentProxy.deleteBackward()
         default:
             break
         }
@@ -282,15 +288,38 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    @objc func allTouchEvents(sender: Key) {
-        switch sender.type {
-        case Key.KeyType.Backspace:
-            self.textDocumentProxy.deleteBackward()
-        default:
-            break
-        }
+    @objc func startBackspace(sender: Key) {
+        self.backspaceTimer = Timer.scheduledTimer(timeInterval: 0.15, target: self, selector: #selector(backspaceTimerFired(timer:)), userInfo: nil, repeats: true)
     }
 
+    @objc func stopBackspace(sender: Key) {
+        endBackspace()
+    }
+    
+    func endBackspace() {
+        self.backspaceTimer.invalidate()
+        backspaceCount = 0
+    }
+    
+    @objc func backspaceTimerFired(timer: Timer) {
+        if (backspaceCount < 15) {
+            self.textDocumentProxy.deleteBackward()
+            backspaceCount += 1
+        } else {
+            if lastCharacter() == " " {
+                self.textDocumentProxy.deleteBackward()
+            }
+            if let words = self.textDocumentProxy.documentContextBeforeInput?.components(separatedBy: " ") {
+                let charsToDelete = words.last!.count + 1
+                for _ in 1...charsToDelete {
+                    self.textDocumentProxy.deleteBackward()
+                }
+            } else {
+                endBackspace()
+            }
+        }
+    }
+    
     func startSpaceTimer() {
         self.spaceTimer = Timer.scheduledTimer(timeInterval: 0.7, target: self, selector: #selector(spaceTimerFired(timer:)), userInfo: nil, repeats: false)
     }
