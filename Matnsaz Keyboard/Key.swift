@@ -203,6 +203,18 @@ class Key: UIButton {
     
     func createPopUp() {
         let popUpWidthHang = 12.0 // how much the pop up hangs off the side of the key
+        
+        // adjust width hangs if on the edge of the view
+        var popUpWidthHangLeft = popUpWidthHang
+        var popUpWidthHangRight = popUpWidthHang
+        if self.x < popUpWidthHang {
+            popUpWidthHangLeft = 0
+            popUpWidthHangRight = 2 * popUpWidthHang
+        } else if Double(self.superview!.frame.width) - (self.x + self.width) < popUpWidthHang {
+            popUpWidthHangLeft = 2 * popUpWidthHang
+            popUpWidthHangRight = 0
+        }
+        
         let popUpHeightHang = max(self.height, self.width) + 18.0 // how far in total the pop up goes above the key
         let popUpBaselineDistance = 16.0 // the bottom edge of the pop up (where the corners of the curve are)
         let popUpCornerRadius = 12.0
@@ -233,39 +245,39 @@ class Key: UIButton {
         
         // curve to bottom right of pop up
         self.popUpPath.addCurve(
-            to: CGPoint.init(x: self.width + popUpWidthHang, y: -popUpBaselineDistance),
+            to: CGPoint.init(x: self.width + popUpWidthHangRight, y: -popUpBaselineDistance),
             controlPoint1: CGPoint.init(x: self.width, y: -popUpBaselineDistance/2),
-            controlPoint2: CGPoint.init(x: self.width + popUpWidthHang, y: -popUpBaselineDistance/2))
+            controlPoint2: CGPoint.init(x: self.width + popUpWidthHangRight, y: -popUpBaselineDistance/2))
         
         // right edge of pop up
-        self.popUpPath.addLine(to: CGPoint.init(x: self.width + popUpWidthHang, y: 0 - popUpHeightHang + popUpCornerRadius))
+        self.popUpPath.addLine(to: CGPoint.init(x: self.width + popUpWidthHangRight, y: 0 - popUpHeightHang + popUpCornerRadius))
         
         // top right corner of pop up
         self.popUpPath.addArc(
-            withCenter: CGPoint.init(x: self.width + popUpWidthHang - popUpCornerRadius, y: 0 - popUpHeightHang + popUpCornerRadius),
+            withCenter: CGPoint.init(x: self.width + popUpWidthHangRight - popUpCornerRadius, y: 0 - popUpHeightHang + popUpCornerRadius),
             radius: CGFloat(popUpCornerRadius),
             startAngle: 0,
             endAngle: pi * 3/2,
             clockwise: false)
         
         // line to top left of pop up
-        self.popUpPath.addLine(to: CGPoint.init(x: 0 - popUpWidthHang + popUpCornerRadius, y: 0 - popUpHeightHang))
+        self.popUpPath.addLine(to: CGPoint.init(x: 0 - popUpWidthHangLeft + popUpCornerRadius, y: 0 - popUpHeightHang))
         
         // top left corner
         self.popUpPath.addArc(
-            withCenter: CGPoint.init(x: 0 - popUpWidthHang + popUpCornerRadius, y: 0 - popUpHeightHang + popUpCornerRadius),
+            withCenter: CGPoint.init(x: 0 - popUpWidthHangLeft + popUpCornerRadius, y: 0 - popUpHeightHang + popUpCornerRadius),
             radius: CGFloat(popUpCornerRadius),
             startAngle: pi * 3/2,
             endAngle: pi,
             clockwise: false)
         
         // left edge of pop up
-        self.popUpPath.addLine(to: CGPoint.init(x: 0 - popUpWidthHang, y: -popUpBaselineDistance))
+        self.popUpPath.addLine(to: CGPoint.init(x: 0 - popUpWidthHangLeft, y: -popUpBaselineDistance))
         
         // bottom left corner of pop up
         self.popUpPath.addCurve(
             to: CGPoint.init(x: 0, y: self.cornerRadius),
-            controlPoint1: CGPoint.init(x: -popUpWidthHang, y: -popUpBaselineDistance/2),
+            controlPoint1: CGPoint.init(x: -popUpWidthHangLeft, y: -popUpBaselineDistance/2),
             controlPoint2: CGPoint.init(x: 0, y: -popUpBaselineDistance/2))
         
         // left edge of button
@@ -273,7 +285,7 @@ class Key: UIButton {
         
         // frame for pop up label
         self.popUpLabel.frame = CGRect.init(
-            origin: CGPoint.init(x: -popUpWidthHang, y: -popUpHeightHang + cornerRadius + popUpTextBaselineOffset),
+            origin: CGPoint.init(x: -popUpWidthHangLeft, y: -popUpHeightHang + cornerRadius + popUpTextBaselineOffset),
             size: CGSize(width: self.width + 2 * popUpWidthHang, height: popUpHeightHang - cornerRadius - popUpBaselineDistance))
         self.popUpLabel.font = UIFont.systemFont(ofSize: self.popUpLabel.frame.height * 0.6)
         
