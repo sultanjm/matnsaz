@@ -433,7 +433,12 @@ class ArabicScript {
     
     class func isUrduPreferredLanguage() -> Bool {
         let preferredLanguages = NSLocale.preferredLanguages
-        return preferredLanguages.contains("ur")
+        for lang in preferredLanguages {
+            if lang.contains("ur") {
+                return true
+            }
+        }
+        return false
     }
     
     class func isNastaliqEnabled() -> Bool {

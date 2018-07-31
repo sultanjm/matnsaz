@@ -12,6 +12,7 @@ class Key: UIButton {
     
     var name: String
     var type: KeyType
+    var buttonLabel: UILabel
     var popUpPath: UIBezierPath
     var popUpLabel: UILabel
     var popUpBackgroundLayer: CAShapeLayer
@@ -57,6 +58,7 @@ class Key: UIButton {
         
         // instance setup
         self.type = type
+        self.buttonLabel = UILabel()
         self.popUpPath = UIBezierPath()
         self.popUpBackgroundLayer = CAShapeLayer()
         self.popUpLabel = UILabel()
@@ -65,18 +67,18 @@ class Key: UIButton {
         // other variables
         self.name = name
         self.label = label
+        if self.type == KeyType.Diacritic && !ArabicScript.isNastaliqEnabled() {
+            self.label = self.label + "◌"
+        }
         self.characterVariantsEnabled = characterVariantsEnabled
         
         // frame & init
-        let frameRect = CGRect(x: x, y: y, width: width, height: height)
-        super.init(frame: frameRect)
+        super.init(frame: CGRect.zero)
         self.layer.cornerRadius = CGFloat(self.cornerRadius)
         self.clipsToBounds = false
         
         // label placement
-        self.setTitle(nextInputVariant: ArabicScript.CharacterVariant.Initial)
-        self.popUpLabel.isHidden = false
-        self.popUpLabel.textAlignment = NSTextAlignment.center
+        self.setLabels(nextInputVariant: ArabicScript.CharacterVariant.Initial)
         
         // shadow
         let shadowColor = UIColor(red: 0.1, green: 0.15, blue: 0.06, alpha: 0.36).cgColor
@@ -99,13 +101,27 @@ class Key: UIButton {
     }
     
     func setLayout(x: Double, y: Double, width: Double, height: Double) {
+        
+        // frame
         self.x = x
         self.y = y
         self.width = width
         self.height = height
         super.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        // set up label
+        self.buttonLabel.font = UIFont.systemFont(ofSize: CGFloat(self.height * 0.4))
+        self.buttonLabel.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        
+        // special case alignment for diacritics
+        if self.type == KeyType.Diacritic {
+            self.buttonLabel.font = UIFont.systemFont(ofSize: CGFloat(self.height * 0.6))
+            self.alignDiacritics(label: self.buttonLabel)
+        }
+        self.addSubview(self.buttonLabel)
+        
+        // pop up
         self.createPopUp()
-        self.titleLabel?.font = UIFont.systemFont(ofSize: CGFloat(self.height * 0.4))
     }
     
     func hide() {
@@ -113,10 +129,11 @@ class Key: UIButton {
         self.y = 0
         self.width = 0
         self.height = 0
+        self.buttonLabel.removeFromSuperview()
         super.frame = CGRect(x: x, y: y, width: width, height: height)
     }
 
-    func setTitle(nextInputVariant: ArabicScript.CharacterVariant) {
+    func setLabels(nextInputVariant: ArabicScript.CharacterVariant) {
         var title: String
         
         // set character variants
@@ -144,12 +161,14 @@ class Key: UIButton {
             break
         }
         
-        self.setTitle(title, for: [])
+        self.buttonLabel.textAlignment = NSTextAlignment.center
+        self.popUpLabel.textAlignment = NSTextAlignment.center
+        self.buttonLabel.text = title
         self.popUpLabel.text = title
     }
     
     func setColors(mode: KeyboardColorMode) {
-        self.setTitleColor(mode: mode)
+        self.setLabelColor(mode: mode)
         self.setBackgroundColor(mode: mode)
     }
     
@@ -157,12 +176,12 @@ class Key: UIButton {
         self.setColors(mode: KeyboardColorMode.Dark)
     }
     
-    func setTitleColor(mode:KeyboardColorMode) {
+    func setLabelColor(mode:KeyboardColorMode) {
         if mode == KeyboardColorMode.Light {
-            self.setTitleColor(lightModeTextColor, for:[])
+            self.buttonLabel.textColor = lightModeTextColor
             self.popUpLabel.textColor = lightModeTextColor
         } else {
-            self.setTitleColor(darkModeTextColor, for: [])
+            self.buttonLabel.textColor = darkModeTextColor
             self.popUpLabel.textColor = darkModeTextColor
         }
     }
@@ -261,6 +280,11 @@ class Key: UIButton {
             size: CGSize(width: self.width + 2 * popUpWidthHang, height: popUpHeightHang - cornerRadius - popUpBaselineDistance))
         self.popUpLabel.font = UIFont.systemFont(ofSize: self.popUpLabel.frame.height * 0.6)
         
+        if self.type == KeyType.Diacritic {
+            self.popUpLabel.font = UIFont.systemFont(ofSize: self.popUpLabel.frame.height * 0.8)
+            self.alignDiacritics(label: self.popUpLabel)
+        }
+        
         self.popUpBackgroundLayer.path = self.popUpPath.cgPath
         self.popUpBackgroundLayer.position = CGPoint(x: 0, y: 0)
     }
@@ -268,6 +292,7 @@ class Key: UIButton {
     func showPopUp() {
         self.layer.addSublayer(self.popUpBackgroundLayer)
         self.addSubview(self.popUpLabel)
+        self.buttonLabel.isHidden = true
         self.superview?.bringSubview(toFront: self)
         self.popUpVisible = true
     }
@@ -279,6 +304,21 @@ class Key: UIButton {
             self.popUpBackgroundLayer.removeFromSuperlayer()
             self.popUpLabel.removeFromSuperview()
             self.popUpVisible = false
+            self.buttonLabel.isHidden = false
+        }
+    }
+    
+    func alignDiacritics(label:UILabel) {
+        if ArabicScript.isNastaliqEnabled() {
+            switch self.name {
+            case "ِ", "ٍ", "ٖ":
+                label.frame.origin.y -= CGFloat(label.frame.height * 0.1)
+            case "ٓ":
+                label.frame.origin.y += CGFloat(label.frame.height * 0.1)
+                label.frame.origin.x -= CGFloat(label.frame.width * 0.05)
+            default:
+                label.frame.origin.y += CGFloat(label.frame.height * 0.1)
+            }
         }
     }
 }

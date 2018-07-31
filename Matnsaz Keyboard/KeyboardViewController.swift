@@ -228,9 +228,9 @@ class KeyboardViewController: UIInputViewController {
             if isPhone() {
                 sender.hidePopUp()
             }
-            var action = sender.label
-            mergeHamzaForward(currentChar: sender.label)
-            action = mergeHamzaBackward(currentChar: sender.label)
+            var action = sender.name
+            mergeHamzaForward(currentChar: sender.name)
+            action = mergeHamzaBackward(currentChar: sender.name)
             self.textDocumentProxy.insertText(action)
         case Key.KeyType.SwitchToPrimaryMode,
              Key.KeyType.SwitchToSecondaryMode:
@@ -410,7 +410,7 @@ class KeyboardViewController: UIInputViewController {
             }
         }
         for key in keys {
-            key.setTitle(nextInputVariant: nextVariant)
+            key.setLabels(nextInputVariant: nextVariant)
         }
     }
     
