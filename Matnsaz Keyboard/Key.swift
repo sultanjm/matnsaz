@@ -27,13 +27,14 @@ class Key: UIButton {
     enum KeyType: String {
         case Letter
         case Space
+        case ZeroWidthNonJoiner
         case Backspace
         case Return
         case KeyboardSelection
         case Number
-        case Settings
         case SwitchToPrimaryMode
         case SwitchToSecondaryMode
+        case DismissKeyboard
         case Punctuation
         case Diacritic
     }
@@ -139,10 +140,6 @@ class Key: UIButton {
             title = ""
             self.setImage(UIImage(named: "Globe.png"), for: UIControlState.normal)
             self.imageView?.contentMode = .scaleAspectFit
-        case KeyType.Settings:
-            title = ""
-            self.setImage(UIImage(named: "Settings.png"), for: UIControlState.normal)
-            self.imageView?.contentMode = .scaleAspectFit
         default:
             break
         }
@@ -168,14 +165,11 @@ class Key: UIButton {
             self.setTitleColor(darkModeTextColor, for: [])
             self.popUpLabel.textColor = darkModeTextColor
         }
-        if self.type == KeyType.Settings {
-            self.setTitleColor(disabledTextColor, for: [])
-        }
     }
     
     func setBackgroundColor(mode:KeyboardColorMode) {
         if mode == KeyboardColorMode.Light {
-            if self.type == KeyType.Letter || self.type == KeyType.Number || self.type == KeyType.Punctuation || self.type == KeyType.Diacritic || self.type == KeyType.Space {
+            if self.type == KeyType.Letter || self.type == KeyType.Number || self.type == KeyType.Punctuation || self.type == KeyType.Diacritic || self.type == KeyType.Space || self.type == KeyType.ZeroWidthNonJoiner {
                 self.backgroundColor = lightModeBackgroundColor
                 self.popUpBackgroundLayer.fillColor = lightModeBackgroundColor.cgColor
             } else {

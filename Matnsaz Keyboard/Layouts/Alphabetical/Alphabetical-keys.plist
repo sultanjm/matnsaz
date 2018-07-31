@@ -7,14 +7,21 @@
 		<key>type</key>
 		<string>KeyboardSelection</string>
 		<key>label</key>
-		<string>🌐</string>
+		<string></string>
 	</dict>
 	<key>Space</key>
 	<dict>
 		<key>type</key>
 		<string>Space</string>
 		<key>label</key>
-		<string>فاصلہ</string>
+		<string></string>
+	</dict>
+	<key>ZeroWidthNonJoiner</key>
+	<dict>
+		<key>type</key>
+		<string>ZeroWidthNonJoiner</string>
+		<key>label</key>
+		<string></string>
 	</dict>
 	<key>Backspace</key>
 	<dict>
@@ -28,7 +35,7 @@
 		<key>type</key>
 		<string>Return</string>
 		<key>label</key>
-		<string>⮑</string>
+		<string></string>
 	</dict>
 	<key>Number</key>
 	<dict>
@@ -44,12 +51,12 @@
 		<key>label</key>
 		<string>اب</string>
 	</dict>
-	<key>Settings</key>
+	<key>DismissKeyboard</key>
 	<dict>
 		<key>type</key>
-		<string>Settings</string>
+		<string>DismissKeyboard</string>
 		<key>label</key>
-		<string>⚙︎</string>
+		<string></string>
 	</dict>
 	<key>ا</key>
 	<dict>
@@ -450,12 +457,26 @@
 		<key>label</key>
 		<string>ٰ</string>
 	</dict>
-	<key>#</key>
+	<key>ْ</key>
+	<dict>
+		<key>type</key>
+		<string>Diacritic</string>
+		<key>label</key>
+		<string>ْ</string>
+	</dict>
+	<key>ٓ</key>
+	<dict>
+		<key>type</key>
+		<string>Diacritic</string>
+		<key>label</key>
+		<string>ٓ</string>
+	</dict>
+	<key>&quot;</key>
 	<dict>
 		<key>type</key>
 		<string>Punctuation</string>
 		<key>label</key>
-		<string>#</string>
+		<string>&quot;</string>
 	</dict>
 	<key>@</key>
 	<dict>
@@ -464,54 +485,19 @@
 		<key>label</key>
 		<string>@</string>
 	</dict>
-	<key>_</key>
+	<key>&amp;</key>
 	<dict>
 		<key>type</key>
 		<string>Punctuation</string>
 		<key>label</key>
-		<string>_</string>
+		<string>&amp;</string>
 	</dict>
-	<key>*</key>
+	<key>₨</key>
 	<dict>
 		<key>type</key>
 		<string>Punctuation</string>
 		<key>label</key>
-		<string>*</string>
-	</dict>
-	<key>+</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>+</string>
-	</dict>
-	<key>=</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>=</string>
-	</dict>
-	<key>-</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>-</string>
-	</dict>
-	<key>/</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>/</string>
-	</dict>
-	<key>\</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>\</string>
+		<string>₨</string>
 	</dict>
 	<key>)</key>
 	<dict>
@@ -527,62 +513,6 @@
 		<key>label</key>
 		<string>(</string>
 	</dict>
-	<key>%</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>%</string>
-	</dict>
-	<key>؟</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>؟</string>
-	</dict>
-	<key>!</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>!</string>
-	</dict>
-	<key>،</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>،</string>
-	</dict>
-	<key>.</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>.</string>
-	</dict>
-	<key>۔</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>۔</string>
-	</dict>
-	<key>&quot;</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>&quot;</string>
-	</dict>
-	<key>&apos;</key>
-	<dict>
-		<key>type</key>
-		<string>Punctuation</string>
-		<key>label</key>
-		<string>&apos;</string>
-	</dict>
 	<key>؛</key>
 	<dict>
 		<key>type</key>
@@ -596,6 +526,55 @@
 		<string>Punctuation</string>
 		<key>label</key>
 		<string>:</string>
+	</dict>
+	<key>/</key>
+	<dict>
+		<key>type</key>
+		<string>Punctuation</string>
+		<key>label</key>
+		<string>/</string>
+	</dict>
+	<key>-</key>
+	<dict>
+		<key>type</key>
+		<string>Punctuation</string>
+		<key>label</key>
+		<string>-</string>
+	</dict>
+	<key>#</key>
+	<dict>
+		<key>type</key>
+		<string>Punctuation</string>
+		<key>label</key>
+		<string>#</string>
+	</dict>
+	<key>!</key>
+	<dict>
+		<key>type</key>
+		<string>Punctuation</string>
+		<key>label</key>
+		<string>!</string>
+	</dict>
+	<key>؟</key>
+	<dict>
+		<key>type</key>
+		<string>Punctuation</string>
+		<key>label</key>
+		<string>؟</string>
+	</dict>
+	<key>،</key>
+	<dict>
+		<key>type</key>
+		<string>Punctuation</string>
+		<key>label</key>
+		<string>،</string>
+	</dict>
+	<key>۔</key>
+	<dict>
+		<key>type</key>
+		<string>Punctuation</string>
+		<key>label</key>
+		<string>۔</string>
 	</dict>
 </dict>
 </plist>

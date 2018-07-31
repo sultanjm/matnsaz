@@ -235,6 +235,8 @@ class KeyboardViewController: UIInputViewController {
         case Key.KeyType.SwitchToPrimaryMode,
              Key.KeyType.SwitchToSecondaryMode:
             self.switchKeyboardMode()
+        case Key.KeyType.DismissKeyboard:
+            self.dismissKeyboard()
         case Key.KeyType.Space:
             let action = " "
             // "." shortcut
@@ -253,6 +255,8 @@ class KeyboardViewController: UIInputViewController {
                 }
             }
             self.textDocumentProxy.insertText(action)
+        case Key.KeyType.ZeroWidthNonJoiner:
+            self.textDocumentProxy.insertText("‌")
         case Key.KeyType.Return:
             self.textDocumentProxy.insertText("\n")
         default:
@@ -274,8 +278,6 @@ class KeyboardViewController: UIInputViewController {
             if isPhone() {
                 sender.showPopUp()
             }
-        case Key.KeyType.Backspace:
-            self.textDocumentProxy.deleteBackward()
         default:
             break
         }
@@ -289,6 +291,7 @@ class KeyboardViewController: UIInputViewController {
     }
     
     @objc func startBackspace(sender: Key) {
+        self.textDocumentProxy.deleteBackward()
         self.backspaceTimer = Timer.scheduledTimer(timeInterval: 0.15, target: self, selector: #selector(backspaceTimerFired(timer:)), userInfo: nil, repeats: true)
     }
 

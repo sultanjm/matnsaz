@@ -2,10 +2,43 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
+        <key>Number</key>
+        <dict>
+            <key>x</key>
+            <real>72</real>
+            <key>y</key>
+            <real>168</real>
+            <key>width</key>
+            <real>63</real>
+            <key>height</key>
+            <real>32</real>
+        </dict>
         <key>KeyboardSelection</key>
         <dict>
             <key>x</key>
-            <real>549</real>
+            <real>141</real>
+            <key>y</key>
+            <real>168</real>
+            <key>width</key>
+            <real>63</real>
+            <key>height</key>
+            <real>32</real>
+        </dict>
+        <key>Space</key>
+        <dict>
+            <key>x</key>
+            <real>210</real>
+            <key>y</key>
+            <real>168</real>
+            <key>width</key>
+            <real>194</real>
+            <key>height</key>
+            <real>32</real>
+        </dict>
+        <key>ZeroWidthNonJoiner</key>
+        <dict>
+            <key>x</key>
+            <real>410</real>
             <key>y</key>
             <real>168</real>
             <key>width</key>
@@ -13,14 +46,14 @@
             <key>height</key>
             <real>32</real>
         </dict>
-        <key>Space</key>
+        <key>Return</key>
         <dict>
             <key>x</key>
-            <real>177</real>
+            <real>463</real>
             <key>y</key>
             <real>168</real>
             <key>width</key>
-            <real>234</real>
+            <real>133</real>
             <key>height</key>
             <real>32</real>
         </dict>
@@ -30,39 +63,6 @@
             <real>72</real>
             <key>y</key>
             <real>128</real>
-            <key>width</key>
-            <real>47</real>
-            <key>height</key>
-            <real>32</real>
-        </dict>
-        <key>Return</key>
-        <dict>
-            <key>x</key>
-            <real>72</real>
-            <key>y</key>
-            <real>168</real>
-            <key>width</key>
-            <real>99</real>
-            <key>height</key>
-            <real>32</real>
-        </dict>
-        <key>Number</key>
-        <dict>
-            <key>x</key>
-            <real>417</real>
-            <key>y</key>
-            <real>168</real>
-            <key>width</key>
-            <real>73</real>
-            <key>height</key>
-            <real>32</real>
-        </dict>
-        <key>Settings</key>
-        <dict>
-            <key>x</key>
-            <real>496</real>
-            <key>y</key>
-            <real>168</real>
             <key>width</key>
             <real>47</real>
             <key>height</key>
