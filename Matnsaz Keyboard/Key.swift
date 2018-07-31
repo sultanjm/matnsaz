@@ -67,9 +67,6 @@ class Key: UIButton {
         // other variables
         self.name = name
         self.label = label
-        if self.type == KeyType.Diacritic && !ArabicScript.isNastaliqEnabled() {
-            self.label = self.label + "◌"
-        }
         self.characterVariantsEnabled = characterVariantsEnabled
         
         // frame & init
@@ -319,6 +316,14 @@ class Key: UIButton {
             default:
                 label.frame.origin.y += CGFloat(label.frame.height * 0.1)
             }
+        } else {
+            switch self.name {
+            case "ٓ":
+                label.frame.origin.x -= CGFloat(label.frame.width * 0.2)
+            default:
+                label.frame.origin.x -= CGFloat(label.frame.width * 0.1)
+            }
+            
         }
     }
 }
