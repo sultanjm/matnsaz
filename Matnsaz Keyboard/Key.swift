@@ -16,6 +16,8 @@ class Key: UIButton {
     var popUpPath: UIBezierPath
     var popUpLabel: UILabel
     var popUpBackgroundLayer: CAShapeLayer
+    var maskLayer: CAShapeLayer
+    var maskViewProperty: UIView
     var popUpVisible: Bool
     var x = 0.0
     var y = 0.0
@@ -53,6 +55,7 @@ class Key: UIButton {
     let darkModeBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.30)
     let darkModeSpecialKeyBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.12)
     let disabledTextColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+    let shadowColor = UIColor(red: 0.1, green: 0.15, blue: 0.06, alpha: 0.36).cgColor
     
     init(name: String, type: KeyType, label: String, characterVariantsEnabled: Bool) {
         
@@ -63,6 +66,8 @@ class Key: UIButton {
         self.popUpBackgroundLayer = CAShapeLayer()
         self.popUpLabel = UILabel()
         self.popUpVisible = false
+        self.maskLayer = CAShapeLayer()
+        self.maskViewProperty = UIView()
         
         // other variables
         self.name = name
@@ -78,7 +83,6 @@ class Key: UIButton {
         self.setLabels(nextInputVariant: ArabicScript.CharacterVariant.Initial)
         
         // shadow
-        let shadowColor = UIColor(red: 0.1, green: 0.15, blue: 0.06, alpha: 0.36).cgColor
         self.layer.shadowColor = shadowColor
         self.layer.shadowOpacity = 1.0
         self.layer.shadowRadius = 0
@@ -185,17 +189,29 @@ class Key: UIButton {
     
     func setBackgroundColor(mode:KeyboardColorMode) {
         if mode == KeyboardColorMode.Light {
-            if self.type == KeyType.Letter || self.type == KeyType.Number || self.type == KeyType.Punctuation || self.type == KeyType.Diacritic || self.type == KeyType.Space || self.type == KeyType.ZeroWidthNonJoiner {
+            switch self.type {
+            case KeyType.Letter,
+                 KeyType.Number,
+                 KeyType.Punctuation,
+                 KeyType.Diacritic,
+                 KeyType.Space,
+                 KeyType.ZeroWidthNonJoiner:
                 self.backgroundColor = lightModeBackgroundColor
                 self.popUpBackgroundLayer.fillColor = lightModeBackgroundColor.cgColor
-            } else {
+            default:
                 self.backgroundColor = lightModeSpecialKeyBackgroundColor
             }
         } else {
-            if self.type == KeyType.Letter || self.type == KeyType.Number || self.type == KeyType.Punctuation || self.type == KeyType.Diacritic || self.type == KeyType.Space {
+            switch self.type {
+            case KeyType.Letter,
+                 KeyType.Number,
+                 KeyType.Punctuation,
+                 KeyType.Diacritic,
+                 KeyType.Space,
+                 KeyType.ZeroWidthNonJoiner:
                 self.backgroundColor = darkModeBackgroundColor
                 self.popUpBackgroundLayer.fillColor = darkModeBackgroundColor.cgColor
-            } else {
+            default:
                 self.backgroundColor = darkModeSpecialKeyBackgroundColor
             }
         }
@@ -285,7 +301,7 @@ class Key: UIButton {
         
         // frame for pop up label
         self.popUpLabel.frame = CGRect.init(
-            origin: CGPoint.init(x: -popUpWidthHangLeft, y: -popUpHeightHang + cornerRadius + popUpTextBaselineOffset),
+            origin: CGPoint.init(x: self.x - popUpWidthHangLeft, y: self.y - popUpHeightHang + cornerRadius + popUpTextBaselineOffset),
             size: CGSize(width: self.width + 2 * popUpWidthHang, height: popUpHeightHang - cornerRadius - popUpBaselineDistance))
         self.popUpLabel.font = UIFont.systemFont(ofSize: self.popUpLabel.frame.height * 0.6)
         
@@ -294,15 +310,28 @@ class Key: UIButton {
             self.alignDiacritics(label: self.popUpLabel)
         }
         
+        // set up pop up view
         self.popUpBackgroundLayer.path = self.popUpPath.cgPath
-        self.popUpBackgroundLayer.position = CGPoint(x: 0, y: 0)
+        self.popUpBackgroundLayer.position = CGPoint(x: self.x, y: self.y)
+        
+        // set up mask for rest of keyboard - add rectangle to path
+        let maskPath = CGMutablePath()
+        maskPath.addPath(self.popUpPath.cgPath)
+        maskPath.addRect(CGRect(x: CGFloat(-self.x), y: CGFloat(-self.y), width: self.superview!.bounds.width, height: self.superview!.bounds.height))
+        
+        // set up layer with alpha to let underneath pass through
+        self.maskLayer.path = maskPath
+        self.maskLayer.position = CGPoint(x: self.x, y: self.y)
+        self.maskLayer.fillRule = kCAFillRuleEvenOdd
+        self.maskLayer.fillColor = UIColor(white: 1.0, alpha: 1.0).cgColor
+        self.maskViewProperty.layer.addSublayer(self.maskLayer)
     }
     
     func showPopUp() {
-        self.layer.addSublayer(self.popUpBackgroundLayer)
-        self.addSubview(self.popUpLabel)
+        self.superview?.mask = self.maskViewProperty
+        self.superview?.superview?.layer.addSublayer(self.popUpBackgroundLayer)
+        self.superview?.superview?.addSubview(self.popUpLabel)
         self.buttonLabel.isHidden = true
-        self.superview?.bringSubview(toFront: self)
         self.popUpVisible = true
     }
     
@@ -310,10 +339,11 @@ class Key: UIButton {
         if !self.popUpVisible {
             return
         } else {
+            self.superview?.mask = nil
             self.popUpBackgroundLayer.removeFromSuperlayer()
             self.popUpLabel.removeFromSuperview()
-            self.popUpVisible = false
             self.buttonLabel.isHidden = false
+            self.popUpVisible = false
         }
     }
     
