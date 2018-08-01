@@ -28,7 +28,7 @@
 		<key>type</key>
 		<string>Backspace</string>
 		<key>label</key>
-		<string>→</string>
+		<string></string>
 	</dict>
 	<key>Return</key>
 	<dict>

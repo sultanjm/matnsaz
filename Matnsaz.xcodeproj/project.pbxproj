@@ -47,6 +47,14 @@
 		15DB7CA72032AD5100A84C7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA52032AD5100A84C7E /* LaunchScreen.storyboard */; };
 		15DB7CD12032ADC500A84C7E /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB7CD02032ADC500A84C7E /* KeyboardViewController.swift */; };
 		15DB7CD52032ADC500A84C7E /* Matnsaz Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 15DB7CCE2032ADC500A84C7E /* Matnsaz Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		15DE59B62112551500FAA134 /* DismissKeyboard-Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DE59AE2112551500FAA134 /* DismissKeyboard-Dark.png */; };
+		15DE59B72112551500FAA134 /* KeyboardSelection-Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DE59AF2112551500FAA134 /* KeyboardSelection-Light.png */; };
+		15DE59B82112551500FAA134 /* KeyboardSelection-Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DE59B02112551500FAA134 /* KeyboardSelection-Dark.png */; };
+		15DE59B92112551500FAA134 /* DismissKeyboard-Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DE59B12112551500FAA134 /* DismissKeyboard-Light.png */; };
+		15DE59BA2112551500FAA134 /* Backspace-Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DE59B22112551500FAA134 /* Backspace-Dark.png */; };
+		15DE59BB2112551500FAA134 /* Return-Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DE59B32112551500FAA134 /* Return-Dark.png */; };
+		15DE59BC2112551500FAA134 /* Return-Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DE59B42112551500FAA134 /* Return-Light.png */; };
+		15DE59BD2112551500FAA134 /* Backspace-Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DE59B52112551500FAA134 /* Backspace-Light.png */; };
 		15FD2D22209998D900F41ED6 /* RasmLayout-Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D21209998D900F41ED6 /* RasmLayout-Keys.plist */; };
 		15FD2D2420999AAE00F41ED6 /* RasmLayout-w375.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D2320999AAE00F41ED6 /* RasmLayout-w375.plist */; };
 		15FD2D4F209C818400F41ED6 /* Alphabetical-plus-phone-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D41209C818300F41ED6 /* Alphabetical-plus-phone-portrait-layout-secondary.plist */; };
@@ -63,10 +71,6 @@
 		15FD2D5A209C818400F41ED6 /* Alphabetical-plus-phone-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D4C209C818400F41ED6 /* Alphabetical-plus-phone-landscape-layout-secondary.plist */; };
 		15FD2D5B209C818400F41ED6 /* Alphabetical-standard-phone-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D4D209C818400F41ED6 /* Alphabetical-standard-phone-portrait-layout-secondary.plist */; };
 		15FD2D5C209C818400F41ED6 /* Alphabetical-standard-tablet-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D4E209C818400F41ED6 /* Alphabetical-standard-tablet-portrait-layout-secondary.plist */; };
-		15FD2D6B209C891C00F41ED6 /* Return.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D67209C891C00F41ED6 /* Return.png */; };
-		15FD2D6C209C891C00F41ED6 /* Globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D68209C891C00F41ED6 /* Globe.png */; };
-		15FD2D6D209C891C00F41ED6 /* Backspace.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D69209C891C00F41ED6 /* Backspace.png */; };
-		15FD2D6F209C8A0900F41ED6 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D6E209C8A0900F41ED6 /* Settings.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +142,14 @@
 		15DB7CCE2032ADC500A84C7E /* Matnsaz Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Matnsaz Keyboard.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB7CD02032ADC500A84C7E /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		15DB7CD22032ADC500A84C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15DE59AE2112551500FAA134 /* DismissKeyboard-Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DismissKeyboard-Dark.png"; sourceTree = "<group>"; };
+		15DE59AF2112551500FAA134 /* KeyboardSelection-Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KeyboardSelection-Light.png"; sourceTree = "<group>"; };
+		15DE59B02112551500FAA134 /* KeyboardSelection-Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KeyboardSelection-Dark.png"; sourceTree = "<group>"; };
+		15DE59B12112551500FAA134 /* DismissKeyboard-Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DismissKeyboard-Light.png"; sourceTree = "<group>"; };
+		15DE59B22112551500FAA134 /* Backspace-Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Backspace-Dark.png"; sourceTree = "<group>"; };
+		15DE59B32112551500FAA134 /* Return-Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Return-Dark.png"; sourceTree = "<group>"; };
+		15DE59B42112551500FAA134 /* Return-Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Return-Light.png"; sourceTree = "<group>"; };
+		15DE59B52112551500FAA134 /* Backspace-Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Backspace-Light.png"; sourceTree = "<group>"; };
 		15FD2D21209998D900F41ED6 /* RasmLayout-Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RasmLayout-Keys.plist"; sourceTree = "<group>"; };
 		15FD2D2320999AAE00F41ED6 /* RasmLayout-w375.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RasmLayout-w375.plist"; sourceTree = "<group>"; };
 		15FD2D41209C818300F41ED6 /* Alphabetical-plus-phone-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-plus-phone-portrait-layout-secondary.plist"; sourceTree = "<group>"; };
@@ -154,10 +166,6 @@
 		15FD2D4C209C818400F41ED6 /* Alphabetical-plus-phone-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-plus-phone-landscape-layout-secondary.plist"; sourceTree = "<group>"; };
 		15FD2D4D209C818400F41ED6 /* Alphabetical-standard-phone-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-phone-portrait-layout-secondary.plist"; sourceTree = "<group>"; };
 		15FD2D4E209C818400F41ED6 /* Alphabetical-standard-tablet-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-tablet-portrait-layout-secondary.plist"; sourceTree = "<group>"; };
-		15FD2D67209C891C00F41ED6 /* Return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Return.png; sourceTree = "<group>"; };
-		15FD2D68209C891C00F41ED6 /* Globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Globe.png; sourceTree = "<group>"; };
-		15FD2D69209C891C00F41ED6 /* Backspace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Backspace.png; sourceTree = "<group>"; };
-		15FD2D6E209C8A0900F41ED6 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,10 +304,14 @@
 		15FD2D5D209C876200F41ED6 /* Button Images */ = {
 			isa = PBXGroup;
 			children = (
-				15FD2D69209C891C00F41ED6 /* Backspace.png */,
-				15FD2D68209C891C00F41ED6 /* Globe.png */,
-				15FD2D67209C891C00F41ED6 /* Return.png */,
-				15FD2D6E209C8A0900F41ED6 /* Settings.png */,
+				15DE59B22112551500FAA134 /* Backspace-Dark.png */,
+				15DE59B52112551500FAA134 /* Backspace-Light.png */,
+				15DE59B02112551500FAA134 /* KeyboardSelection-Dark.png */,
+				15DE59AF2112551500FAA134 /* KeyboardSelection-Light.png */,
+				15DE59AE2112551500FAA134 /* DismissKeyboard-Dark.png */,
+				15DE59B12112551500FAA134 /* DismissKeyboard-Light.png */,
+				15DE59B32112551500FAA134 /* Return-Dark.png */,
+				15DE59B42112551500FAA134 /* Return-Light.png */,
 			);
 			path = "Button Images";
 			sourceTree = "<group>";
@@ -408,6 +420,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15DE59B72112551500FAA134 /* KeyboardSelection-Light.png in Resources */,
 				15AFD405209C09E400184F36 /* Alphabetical-small-phone-portrait-layout-primary.plist in Resources */,
 				15AFD41B209C1D0300184F36 /* Alphabetical-X-phone-portrait-layout-primary.plist in Resources */,
 				1557161F20995DB200B0E7D4 /* Alphabetical-standard-phone-portrait-layout-primary.plist in Resources */,
@@ -419,7 +432,6 @@
 				15AFD423209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout-primary.plist in Resources */,
 				15AFD41D209C1EEA00184F36 /* Alphabetical-X-phone-landscape-meta.plist in Resources */,
 				15FD2D4F209C818400F41ED6 /* Alphabetical-plus-phone-portrait-layout-secondary.plist in Resources */,
-				15FD2D6D209C891C00F41ED6 /* Backspace.png in Resources */,
 				15C327D2209C4CCC008EC82C /* Alphabetical-large-tablet-landscape-layout-primary.plist in Resources */,
 				15FD2D59209C818400F41ED6 /* Alphabetical-standard-phone-landscape-layout-secondary.plist in Resources */,
 				15FD2D5A209C818400F41ED6 /* Alphabetical-plus-phone-landscape-layout-secondary.plist in Resources */,
@@ -429,25 +441,26 @@
 				15C327BF209C47D6008EC82C /* Alphabetical-large-tablet-portrait-meta.plist in Resources */,
 				15AFD3FE209C008300184F36 /* Alphabetical-standard-phone-landscape-meta.plist in Resources */,
 				15AFD41F209C1F0800184F36 /* Alphabetical-X-phone-landscape-layout-primary.plist in Resources */,
+				15DE59B82112551500FAA134 /* KeyboardSelection-Dark.png in Resources */,
 				15AFD421209C3C3100184F36 /* Alphabetical-standard-tablet-portrait-meta.plist in Resources */,
 				1557161D20995D4200B0E7D4 /* Alphabetical-keys.plist in Resources */,
 				15FD2D54209C818400F41ED6 /* Alphabetical-standard-tablet-landscape-layout-secondary.plist in Resources */,
 				15AFD400209C00B100184F36 /* Alphabetical-standard-phone-landscape-layout-primary.plist in Resources */,
+				15DE59BC2112551500FAA134 /* Return-Light.png in Resources */,
 				15FD2D57209C818400F41ED6 /* Alphabetical-large-tablet-landscape-layout-secondary.plist in Resources */,
 				15AFD409209C0E5F00184F36 /* Alphabetical-small-phone-landscape-meta.plist in Resources */,
 				15AFD411209C138E00184F36 /* Alphabetical-plus-phone-portrait-meta.plist in Resources */,
 				15FD2D5C209C818400F41ED6 /* Alphabetical-standard-tablet-portrait-layout-secondary.plist in Resources */,
-				15FD2D6B209C891C00F41ED6 /* Return.png in Resources */,
-				15FD2D6F209C8A0900F41ED6 /* Settings.png in Resources */,
 				155257A7203AA38100B57DE7 /* Assets.xcassets in Resources */,
 				15FD2D50209C818400F41ED6 /* Alphabetical-large-tablet-portrait-layout-secondary.plist in Resources */,
-				15FD2D6C209C891C00F41ED6 /* Globe.png in Resources */,
 				15C327C7209C492C008EC82C /* Alphabetical-medium-tablet-portrait-meta.plist in Resources */,
 				15AFD417209C181E00184F36 /* Alphabetical-plus-phone-landscape-layout-primary.plist in Resources */,
 				15FD2D55209C818400F41ED6 /* Alphabetical-small-phone-portrait-layout-secondary.plist in Resources */,
+				15DE59BD2112551500FAA134 /* Backspace-Light.png in Resources */,
 				15C327CE209C4BDD008EC82C /* Alphabetical-medium-tablet-portrait-layout-primary.plist in Resources */,
 				15C327BB209C4572008EC82C /* Alphabetical-standard-tablet-landscape-meta.plist in Resources */,
 				15AFD413209C139800184F36 /* Alphabetical-plus-phone-portrait-layout-primary.plist in Resources */,
+				15DE59BA2112551500FAA134 /* Backspace-Dark.png in Resources */,
 				15AFD403209C09B100184F36 /* Alphabetical-small-phone-portrait-meta.plist in Resources */,
 				15C327C1209C47E1008EC82C /* Alphabetical-large-tablet-portrait-layout-primary.plist in Resources */,
 				15FD2D52209C818400F41ED6 /* Alphabetical-small-phone-landscape-layout-secondary.plist in Resources */,
@@ -456,7 +469,10 @@
 				15FD2D51209C818400F41ED6 /* Alphabetical-medium-tablet-portrait-layout-secondary.plist in Resources */,
 				15C327D0209C4CC4008EC82C /* Alphabetical-large-tablet-landscape-meta.plist in Resources */,
 				15C327C3209C4800008EC82C /* Alphabetical-medium-tablet-landscape-meta.plist in Resources */,
+				15DE59B62112551500FAA134 /* DismissKeyboard-Dark.png in Resources */,
 				15FD2D56209C818400F41ED6 /* Alphabetical-X-phone-portrait-layout-secondary.plist in Resources */,
+				15DE59BB2112551500FAA134 /* Return-Dark.png in Resources */,
+				15DE59B92112551500FAA134 /* DismissKeyboard-Light.png in Resources */,
 				15C327C5209C4807008EC82C /* Alphabetical-medium-tablet-landscape-layout-primary.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

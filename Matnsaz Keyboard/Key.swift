@@ -42,7 +42,7 @@ class Key: UIButton {
         case Diacritic
     }
     
-    enum KeyboardColorMode {
+    enum KeyboardColorMode: String {
         case Light
         case Dark
     }
@@ -143,24 +143,8 @@ class Key: UIButton {
         } else {
             title = self.label
         }
-
-        // set button images
-        switch self.type {
-        case KeyType.Backspace:
-            title = ""
-            self.setImage(UIImage(named: "Backspace.png"), for: UIControlState.normal)
-            self.imageView?.contentMode = .scaleAspectFit
-        case KeyType.Return:
-            title = ""
-            self.setImage(UIImage(named: "Return.png"), for: UIControlState.normal)
-            self.imageView?.contentMode = .scaleAspectFit
-        case KeyType.KeyboardSelection:
-            title = ""
-            self.setImage(UIImage(named: "Globe.png"), for: UIControlState.normal)
-            self.imageView?.contentMode = .scaleAspectFit
-        default:
-            break
-        }
+       
+        setImages(mode: KeyboardColorMode.Light)
         
         self.buttonLabel.textAlignment = NSTextAlignment.center
         self.popUpLabel.textAlignment = NSTextAlignment.center
@@ -168,9 +152,24 @@ class Key: UIButton {
         self.popUpLabel.text = title
     }
     
+    func setImages(mode: KeyboardColorMode) {
+        switch self.type {
+        case KeyType.Backspace,
+             KeyType.Return,
+             KeyType.KeyboardSelection,
+             KeyType.DismissKeyboard:
+            let imageName = self.type.rawValue + "-" + mode.rawValue + ".png"
+            self.setImage(UIImage(named: imageName), for: UIControlState.normal)
+            self.imageView?.contentMode = .scaleAspectFit
+        default:
+            break
+        }
+    }
+    
     func setColors(mode: KeyboardColorMode) {
         self.setLabelColor(mode: mode)
         self.setBackgroundColor(mode: mode)
+        self.setImages(mode: mode)
     }
     
     func handleDarkMode() {
