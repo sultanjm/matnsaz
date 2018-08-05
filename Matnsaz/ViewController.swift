@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class ViewController: UIViewController , MFMailComposeViewControllerDelegate{
+class ViewController: UIViewController , MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var mailButton: UIButton!
     

@@ -2,478 +2,511 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
-        <key>Letter</key>
+        <key>Number</key>
         <dict>
             <key>x</key>
-            <real>8</real>
+            <real>6</real>
             <key>y</key>
-            <real>344</real>
+            <real>260</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
         <key>KeyboardSelection</key>
         <dict>
             <key>x</key>
-            <real>105</real>
+            <real>78</real>
             <key>y</key>
-            <real>344</real>
+            <real>260</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
         <key>Space</key>
         <dict>
             <key>x</key>
-            <real>202</real>
+            <real>150</real>
             <key>y</key>
-            <real>344</real>
+            <real>260</real>
             <key>width</key>
-            <real>708</real>
+            <real>534</real>
             <key>height</key>
-            <real>74</real>
-        </dict>
+            <real>55</real>
+        </dict> 
         <key>ZeroWidthNonJoiner</key>
         <dict>
             <key>x</key>
-            <real>924</real>
+            <real>696</real>
             <key>y</key>
-            <real>344</real>
+            <real>260</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
         <key>Return</key>
         <dict>
             <key>x</key>
-            <real>8</real>
+            <real>6</real>
             <key>y</key>
-            <real>172</real>
+            <real>130</real>
             <key>width</key>
-            <real>126</real>
+            <real>102</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
         <key>Backspace</key>
         <dict>
             <key>x</key>
-            <real>8</real>
+            <real>6</real>
             <key>y</key>
             <real>0</real>
             <key>width</key>
-            <real>126</real>
+            <real>102</real>
             <key>height</key>
-            <real>74</real>
-        </dict>
-        <key>Settings</key>
-        <dict>
-            <key>x</key>
-            <real>1021</real>
-            <key>y</key>
-            <real>258</real>
-            <key>width</key>
-            <real>83</real>
-            <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
         <key>DismissKeyboard</key>
         <dict>
             <key>x</key>
-            <real>1021</real>
+            <real>768</real>
             <key>y</key>
-            <real>344</real>
+            <real>260</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>۰</key>
+        <key>ط</key>
         <dict>
             <key>x</key>
-            <real>1021</real>
+            <real>768</real>
             <key>y</key>
             <real>0</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>۹</key>
+        <key>ظ</key>
         <dict>
             <key>x</key>
-            <real>924</real>
+            <real>696</real>
             <key>y</key>
             <real>0</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>۸</key>
+        <key>ژ</key>
         <dict>
             <key>x</key>
-            <real>827</real>
+            <real>624</real>
             <key>y</key>
             <real>0</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>۷</key>
+        <key>ح</key>
         <dict>
             <key>x</key>
-            <real>730</real>
+            <real>552</real>
             <key>y</key>
             <real>0</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>۶</key>
+        <key>ث</key>
         <dict>
             <key>x</key>
-            <real>633</real>
+            <real>480</real>
             <key>y</key>
             <real>0</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>۵</key>
+        <key>ٹ</key>
         <dict>
             <key>x</key>
-            <real>536</real>
+            <real>408</real>
             <key>y</key>
             <real>0</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>۴</key>
+        <key>ڑ</key>
         <dict>
             <key>x</key>
-            <real>439</real>
+            <real>336</real>
             <key>y</key>
             <real>0</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>۳</key>
+        <key>غ</key>
         <dict>
             <key>x</key>
-            <real>342</real>
+            <real>265</real>
             <key>y</key>
             <real>0</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>۲</key>
+        <key>ص</key>
         <dict>
             <key>x</key>
-            <real>245</real>
+            <real>192</real>
             <key>y</key>
             <real>0</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>۱</key>
+        <key>ض</key>
         <dict>
             <key>x</key>
-            <real>148</real>
+            <real>120</real>
             <key>y</key>
             <real>0</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>ِ</key>
+        <key>پ</key>
         <dict>
             <key>x</key>
-            <real>978</real>
+            <real>726</real>
             <key>y</key>
-            <real>86</real>
+            <real>65</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>َ</key>
+        <key>ہ</key>
         <dict>
             <key>x</key>
-            <real>881</real>
+            <real>654</real>
             <key>y</key>
-            <real>86</real>
+            <real>65</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>ُ</key>
+        <key>ی</key>
         <dict>
             <key>x</key>
-            <real>784</real>
+            <real>582</real>
             <key>y</key>
-            <real>86</real>
+            <real>65</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>ّ</key>
+        <key>ء</key>
         <dict>
             <key>x</key>
-            <real>687</real>
+            <real>510</real>
             <key>y</key>
-            <real>86</real>
+            <real>65</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>ٍ</key>
+        <key>ے</key>
         <dict>
             <key>x</key>
-            <real>590</real>
+            <real>438</real>
             <key>y</key>
-            <real>86</real>
+            <real>65</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>ً</key>
+        <key>ت</key>
         <dict>
             <key>x</key>
-            <real>493</real>
+            <real>366</real>
             <key>y</key>
-            <real>86</real>
+            <real>65</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>ٖ</key>
+        <key>ر</key>
         <dict>
             <key>x</key>
-            <real>396</real>
+            <real>294</real>
             <key>y</key>
-            <real>86</real>
+            <real>65</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>ٰ</key>
+        <key>ع</key>
         <dict>
             <key>x</key>
-            <real>299</real>
+            <real>222</real>
             <key>y</key>
-            <real>86</real>
+            <real>65</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>ْ</key>
+        <key>و</key>
         <dict>
             <key>x</key>
-            <real>202</real>
+            <real>150</real>
             <key>y</key>
-            <real>86</real>
+            <real>65</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>ٓ</key>
+        <key>ق</key>
         <dict>
             <key>x</key>
-            <real>105</real>
+            <real>78</real>
             <key>y</key>
-            <real>86</real>
+            <real>65</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>"</key>
+        <key>ل</key>
         <dict>
             <key>x</key>
-            <real>1021</real>
+            <real>768</real>
             <key>y</key>
-            <real>172</real>
+            <real>130</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>@</key>
+        <key>ک</key>
         <dict>
             <key>x</key>
-            <real>924</real>
+            <real>696</real>
             <key>y</key>
-            <real>172</real>
+            <real>130</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>&amp;</key>
+        <key>ج</key>
         <dict>
             <key>x</key>
-            <real>827</real>
+            <real>624</real>
             <key>y</key>
-            <real>172</real>
+            <real>130</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-      	<key>₨</key>
+        <key>ھ</key>
         <dict>
             <key>x</key>
-            <real>730</real>
+            <real>552</real>
             <key>y</key>
-            <real>172</real>
+            <real>130</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>)</key>
+        <key>گ</key>
         <dict>
             <key>x</key>
-            <real>633</real>
+            <real>480</real>
             <key>y</key>
-            <real>172</real>
+            <real>130</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>(</key>
+        <key>ف</key>
         <dict>
             <key>x</key>
-            <real>536</real>
+            <real>408</real>
             <key>y</key>
-            <real>172</real>
+            <real>130</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>؛</key>
+        <key>د</key>
         <dict>
             <key>x</key>
-            <real>439</real>
+            <real>336</real>
             <key>y</key>
-            <real>172</real>
+            <real>130</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>:</key>
+        <key>ڈ</key>
         <dict>
             <key>x</key>
-            <real>342</real>
+            <real>265</real>
             <key>y</key>
-            <real>172</real>
+            <real>130</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>/</key>
+        <key>س</key>
         <dict>
             <key>x</key>
-            <real>245</real>
+            <real>192</real>
             <key>y</key>
-            <real>172</real>
+            <real>130</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>-</key>
+        <key>ا</key>
         <dict>
             <key>x</key>
-            <real>148</real>
+            <real>120</real>
             <key>y</key>
-            <real>172</real>
+            <real>130</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>#</key>
+        <key>م</key>
         <dict>
             <key>x</key>
-            <real>687</real>
+            <real>726</real>
             <key>y</key>
-            <real>258</real>
+            <real>195</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>!</key>
+        <key>ن</key>
         <dict>
             <key>x</key>
-            <real>590</real>
+            <real>654</real>
             <key>y</key>
-            <real>258</real>
+            <real>195</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>؟</key>
+        <key>ں</key>
         <dict>
             <key>x</key>
-            <real>493</real>
+            <real>582</real>
             <key>y</key>
-            <real>258</real>
+            <real>195</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>،</key>
+        <key>ب</key>
         <dict>
             <key>x</key>
-            <real>396</real>
+            <real>510</real>
             <key>y</key>
-            <real>258</real>
+            <real>195</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
         </dict>
-        <key>۔</key>
+        <key>چ</key>
         <dict>
             <key>x</key>
-            <real>299</real>
+            <real>438</real>
             <key>y</key>
-            <real>258</real>
+            <real>195</real>
             <key>width</key>
-            <real>83</real>
+            <real>60</real>
             <key>height</key>
-            <real>74</real>
+            <real>55</real>
+        </dict>
+        <key>خ</key>
+        <dict>
+            <key>x</key>
+            <real>366</real>
+            <key>y</key>
+            <real>195</real>
+            <key>width</key>
+            <real>60</real>
+            <key>height</key>
+            <real>55</real>
+        </dict>
+        <key>ش</key>
+        <dict>
+            <key>x</key>
+            <real>294</real>
+            <key>y</key>
+            <real>195</real>
+            <key>width</key>
+            <real>60</real>
+            <key>height</key>
+            <real>55</real>
+        </dict>
+        <key>ز</key>
+        <dict>
+            <key>x</key>
+            <real>222</real>
+            <key>y</key>
+            <real>195</real>
+            <key>width</key>
+            <real>60</real>
+            <key>height</key>
+            <real>55</real>
+        </dict>
+        <key>ذ</key>
+        <dict>
+            <key>x</key>
+            <real>150</real>
+            <key>y</key>
+            <real>195</real>
+            <key>width</key>
+            <real>60</real>
+            <key>height</key>
+            <real>55</real>
         </dict>
     </dict>
 </plist>

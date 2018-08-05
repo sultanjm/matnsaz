@@ -17,8 +17,8 @@ class ArabicScript {
         case Final
     }
     
-    class func getCharacterVariant(string: String, variant: CharacterVariant) -> String {
-        switch string {
+    class func getCharacterVariant(_ char: Character, variant: CharacterVariant) -> String {
+        switch char {
         case "ا":
             switch variant {
             case CharacterVariant.Isolated,
@@ -400,10 +400,13 @@ class ArabicScript {
             }
         case "ء":
             switch variant {
-            case CharacterVariant.Isolated,
-                 CharacterVariant.Initial,
-                 CharacterVariant.Medial,
-                 CharacterVariant.Final:
+            case CharacterVariant.Isolated:
+                return "ء"
+            case CharacterVariant.Initial:
+                return "ﺋ"
+            case CharacterVariant.Medial:
+                return "ﺌ"
+            case CharacterVariant.Final:
                 return "ء"
             }
         case "ی":
@@ -427,7 +430,37 @@ class ArabicScript {
                 return "ﮯ"
             }
         default:
-            fatalError(String(format: "Unknown Character %s", string))
+            fatalError(String(format: "Unknown Character %s", String(char)))
+        }
+    }
+    
+    class func isForwardJoining(_ char: Character) -> Bool {
+        return getCharacterVariant(char, variant: CharacterVariant.Initial) != getCharacterVariant(char, variant: CharacterVariant.Isolated)
+    }
+    
+    class func isLetter(_ char: Character) -> Bool {
+        switch char.unicodeScalars {
+        default:
+            return false
+        }
+    }
+    
+    // this assum
+    class func addTatweelTo(_ string: String, toDisplay characterVariant: CharacterVariant) -> String {
+        let tatweel = "ـ"
+        var suffix = ""
+        if self.isForwardJoining(string.last!) {
+            suffix = tatweel
+        }
+        switch characterVariant {
+        case CharacterVariant.Isolated:
+            return string
+        case CharacterVariant.Initial:
+            return string + suffix
+        case CharacterVariant.Medial:
+            return tatweel + string + suffix
+        case CharacterVariant.Final:
+            return tatweel + string
         }
     }
     

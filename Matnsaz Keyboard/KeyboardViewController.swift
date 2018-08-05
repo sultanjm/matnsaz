@@ -8,6 +8,35 @@
 
 import UIKit
 
+enum Orientation: String {
+    case portrait
+    case landscape
+}
+
+enum KeyboardLayout: String {
+    case Alphabetical
+    case MappingToQWERTY
+    
+    func toUrdu() -> String {
+        switch self {
+        case .Alphabetical:
+            return "حروفِ تہجّی"
+        case .MappingToQWERTY:
+            return "فونیٹک جوڑ تا QWERTY"
+        }
+    }
+}
+
+enum KeyboardMode: String {
+    case primary
+    case secondary
+}
+
+enum SavedDefaults: String {
+    case KeyLayout
+    case KeyLabels
+}
+
 class KeyboardViewController: UIInputViewController {
 
     var nextKeyboardButton: UIButton!
@@ -17,37 +46,29 @@ class KeyboardViewController: UIInputViewController {
     var backspaceCount = 0
     var heightConstraint: NSLayoutConstraint?
     var keyboardMode = KeyboardMode.primary
-    
-    enum Orientation: String {
-        case portrait
-        case landscape
-    }
-    
-    enum KeyboardLayouts: String {
-        case Alphabetical
-        case Rasm
-    }
-    
-    enum KeyboardMode: String {
-        case primary
-        case secondary
-    }
+    var colorMode = Key.KeyboardColorMode.Light
+    var settingsVC: SettingsViewController!
+    let tatweel: Character = "ـ"
     
     // Config
-    var KeyboardLayout = KeyboardLayouts.Alphabetical
+    var layout: KeyboardLayout!
+    var characterVariantsEnabled: Bool!
     var DoubleTapSpaceBarShortcutActive = true
-    var CharacterVariantsEnabled = false
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
         
         // custom view sizing constraints
-        setHeight()
+        self.setHeight()
     }
     
     override func viewDidLoad() {
+        
         // boilerplate setup
         super.viewDidLoad()
+        
+        // read settings
+        self.readSettings()
         
         // add transparent view so autolayout works
         let guide = inputView!.layoutMarginsGuide
@@ -57,8 +78,7 @@ class KeyboardViewController: UIInputViewController {
         transparentView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -4.0).isActive = true
         
         // set up keys
-        self.keys = []
-        setUpKeys(layout: KeyboardLayout)
+        self.setUpKeys()
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,6 +97,7 @@ class KeyboardViewController: UIInputViewController {
 
         // dark mode
         if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
+            self.colorMode = Key.KeyboardColorMode.Dark
             for key in self.keys {
                 key.handleDarkMode()
             }
@@ -88,12 +109,31 @@ class KeyboardViewController: UIInputViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        layoutKeys()
+        self.layoutKeys()
+    }
+    
+    func readSettings() {
+        
+        // layout
+        if let defaultLayout = UserDefaults.standard.value(forKey: SavedDefaults.KeyLayout.rawValue) {
+            self.layout = KeyboardLayout.init(rawValue: defaultLayout as! String)
+        } else {
+            self.layout = KeyboardLayout.Alphabetical
+            UserDefaults.standard.set(self.layout.rawValue, forKey: SavedDefaults.KeyLayout.rawValue)
+        }
+        
+        // labels
+        if let defaultLabels = UserDefaults.standard.value(forKey: SavedDefaults.KeyLabels.rawValue) {
+            self.characterVariantsEnabled = defaultLabels as! Bool
+        } else {
+            self.characterVariantsEnabled = false
+            UserDefaults.standard.set(self.characterVariantsEnabled, forKey: SavedDefaults.KeyLabels.rawValue)
+        }
     }
     
     func layoutKeys() {
         // get layout file
-        let layoutFileName = KeyboardLayout.rawValue + "-" + self.getDeviceType() + "-layout-" + self.keyboardMode.rawValue
+        let layoutFileName = self.layout.rawValue + "-" + self.getDeviceType() + "-layout-" + self.keyboardMode.rawValue
         
         // read plist and update layout
         let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
@@ -175,7 +215,7 @@ class KeyboardViewController: UIInputViewController {
     func setHeight() {
         
         let expandedHeight: CGFloat
-        let layoutFileName = KeyboardLayout.rawValue + "-" + getDeviceType() + "-meta"
+        let layoutFileName = self.layout.rawValue + "-" + getDeviceType() + "-meta"
         
         // read plist
         let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
@@ -201,7 +241,7 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func addKey(name: String, type: Key.KeyType, label: String) {
-        let key = Key(name: name, type: type, label: label, characterVariantsEnabled: CharacterVariantsEnabled)
+        let key = Key(name: name, type: type, label: label, characterVariantsEnabled: self.characterVariantsEnabled)
         self.keys.append(key)
         self.view.addSubview(key)
         switch key.type {
@@ -231,13 +271,19 @@ class KeyboardViewController: UIInputViewController {
             var action = sender.name
             mergeHamzaForward(currentChar: sender.name)
             action = mergeHamzaBackward(currentChar: sender.name)
+            //self.deleteTatweelIfNeeded()
             self.textDocumentProxy.insertText(action)
+            /*
+            if self.characterVariantsEnabled && ArabicScript.isForwardJoining(self.lastCharacter()!) {
+                self.textDocumentProxy.insertText(String(tatweel))
+            }*/
         case Key.KeyType.SwitchToPrimaryMode,
              Key.KeyType.SwitchToSecondaryMode:
             self.switchKeyboardMode()
         case Key.KeyType.DismissKeyboard:
             self.dismissKeyboard()
         case Key.KeyType.Space:
+            //self.deleteTatweelIfNeeded()
             let action = " "
             // "." shortcut
             if DoubleTapSpaceBarShortcutActive {
@@ -256,16 +302,19 @@ class KeyboardViewController: UIInputViewController {
             }
             self.textDocumentProxy.insertText(action)
         case Key.KeyType.ZeroWidthNonJoiner:
+            //self.deleteTatweelIfNeeded()
             self.textDocumentProxy.insertText("‌")
         case Key.KeyType.Return:
             self.textDocumentProxy.insertText("\n")
+        case Key.KeyType.Settings:
+            self.showSettings()
         default:
             break
         }
         
         // update titles
-        if CharacterVariantsEnabled {
-            updateKeyTitles()
+        if self.characterVariantsEnabled {
+            self.updateKeyTitles()
         }
     }
     
@@ -302,6 +351,11 @@ class KeyboardViewController: UIInputViewController {
     func endBackspace() {
         self.backspaceTimer.invalidate()
         backspaceCount = 0
+        
+        // update titles
+        if self.characterVariantsEnabled {
+            self.updateKeyTitles()
+        }
     }
     
     @objc func backspaceTimerFired(timer: Timer) {
@@ -333,6 +387,24 @@ class KeyboardViewController: UIInputViewController {
     
     func lastCharacter() -> Optional<Character> {
         return self.textDocumentProxy.documentContextBeforeInput?.last
+    }
+    
+    /*
+    func lastLetter() -> Character? {
+        for c in self.textDocumentProxy.documentContextBeforeInput?.reversed()! {
+            if ArabicScript.isLetter(c) {
+                return c
+            }
+        }
+        return nil
+    }*/
+    
+    func deleteTatweelIfNeeded() {
+        if self.characterVariantsEnabled {
+            if self.textDocumentProxy.documentContextBeforeInput?.last == tatweel {
+                self.textDocumentProxy.deleteBackward()
+            }
+        }
     }
     
     func inWord() -> Bool {
@@ -391,14 +463,13 @@ class KeyboardViewController: UIInputViewController {
         if lastCharacter() == nil {
             nextVariant = ArabicScript.CharacterVariant.Initial
         } else {
-            var lastChar = String()
-            lastChar.append(lastCharacter()!)
+            let lastChar = lastCharacter()!
             if followingSpace() {
                 nextVariant = ArabicScript.CharacterVariant.Initial
             }
             if inWord() {
-                let precedingCharMedial = ArabicScript.getCharacterVariant(string: lastChar, variant: ArabicScript.CharacterVariant.Medial)
-                let precedingCharFinal = ArabicScript.getCharacterVariant(string: lastChar, variant: ArabicScript.CharacterVariant.Final)
+                let precedingCharMedial = ArabicScript.getCharacterVariant(lastChar, variant: ArabicScript.CharacterVariant.Medial)
+                let precedingCharFinal = ArabicScript.getCharacterVariant(lastChar, variant: ArabicScript.CharacterVariant.Final)
                 if precedingCharMedial == precedingCharFinal {
                     nextVariant = ArabicScript.CharacterVariant.Initial
                 } else {
@@ -414,10 +485,13 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    func setUpKeys(layout: KeyboardLayouts) {
+    func setUpKeys() {
+        self.keys = []
+        
         // filepath
-        let fileName = KeyboardLayout.rawValue + "-keys"
+        let fileName = self.layout.rawValue + "-keys"
         let path = Bundle.main.path(forResource: fileName, ofType: "plist")
+        
         // read plist
         if let dict = NSDictionary(contentsOfFile: path!) {
             // create key for every item in dictionary
@@ -426,5 +500,34 @@ class KeyboardViewController: UIInputViewController {
                 addKey(name: key as! String, type: Key.KeyType(rawValue: info["type"]!)!, label: info["label"]!)
             }
         }
+    }
+    
+    func hideAllKeys() {
+        print(self.keys.count)
+        for key in self.keys {
+            key.hide()
+        }
+    }
+    
+    func showSettings() {
+        // show settings
+        self.settingsVC = SettingsViewController.init(frame: self.view.frame, colorMode: self.colorMode)
+        self.addChildViewController(settingsVC)
+        self.view.addSubview(settingsVC.view)
+        self.settingsVC.didMove(toParentViewController: self)
+        self.settingsVC.keyboardViewController = self
+    }
+    
+    func hideSettings() {
+        
+        // hide settings
+        self.settingsVC.willMove(toParentViewController: nil)
+        self.settingsVC.view.removeFromSuperview()
+        self.settingsVC.removeFromParentViewController()
+        
+        // redo keys
+        self.hideAllKeys()
+        self.readSettings()
+        self.setUpKeys()
     }
 }
