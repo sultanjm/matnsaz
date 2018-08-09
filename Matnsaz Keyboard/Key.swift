@@ -25,8 +25,9 @@
         var height = 0.0
         var label: String
         var cornerRadius = 4.0
-        var characterVariantsEnabled: Bool
+        var contextualFormsEnabled: Bool
         var mode: KeyboardColorMode
+        var keyboardViewController: KeyboardViewController?
         
         enum KeyType: String {
             case Letter
@@ -60,7 +61,7 @@
             static let shadowColor = UIColor(red: 0.1, green: 0.15, blue: 0.06, alpha: 0.36).cgColor
         }
         
-        init(name: String, type: KeyType, label: String, characterVariantsEnabled: Bool) {
+        init(name: String, type: KeyType, label: String, contextualFormsEnabled: Bool, keyboardViewController: KeyboardViewController) {
             
             // instance setup
             self.type = type
@@ -72,11 +73,12 @@
             self.maskLayer = CAShapeLayer()
             self.maskViewProperty = UIView()
             self.mode = KeyboardColorMode.Light
+            self.keyboardViewController = keyboardViewController
             
             // other variables
             self.name = name
             self.label = label
-            self.characterVariantsEnabled = characterVariantsEnabled
+            self.contextualFormsEnabled = contextualFormsEnabled
             
             // frame & init
             super.init(frame: CGRect.zero)
@@ -85,7 +87,7 @@
             self.adjustsImageWhenHighlighted = false
             
             // label placement
-            self.setLabels(nextInputVariant: ArabicScript.CharacterVariant.Initial)
+            self.setLabels(nextContextualForm: ArabicScript.ContextualForm.Initial)
             
             // shadow
             self.layer.shadowColor = Colors.shadowColor
@@ -139,12 +141,46 @@
             super.frame = CGRect(x: x, y: y, width: width, height: height)
         }
         
-        func setLabels(nextInputVariant: ArabicScript.CharacterVariant) {
-            var title: String
+        func setLabels(nextContextualForm: ArabicScript.ContextualForm) {
+            var title = ""
             
-            // set character variants
-            if self.characterVariantsEnabled && self.type == KeyType.Letter {
-                title = ArabicScript.addTatweelTo(self.label, toDisplay: nextInputVariant)
+            // set contextual forms
+            if self.contextualFormsEnabled {
+                
+                switch self.type {
+                case KeyType.Letter:
+                    var label = self.label
+                    // special case Hamza label
+                    if (self.name == "ء" && nextContextualForm == ArabicScript.ContextualForm.Medial) {
+                        label = "ئ"
+                    }
+                    title = ArabicScript.addTatweelTo(label, toDisplay: nextContextualForm)
+                case KeyType.Space,
+                     KeyType.ZeroWidthNonJoiner:
+                    let lastCharacter = self.keyboardViewController?.lastCharacter()
+                    if (lastCharacter != nil) {
+                        // only display label on space and zwnj if the last character is a letter whose form will change
+                        if ArabicScript.isLetter(lastCharacter!) && ArabicScript.isForwardJoining(lastCharacter!) {
+                            var formToDisplay = ArabicScript.ContextualForm.Final
+                            let text = self.keyboardViewController!.textDocumentProxy.documentContextBeforeInput!
+                            // if first character in string just display isolated form
+                            if text.count == 1 {
+                                formToDisplay = ArabicScript.ContextualForm.Isolated
+                            }
+                            // otherwise display final, but change to isolated if character before is not forward joining
+                            else {
+                                let secondLastChar = text[text.index(text.endIndex, offsetBy: -2)]
+                                if (!ArabicScript.isForwardJoining(secondLastChar)) {
+                                    formToDisplay = ArabicScript.ContextualForm.Isolated
+                                }
+                            }
+                            title = ArabicScript.addTatweelTo(String(lastCharacter!), toDisplay: formToDisplay)
+                        }
+                    }
+                default:
+                    title = self.label
+                }
+                
             } else {
                 title = self.label
             }

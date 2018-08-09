@@ -50,9 +50,14 @@ class KeyboardViewController: UIInputViewController {
     var settingsVC: SettingsViewController!
     let tatweel: Character = "ـ"
     
+    // references to keys
+    var spaceKey: Key?
+    var zeroWidthNonJoinerKey: Key?
+    var settingsKey: Key?
+    
     // Config
     var layout: KeyboardLayout!
-    var characterVariantsEnabled: Bool!
+    var contextualFormsEnabled: Bool!
     var DoubleTapSpaceBarShortcutActive = true
     
     override func updateViewConstraints() {
@@ -124,10 +129,10 @@ class KeyboardViewController: UIInputViewController {
         
         // labels
         if let defaultLabels = UserDefaults.standard.value(forKey: SavedDefaults.KeyLabels.rawValue) {
-            self.characterVariantsEnabled = defaultLabels as! Bool
+            self.contextualFormsEnabled = defaultLabels as! Bool
         } else {
-            self.characterVariantsEnabled = false
-            UserDefaults.standard.set(self.characterVariantsEnabled, forKey: SavedDefaults.KeyLabels.rawValue)
+            self.contextualFormsEnabled = false
+            UserDefaults.standard.set(self.contextualFormsEnabled, forKey: SavedDefaults.KeyLabels.rawValue)
         }
     }
     
@@ -241,9 +246,11 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func addKey(name: String, type: Key.KeyType, label: String) {
-        let key = Key(name: name, type: type, label: label, characterVariantsEnabled: self.characterVariantsEnabled)
+        let key = Key(name: name, type: type, label: label, contextualFormsEnabled: self.contextualFormsEnabled, keyboardViewController: self)
         self.keys.append(key)
         self.view.addSubview(key)
+        
+        // add targets
         switch key.type {
         case Key.KeyType.KeyboardSelection:
             key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
@@ -255,6 +262,18 @@ class KeyboardViewController: UIInputViewController {
             key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
             key.addTarget(self, action: #selector(keyTouchDown(sender:)), for: .touchDown)
             key.addTarget(self, action: #selector(keyDragExit(sender:)), for: .touchDragExit)
+        }
+        
+        // store references
+        switch key.type {
+        case Key.KeyType.Space:
+            self.spaceKey = key
+        case Key.KeyType.ZeroWidthNonJoiner:
+            self.zeroWidthNonJoinerKey = key
+        case Key.KeyType.Settings:
+            self.settingsKey = key
+        default:
+            break
         }
     }
     
@@ -274,7 +293,7 @@ class KeyboardViewController: UIInputViewController {
             //self.deleteTatweelIfNeeded()
             self.textDocumentProxy.insertText(action)
             /*
-            if self.characterVariantsEnabled && ArabicScript.isForwardJoining(self.lastCharacter()!) {
+            if self.contextualFormsEnabled && ArabicScript.isForwardJoining(self.lastCharacter()!) {
                 self.textDocumentProxy.insertText(String(tatweel))
             }*/
         case Key.KeyType.SwitchToPrimaryMode,
@@ -313,7 +332,7 @@ class KeyboardViewController: UIInputViewController {
         }
         
         // update titles
-        if self.characterVariantsEnabled {
+        if self.contextualFormsEnabled {
             self.updateKeyTitles()
         }
     }
@@ -353,7 +372,7 @@ class KeyboardViewController: UIInputViewController {
         backspaceCount = 0
         
         // update titles
-        if self.characterVariantsEnabled {
+        if self.contextualFormsEnabled {
             self.updateKeyTitles()
         }
     }
@@ -386,21 +405,17 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func lastCharacter() -> Optional<Character> {
-        return self.textDocumentProxy.documentContextBeforeInput?.last
+        let text = self.textDocumentProxy.documentContextBeforeInput
+        var char = text?.last
+//        if self.contextualFormsEnabled && char == tatweel && text != nil {
+//            let index = text!.index(before: text!.endIndex)
+//            char = text![index]
+//        }
+        return char
     }
     
-    /*
-    func lastLetter() -> Character? {
-        for c in self.textDocumentProxy.documentContextBeforeInput?.reversed()! {
-            if ArabicScript.isLetter(c) {
-                return c
-            }
-        }
-        return nil
-    }*/
-    
     func deleteTatweelIfNeeded() {
-        if self.characterVariantsEnabled {
+        if self.contextualFormsEnabled {
             if self.textDocumentProxy.documentContextBeforeInput?.last == tatweel {
                 self.textDocumentProxy.deleteBackward()
             }
@@ -419,6 +434,11 @@ class KeyboardViewController: UIInputViewController {
     
     func followingSpace() -> Bool {
         return lastCharacter() == " "
+    }
+    
+    func followingZeroWidthNonJoiner() -> Bool {
+        let lastScalar = lastCharacter()?.unicodeScalars.last
+        return lastScalar?.value == 0x200C
     }
     
     func followingPunctuation() -> Bool {
@@ -459,29 +479,24 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func updateKeyTitles() {
-        var nextVariant: ArabicScript.CharacterVariant
-        if lastCharacter() == nil {
-            nextVariant = ArabicScript.CharacterVariant.Initial
+        
+        // figure out what contextual form the next letter should take
+        var nextContextualForm: ArabicScript.ContextualForm
+        if lastCharacter() == nil || followingSpace() || followingZeroWidthNonJoiner() || followingPunctuation() {
+            nextContextualForm = ArabicScript.ContextualForm.Initial
         } else {
-            let lastChar = lastCharacter()!
-            if followingSpace() {
-                nextVariant = ArabicScript.CharacterVariant.Initial
-            }
-            if inWord() {
-                let precedingCharMedial = ArabicScript.getCharacterVariant(lastChar, variant: ArabicScript.CharacterVariant.Medial)
-                let precedingCharFinal = ArabicScript.getCharacterVariant(lastChar, variant: ArabicScript.CharacterVariant.Final)
-                if precedingCharMedial == precedingCharFinal {
-                    nextVariant = ArabicScript.CharacterVariant.Initial
-                } else {
-                    nextVariant = ArabicScript.CharacterVariant.Medial
-                }
-            }
-            else {
-                nextVariant = ArabicScript.CharacterVariant.Initial
+            let precedingCharacter = lastCharacter()
+            let precedingLetter = ArabicScript.removeDiacritics(String(precedingCharacter!))
+            if ArabicScript.isForwardJoining(precedingLetter.first!) {
+                nextContextualForm = ArabicScript.ContextualForm.Medial
+            } else {
+                nextContextualForm = ArabicScript.ContextualForm.Initial
             }
         }
+        
+        // set label on every key
         for key in keys {
-            key.setLabels(nextInputVariant: nextVariant)
+            key.setLabels(nextContextualForm: nextContextualForm)
         }
     }
     
@@ -503,7 +518,6 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func hideAllKeys() {
-        print(self.keys.count)
         for key in self.keys {
             key.hide()
         }
