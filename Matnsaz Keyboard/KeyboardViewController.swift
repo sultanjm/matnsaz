@@ -290,19 +290,18 @@ class KeyboardViewController: UIInputViewController {
             var action = sender.name
             mergeHamzaForward(currentChar: sender.name)
             action = mergeHamzaBackward(currentChar: sender.name)
-            //self.deleteTatweelIfNeeded()
+            self.deleteTatweelIfNeeded()
             self.textDocumentProxy.insertText(action)
-            /*
             if self.contextualFormsEnabled && ArabicScript.isForwardJoining(self.lastCharacter()!) {
                 self.textDocumentProxy.insertText(String(tatweel))
-            }*/
+            }
         case Key.KeyType.SwitchToPrimaryMode,
              Key.KeyType.SwitchToSecondaryMode:
             self.switchKeyboardMode()
         case Key.KeyType.DismissKeyboard:
             self.dismissKeyboard()
         case Key.KeyType.Space:
-            //self.deleteTatweelIfNeeded()
+            self.deleteTatweelIfNeeded()
             let action = " "
             // "." shortcut
             if DoubleTapSpaceBarShortcutActive {
@@ -321,7 +320,7 @@ class KeyboardViewController: UIInputViewController {
             }
             self.textDocumentProxy.insertText(action)
         case Key.KeyType.ZeroWidthNonJoiner:
-            //self.deleteTatweelIfNeeded()
+            self.deleteTatweelIfNeeded()
             self.textDocumentProxy.insertText("‌")
         case Key.KeyType.Return:
             self.textDocumentProxy.insertText("\n")
@@ -407,10 +406,10 @@ class KeyboardViewController: UIInputViewController {
     func lastCharacter() -> Optional<Character> {
         let text = self.textDocumentProxy.documentContextBeforeInput
         var char = text?.last
-//        if self.contextualFormsEnabled && char == tatweel && text != nil {
-//            let index = text!.index(before: text!.endIndex)
-//            char = text![index]
-//        }
+        if self.contextualFormsEnabled && char == tatweel && text != nil && text!.count > 1 {
+            let index = text!.index(text!.endIndex, offsetBy: -2)
+            char = text![index]
+        }
         return char
     }
     
