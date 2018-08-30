@@ -1340,12 +1340,16 @@ class ArabicScript {
     }
     
     class func isForwardJoining(_ char: Character) -> Bool {
-        // special casing to fix errors in Unicode
-        // Noon Ghunna has no medial form in San Francisco
         if !isLetter(char) {
             return false
         }
+        // special casing to fix errors in Unicode
+        // Noon Ghunna has no medial form in San Francisco
         if char == "ں" && self.isNastaliqEnabled() {
+            return true
+        }
+        // Farsi Yeh has no contextual forms in Unicode
+        else if char == "ی" {
             return true
         } else {
             let scalars = self.removeDiacritics(String(char)).unicodeScalars

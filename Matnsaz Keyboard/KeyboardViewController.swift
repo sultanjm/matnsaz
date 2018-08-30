@@ -131,7 +131,7 @@ class KeyboardViewController: UIInputViewController {
         if let defaultLabels = UserDefaults.standard.value(forKey: SavedDefaults.KeyLabels.rawValue) {
             self.contextualFormsEnabled = defaultLabels as! Bool
         } else {
-            self.contextualFormsEnabled = false
+            self.contextualFormsEnabled = true
             UserDefaults.standard.set(self.contextualFormsEnabled, forKey: SavedDefaults.KeyLabels.rawValue)
         }
     }
