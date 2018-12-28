@@ -441,9 +441,6 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func followingPunctuation() -> Bool {
-        var s = String()
-        s.append(lastCharacter()!)
-        return s.rangeOfCharacter(from: NSCharacterSet.punctuationCharacters) != nil
         if lastCharacter() == nil {
             return false
         }
@@ -453,7 +450,7 @@ class KeyboardViewController: UIInputViewController {
             return s.rangeOfCharacter(from: NSCharacterSet.punctuationCharacters) != nil
         }
     }
-    
+
     func mergeHamzaForward(currentChar: String) {
         if inWord() && lastCharacter() == "ء" {
             self.textDocumentProxy.deleteBackward()
