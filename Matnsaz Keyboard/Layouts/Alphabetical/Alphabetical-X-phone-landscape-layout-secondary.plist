@@ -49,9 +49,9 @@
         <key>Backspace</key>
         <dict>
             <key>x</key>
-            <real>3</real>
+            <real>597</real>
             <key>y</key>
-            <real>82</real>
+            <real>120</real>
             <key>width</key>
             <real>62</real>
             <key>height</key>
@@ -60,7 +60,7 @@
         <key>Settings</key>
         <dict>
             <key>x</key>
-            <real>597</real>
+            <real>3</real>
             <key>y</key>
             <real>120</real>
             <key>width</key>

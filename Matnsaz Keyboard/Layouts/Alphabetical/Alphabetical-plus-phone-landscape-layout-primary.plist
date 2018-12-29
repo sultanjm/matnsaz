@@ -60,7 +60,7 @@
         <key>Backspace</key>
         <dict>
             <key>x</key>
-            <real>78</real>
+            <real>609</real>
             <key>y</key>
             <real>126</real>
             <key>width</key>
@@ -401,7 +401,7 @@
         <key>م</key>
         <dict>
             <key>x</key>
-            <real>609</real>
+            <real>550</real>
             <key>y</key>
             <real>126</real>
             <key>width</key>
@@ -412,7 +412,7 @@
         <key>ن</key>
         <dict>
             <key>x</key>
-            <real>550</real>
+            <real>491</real>
             <key>y</key>
             <real>126</real>
             <key>width</key>
@@ -423,7 +423,7 @@
         <key>ں</key>
         <dict>
             <key>x</key>
-            <real>491</real>
+            <real>432</real>
             <key>y</key>
             <real>126</real>
             <key>width</key>
@@ -434,7 +434,7 @@
         <key>و</key>
         <dict>
             <key>x</key>
-            <real>432</real>
+            <real>373</real>
             <key>y</key>
             <real>126</real>
             <key>width</key>
@@ -445,7 +445,7 @@
         <key>ہ</key>
         <dict>
             <key>x</key>
-            <real>373</real>
+            <real>314</real>
             <key>y</key>
             <real>126</real>
             <key>width</key>
@@ -456,7 +456,7 @@
         <key>ھ</key>
         <dict>
             <key>x</key>
-            <real>314</real>
+            <real>255</real>
             <key>y</key>
             <real>126</real>
             <key>width</key>
@@ -467,7 +467,7 @@
         <key>ء</key>
         <dict>
             <key>x</key>
-            <real>255</real>
+            <real>196</real>
             <key>y</key>
             <real>126</real>
             <key>width</key>
@@ -478,7 +478,7 @@
         <key>ی</key>
         <dict>
             <key>x</key>
-            <real>196</real>
+            <real>137</real>
             <key>y</key>
             <real>126</real>
             <key>width</key>
@@ -489,7 +489,7 @@
         <key>ے</key>
         <dict>
             <key>x</key>
-            <real>137</real>
+            <real>78</real>
             <key>y</key>
             <real>126</real>
             <key>width</key>
