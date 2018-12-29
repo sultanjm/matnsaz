@@ -55,6 +55,10 @@ class KeyboardViewController: UIInputViewController {
     var zeroWidthNonJoinerKey: Key?
     var settingsKey: Key?
     
+    // artificially firing a key if you didn't actually press one
+    var artificiallyFiredKey: Key?
+    var touchPoint: CGPoint?
+    
     // Config
     var layout: KeyboardLayout!
     var contextualFormsEnabled: Bool!
@@ -75,12 +79,18 @@ class KeyboardViewController: UIInputViewController {
         // read settings
         self.readSettings()
         
-        // add transparent view so autolayout works
+        // add transparent view so autolayout works, have to enable user interaction so superview's user interaction also works
         let guide = inputView!.layoutMarginsGuide
         let transparentView = UIView.init(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize.init(width: 0, height: 0)))
         self.view.addSubview(transparentView)
+        transparentView.isUserInteractionEnabled = true
         transparentView.translatesAutoresizingMaskIntoConstraints = false;
         transparentView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -4.0).isActive = true
+        
+        // other view setup
+        self.view.isUserInteractionEnabled = true
+        self.view.isMultipleTouchEnabled = false
+        self.view.backgroundColor = UIColor.init(red: 209/255, green: 212/255, blue: 216/255, alpha: 1)
         
         // set up keys
         self.setUpKeys()
@@ -539,5 +549,39 @@ class KeyboardViewController: UIInputViewController {
         self.hideAllKeys()
         self.readSettings()
         self.setUpKeys()
+    }
+    
+    func getNearestKeyTo(_ point: CGPoint) -> Key? {
+        var minDist = CGFloat.greatestFiniteMagnitude
+        var closestKey: Key?
+        for key in keys {
+            let xDist = point.x - key.center.x
+            let yDist = point.y - key.center.y
+            let dist = sqrt(xDist * xDist + yDist * yDist)
+            if dist < minDist {
+                minDist = dist
+                closestKey = key
+            }
+        }
+        return closestKey
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        self.touchPoint = touch.preciseLocation(in: self.view)
+        self.artificiallyFiredKey = getNearestKeyTo(self.touchPoint!)
+        self.artificiallyFiredKey?.sendActions(for: UIControl.Event.touchDown)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let newTouchPoint = touch.preciseLocation(in: self.view)
+        let oldDist = hypot(self.touchPoint!.x - self.artificiallyFiredKey!.center.x, self.touchPoint!.y - self.artificiallyFiredKey!.center.y)
+        let newDist = hypot(newTouchPoint.x - self.artificiallyFiredKey!.center.x, newTouchPoint.y - self.artificiallyFiredKey!.center.y)
+        if newDist - oldDist > CGFloat(self.artificiallyFiredKey!.width)/2 {
+            self.artificiallyFiredKey?.sendActions(for: UIControl.Event.touchDragExit)
+        } else {
+            self.artificiallyFiredKey?.sendActions(for: UIControl.Event.touchUpInside)
+        }
     }
 }
