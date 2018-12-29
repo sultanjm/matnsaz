@@ -32,6 +32,11 @@ enum KeyboardMode: String {
     case secondary
 }
 
+struct Colors {
+    static let lightModeBackgroundColor = UIColor(red: 209/255, green: 212/255, blue: 216/255, alpha: 1)
+    static let darkModeBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.01)
+}
+
 enum SavedDefaults: String {
     case KeyLayout
     case KeyLabels
@@ -90,7 +95,7 @@ class KeyboardViewController: UIInputViewController {
         // other view setup
         self.view.isUserInteractionEnabled = true
         self.view.isMultipleTouchEnabled = false
-        self.view.backgroundColor = UIColor.init(red: 209/255, green: 212/255, blue: 216/255, alpha: 1)
+        self.view.backgroundColor = Colors.lightModeBackgroundColor
         
         // set up keys
         self.setUpKeys()
@@ -113,6 +118,7 @@ class KeyboardViewController: UIInputViewController {
         // dark mode
         if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
             self.colorMode = Key.KeyboardColorMode.Dark
+            self.view.backgroundColor = Colors.darkModeBackgroundColor
             for key in self.keys {
                 key.handleDarkMode()
             }
