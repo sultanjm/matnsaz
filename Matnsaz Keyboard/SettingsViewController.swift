@@ -34,7 +34,7 @@ class SettingsViewController: UITableViewController {
         layouts.append(KeyboardLayout.MappingToQWERTY.toUrdu())
         layoutsEnglish.append(KeyboardLayout.MappingToQWERTY.rawValue)
         
-        super.init(style: UITableViewStyle.grouped)
+        super.init(style: UITableView.Style.grouped)
         
         // basic table view setup
         self.tableView.frame = frame
@@ -45,7 +45,7 @@ class SettingsViewController: UITableViewController {
         // header
         let headerView = UIView.init(frame: CGRect(origin: frame.origin, size: CGSize(width: frame.width, height: 48.0)))
         let closeButton = UIButton.init(frame: CGRect(origin: CGPoint(x: frame.width - headerHeight, y: 0), size: CGSize(width: headerHeight, height: headerHeight)))
-        closeButton.setImage(UIImage(named: "Close-" + self.colorMode.rawValue + ".png"), for: UIControlState.normal)
+        closeButton.setImage(UIImage(named: "Close-" + self.colorMode.rawValue + ".png"), for: UIControl.State.normal)
         closeButton.addTarget(self, action: #selector(dismissSelf(sender:)), for: .touchUpInside)
         headerView.addSubview(closeButton)
         self.tableView.tableHeaderView = headerView
@@ -101,7 +101,7 @@ class SettingsViewController: UITableViewController {
         }
         cell.textLabel?.text = data[indexPath.row]
         if selected {
-            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            cell.accessoryType = UITableViewCell.AccessoryType.checkmark
         }
         return cell
     }
@@ -126,14 +126,14 @@ class SettingsViewController: UITableViewController {
         
         // check mark selected row
         uncheckAllRowsInSection(section: indexPath.section)
-        tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+        tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func uncheckAllRowsInSection(section: Int) {
         let rows = self.tableView.numberOfRows(inSection: section)
         for row in 0...rows {
-            self.tableView.cellForRow(at: IndexPath(row: row, section: section))?.accessoryType = UITableViewCellAccessoryType.none
+            self.tableView.cellForRow(at: IndexPath(row: row, section: section))?.accessoryType = UITableViewCell.AccessoryType.none
         }
     }
 }

@@ -129,7 +129,7 @@ class KeyboardViewController: UIInputViewController {
         
         // labels
         if let defaultLabels = UserDefaults.standard.value(forKey: SavedDefaults.KeyLabels.rawValue) {
-            self.contextualFormsEnabled = defaultLabels as! Bool
+            self.contextualFormsEnabled = (defaultLabels as! Bool)
         } else {
             self.contextualFormsEnabled = true
             UserDefaults.standard.set(self.contextualFormsEnabled, forKey: SavedDefaults.KeyLabels.rawValue)
@@ -229,10 +229,10 @@ class KeyboardViewController: UIInputViewController {
                 expandedHeight = height
                 if (self.heightConstraint == nil) {
                     self.heightConstraint = NSLayoutConstraint(item: self.view,
-                                                               attribute: NSLayoutAttribute.height,
-                                                               relatedBy: NSLayoutRelation.equal,
+                                                               attribute: NSLayoutConstraint.Attribute.height,
+                                                               relatedBy: NSLayoutConstraint.Relation.equal,
                                                                toItem: nil,
-                                                               attribute: NSLayoutAttribute.notAnAttribute,
+                                                               attribute: NSLayoutConstraint.Attribute.notAnAttribute,
                                                                multiplier: 1.0,
                                                                constant: expandedHeight)
                     self.heightConstraint?.priority = UILayoutPriority(rawValue: 999.0)
@@ -255,7 +255,7 @@ class KeyboardViewController: UIInputViewController {
         case Key.KeyType.KeyboardSelection:
             key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
         case Key.KeyType.Backspace:
-            let cancelEvents: UIControlEvents = [UIControlEvents.touchUpInside, UIControlEvents.touchUpInside, UIControlEvents.touchDragExit, UIControlEvents.touchUpOutside, UIControlEvents.touchCancel, UIControlEvents.touchDragOutside]
+            let cancelEvents: UIControl.Event = [UIControl.Event.touchUpInside, UIControl.Event.touchUpInside, UIControl.Event.touchDragExit, UIControl.Event.touchUpOutside, UIControl.Event.touchCancel, UIControl.Event.touchDragOutside]
             key.addTarget(self, action: #selector(startBackspace(sender:)), for: .touchDown)
             key.addTarget(self, action: #selector(stopBackspace(sender:)), for: cancelEvents)
         default:
@@ -522,18 +522,18 @@ class KeyboardViewController: UIInputViewController {
     func showSettings() {
         // show settings
         self.settingsVC = SettingsViewController.init(frame: self.view.frame, colorMode: self.colorMode)
-        self.addChildViewController(settingsVC)
+        self.addChild(settingsVC)
         self.view.addSubview(settingsVC.view)
-        self.settingsVC.didMove(toParentViewController: self)
+        self.settingsVC.didMove(toParent: self)
         self.settingsVC.keyboardViewController = self
     }
     
     func hideSettings() {
         
         // hide settings
-        self.settingsVC.willMove(toParentViewController: nil)
+        self.settingsVC.willMove(toParent: nil)
         self.settingsVC.view.removeFromSuperview()
-        self.settingsVC.removeFromParentViewController()
+        self.settingsVC.removeFromParent()
         
         // redo keys
         self.hideAllKeys()

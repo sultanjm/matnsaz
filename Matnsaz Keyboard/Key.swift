@@ -201,7 +201,7 @@
                  KeyType.DismissKeyboard,
                  KeyType.Settings:
                 let imageName = self.type.rawValue + "-" + self.mode.rawValue + ".png"
-                self.setImage(UIImage(named: imageName), for: UIControlState.normal)
+                self.setImage(UIImage(named: imageName), for: UIControl.State.normal)
                 self.imageView?.contentMode = .scaleAspectFit
             default:
                 break
@@ -352,7 +352,7 @@
             // set up layer with alpha to let underneath pass through
             self.maskLayer.path = maskPath
             self.maskLayer.position = CGPoint(x: self.x, y: self.y)
-            self.maskLayer.fillRule = kCAFillRuleEvenOdd
+            self.maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
             self.maskLayer.fillColor = UIColor(white: 1.0, alpha: 1.0).cgColor
             self.maskViewProperty.layer.addSublayer(self.maskLayer)
         }
