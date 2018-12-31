@@ -103,6 +103,7 @@
 		15ED8D1621D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CEB21D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-meta.plist */; };
 		15ED8D1721D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CEC21D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist */; };
 		15ED8D1921D9DE6C005448EC /* AutoCorrect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED8D1821D9DE6C005448EC /* AutoCorrect.swift */; };
+		15ED8D1B21DA1635005448EC /* SuggestionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED8D1A21DA1635005448EC /* SuggestionButton.swift */; };
 		15FCBAC321152B31006C9C85 /* Settings-Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBAC121152B31006C9C85 /* Settings-Light.png */; };
 		15FCBAC421152B31006C9C85 /* Settings-Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBAC221152B31006C9C85 /* Settings-Dark.png */; };
 		15FCBAC821157D72006C9C85 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FCBAC721157D72006C9C85 /* SettingsViewController.swift */; };
@@ -260,6 +261,7 @@
 		15ED8CEB21D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-plus-phone-portrait-meta.plist"; sourceTree = "<group>"; };
 		15ED8CEC21D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-phone-landscape-layout-primary.plist"; sourceTree = "<group>"; };
 		15ED8D1821D9DE6C005448EC /* AutoCorrect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCorrect.swift; sourceTree = "<group>"; };
+		15ED8D1A21DA1635005448EC /* SuggestionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionButton.swift; sourceTree = "<group>"; };
 		15FCBAC121152B31006C9C85 /* Settings-Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-Light.png"; sourceTree = "<group>"; };
 		15FCBAC221152B31006C9C85 /* Settings-Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-Dark.png"; sourceTree = "<group>"; };
 		15FCBAC721157D72006C9C85 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				15AFD401209C08C600184F36 /* Matnsaz Keyboard.entitlements */,
 				154F907E209825420068445F /* Layouts */,
 				15DB7CD02032ADC500A84C7E /* KeyboardViewController.swift */,
+				15ED8D1A21DA1635005448EC /* SuggestionButton.swift */,
 				15ED8D1821D9DE6C005448EC /* AutoCorrect.swift */,
 				15FCBAC721157D72006C9C85 /* SettingsViewController.swift */,
 				156333352068A9DC004F823C /* Key.swift */,
@@ -775,6 +778,7 @@
 				15DB7CD12032ADC500A84C7E /* KeyboardViewController.swift in Sources */,
 				15633339206A08C8004F823C /* ArabicScript.swift in Sources */,
 				156333372068A9E0004F823C /* Key.swift in Sources */,
+				15ED8D1B21DA1635005448EC /* SuggestionButton.swift in Sources */,
 				15ED8D1921D9DE6C005448EC /* AutoCorrect.swift in Sources */,
 				15FCBAC821157D72006C9C85 /* SettingsViewController.swift in Sources */,
 			);

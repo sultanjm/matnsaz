@@ -337,7 +337,9 @@ class Key: UIButton {
         
         // frame for pop up label
         self.popUpLabel.frame = CGRect.init(
-            origin: CGPoint.init(x: self.x - popUpWidthHangLeft, y: self.y - popUpHeightHang + cornerRadius + popUpTextBaselineOffset),
+            origin: CGPoint.init(
+                x: self.x - popUpWidthHangLeft,
+                y: self.y + Double(self.keyboardViewController!.suggestionsViewHeight) - popUpHeightHang + cornerRadius + popUpTextBaselineOffset),
             size: CGSize(width: self.width + 2 * popUpWidthHang, height: popUpHeightHang - cornerRadius - popUpBaselineDistance))
         self.popUpLabel.font = UIFont.systemFont(ofSize: self.popUpLabel.frame.height * 0.6)
         
@@ -348,25 +350,29 @@ class Key: UIButton {
         
         // set up pop up view
         self.popUpBackgroundLayer.path = self.popUpPath.cgPath
-        self.popUpBackgroundLayer.position = CGPoint(x: self.x, y: self.y)
+        self.popUpBackgroundLayer.position = CGPoint(x: self.x, y: self.y + Double(self.keyboardViewController!.suggestionsViewHeight))
         
         // set up mask for rest of keyboard - add rectangle to path
         let maskPath = CGMutablePath()
         maskPath.addPath(self.popUpPath.cgPath)
-        maskPath.addRect(CGRect(x: CGFloat(-self.x), y: CGFloat(-self.y), width: self.superview!.bounds.width, height: self.superview!.bounds.height))
+        maskPath.addRect(CGRect(
+            x: CGFloat(-self.x),
+            y: CGFloat(-self.y - Double(self.keyboardViewController!.suggestionsViewHeight)),
+            width: self.superview!.superview!.bounds.width,
+            height: self.superview!.superview!.bounds.height))
         
         // set up layer with alpha to let underneath pass through
         self.maskLayer.path = maskPath
-        self.maskLayer.position = CGPoint(x: self.x, y: self.y)
+        self.maskLayer.position = CGPoint(x: self.x, y: self.y + Double(self.keyboardViewController!.suggestionsViewHeight))
         self.maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
         self.maskLayer.fillColor = UIColor(white: 1.0, alpha: 1.0).cgColor
         self.maskViewProperty.layer.addSublayer(self.maskLayer)
     }
     
     func showPopUp() {
-        self.superview?.mask = self.maskViewProperty
-        self.superview?.superview?.layer.addSublayer(self.popUpBackgroundLayer)
-        self.superview?.superview?.addSubview(self.popUpLabel)
+        self.superview?.superview?.mask = self.maskViewProperty
+        self.superview?.superview?.superview?.layer.addSublayer(self.popUpBackgroundLayer)
+        self.superview?.superview?.superview?.addSubview(self.popUpLabel)
         self.buttonLabel.isHidden = true
         self.popUpVisible = true
     }
@@ -375,7 +381,7 @@ class Key: UIButton {
         if !self.popUpVisible {
             return
         } else {
-            self.superview?.mask = nil
+            self.superview?.superview?.mask = nil
             self.popUpBackgroundLayer.removeFromSuperlayer()
             self.popUpLabel.removeFromSuperview()
             self.buttonLabel.isHidden = false

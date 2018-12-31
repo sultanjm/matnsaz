@@ -53,6 +53,13 @@ class KeyboardViewController: UIInputViewController {
     var colorMode = Key.KeyboardColorMode.Light
     var settingsVC: SettingsViewController!
     let tatweel: Character = "ـ"
+    var viewHeight: CGFloat!
+    var keysViewHeight: CGFloat!
+    var suggestionsViewHeight: CGFloat!
+    
+    // views
+    var keysView: UIView!
+    var suggestionsView: UIView!
     
     // references to keys
     var nextKeyboardButton: UIButton!
@@ -60,6 +67,9 @@ class KeyboardViewController: UIInputViewController {
     var zeroWidthNonJoinerKey: Key?
     var settingsKey: Key?
     var letterKeys: [String: Key] = [:]
+    
+    // suggestions
+    var suggestionButtons: [SuggestionButton] = []
     
     // artificially firing a key if you didn't actually press one
     var artificiallyFiredKey: Key?
@@ -75,9 +85,7 @@ class KeyboardViewController: UIInputViewController {
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
-        
-        // custom view sizing constraints
-        self.setHeight()
+        self.updateHeightConstraint()
     }
     
     override func viewDidLoad() {
@@ -85,24 +93,47 @@ class KeyboardViewController: UIInputViewController {
         // boilerplate setup
         super.viewDidLoad()
         
-        // read settings
-        self.readSettings()
-        
         // add transparent view so autolayout works, have to enable user interaction so superview's user interaction also works
         let guide = inputView!.layoutMarginsGuide
-        let transparentView = UIView.init(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize.init(width: 0, height: 0)))
+        let transparentView = UIView.init(frame: CGRect(
+            origin: CGPoint.init(x: 0, y: 0),
+            size: CGSize.init(width: 0, height: 0)))
         self.view.addSubview(transparentView)
         transparentView.isUserInteractionEnabled = true
         transparentView.translatesAutoresizingMaskIntoConstraints = false;
         transparentView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -4.0).isActive = true
         
+        // read settings
+        self.readSettings()
+        self.setHeights()
+        
         // other view setup
         self.view.isUserInteractionEnabled = true
         self.view.isMultipleTouchEnabled = false
         self.view.backgroundColor = Colors.lightModeBackgroundColor
+        self.updateViewConstraints()
+        
+        // set up key views
+        self.keysView = UIView.init(frame: CGRect(
+            origin: CGPoint.init(x: 0, y: self.suggestionsViewHeight),
+            size: CGSize.init(width: UIScreen.main.bounds.width, height: self.keysViewHeight)))
+        self.keysView.isUserInteractionEnabled = true
+        self.keysView.isMultipleTouchEnabled = false
+        self.view.addSubview(self.keysView)
+        
+        // set up suggestions views
+        self.suggestionsView = UIView.init(frame: CGRect(
+            origin: CGPoint.init(x: 0, y: 0),
+            size: CGSize.init(width: UIScreen.main.bounds.width, height: self.suggestionsViewHeight)))
+        self.suggestionsView.isUserInteractionEnabled = true
+        self.suggestionsView.isMultipleTouchEnabled = false
+        self.view.addSubview(self.suggestionsView)
         
         // set up keys
         self.setUpKeys()
+
+        // set up suggestion buttons
+        self.setUpSuggestionButtons()
     }
     
     override func didReceiveMemoryWarning() {
@@ -135,6 +166,7 @@ class KeyboardViewController: UIInputViewController {
     
     override func viewWillLayoutSubviews() {
         self.layoutKeys()
+        self.layoutSuggestions()
     }
     
     func readSettings() {
@@ -171,6 +203,16 @@ class KeyboardViewController: UIInputViewController {
                 }
             }
         }
+    }
+    
+    func layoutSuggestions() {
+        let totalWidth = Double(UIScreen.main.bounds.width)
+        let totalHeight = Double(self.suggestionsViewHeight!)
+        let suggestionWidth = totalWidth / 3
+        let suggestionHeight = totalHeight
+        suggestionButtons[0].setLayout(x: totalWidth - suggestionWidth, y: 0, width: suggestionWidth, height: suggestionHeight)
+        suggestionButtons[1].setLayout(x: suggestionWidth, y: 0, width: suggestionWidth, height: suggestionHeight)
+        suggestionButtons[2].setLayout(x: 0, y: 0, width: suggestionWidth, height: suggestionHeight)
     }
     
     func switchKeyboardMode() {
@@ -237,38 +279,41 @@ class KeyboardViewController: UIInputViewController {
         return getDeviceType().contains("tablet")
     }
     
-    func setHeight() {
-        
-        let expandedHeight: CGFloat
-        let layoutFileName = self.layout.rawValue + "-" + getDeviceType() + "-meta"
-        
-        // read plist
+    func setHeights() {
+        let layoutFileName = self.layout.rawValue + "-" + self.getDeviceType() + "-meta"
         let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
         if let dict = NSDictionary(contentsOfFile: path!) {
             if let height = dict["primary-height"] as? CGFloat {
-                expandedHeight = height
-                if (self.heightConstraint == nil) {
-                    self.heightConstraint = NSLayoutConstraint(item: self.view,
-                                                               attribute: NSLayoutConstraint.Attribute.height,
-                                                               relatedBy: NSLayoutConstraint.Relation.equal,
-                                                               toItem: nil,
-                                                               attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-                                                               multiplier: 1.0,
-                                                               constant: expandedHeight)
-                    self.heightConstraint?.priority = UILayoutPriority(rawValue: 999.0)
-                    self.heightConstraint?.isActive = true
-                } else {
-                    self.heightConstraint!.constant = expandedHeight
-                }
-                self.view.addConstraint(heightConstraint!)
+                self.keysViewHeight = height
+            }
+            if let suggHeight = dict["suggestions-height"] as? CGFloat {
+                self.suggestionsViewHeight = suggHeight
+                self.viewHeight = self.keysViewHeight + self.suggestionsViewHeight
             }
         }
+    }
+    
+    func updateHeightConstraint() {
+        if (self.heightConstraint == nil) {
+            self.heightConstraint = NSLayoutConstraint(item: self.view,
+                                                       attribute: NSLayoutConstraint.Attribute.height,
+                                                       relatedBy: NSLayoutConstraint.Relation.equal,
+                                                       toItem: nil,
+                                                       attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+                                                       multiplier: 1.0,
+                                                       constant: self.viewHeight)
+            self.heightConstraint?.priority = UILayoutPriority(rawValue: 999.0)
+            self.heightConstraint?.isActive = true
+        } else {
+            self.heightConstraint!.constant = self.viewHeight
+        }
+        self.view.addConstraint(heightConstraint!)
     }
     
     func addKey(name: String, type: Key.KeyType, label: String, neighbors: Array<String>?) {
         let key = Key(name: name, type: type, label: label, contextualFormsEnabled: self.contextualFormsEnabled, keyboardViewController: self, neighbors: neighbors)
         self.keys.append(key)
-        self.view.addSubview(key)
+        self.keysView.addSubview(key)
         
         // add targets
         switch key.type {
@@ -317,8 +362,7 @@ class KeyboardViewController: UIInputViewController {
             if self.contextualFormsEnabled && ArabicScript.isForwardJoining(self.lastCharacter()!) {
                 self.textDocumentProxy.insertText(String(tatweel))
             }
-            let suggestions = self.autoCorrect.getSuggestions(word: self.currentWord(), keys: letterKeys)
-            print(suggestions)
+            self.updateSuggestions()
         case Key.KeyType.SwitchToPrimaryMode,
              Key.KeyType.SwitchToSecondaryMode:
             self.switchKeyboardMode()
@@ -346,6 +390,7 @@ class KeyboardViewController: UIInputViewController {
         case Key.KeyType.ZeroWidthNonJoiner:
             self.deleteTatweelIfNeeded()
             self.textDocumentProxy.insertText("‌")
+            self.updateSuggestions()
         case Key.KeyType.Return:
             self.textDocumentProxy.insertText("\n")
         case Key.KeyType.Settings:
@@ -398,6 +443,8 @@ class KeyboardViewController: UIInputViewController {
         if self.contextualFormsEnabled {
             self.updateKeyTitles()
         }
+        
+        self.updateSuggestions()
     }
     
     @objc func backspaceTimerFired(timer: Timer) {
@@ -556,6 +603,29 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
+    func setUpSuggestionButtons() {
+        
+        for i in 1...3 {
+            let button = SuggestionButton()
+            if i == 1 {
+                button.isUserInputSuggestion = true
+            }
+            self.suggestionsView.addSubview(button)
+            self.suggestionButtons.append(button)
+        }
+    }
+    
+    func updateSuggestions() {
+        let suggestions = self.autoCorrect.getSuggestions(word: self.currentWord(), keys: letterKeys)
+        print(suggestions)
+        for i in 0..<suggestionButtons.count {
+            suggestionButtons[i].setLabel("")
+        }
+        for i in 0..<suggestions.count {
+            suggestionButtons[i].setLabel(suggestions[i])
+        }
+    }
+    
     func hideAllKeys() {
         for key in self.keys {
             key.hide()
@@ -598,23 +668,28 @@ class KeyboardViewController: UIInputViewController {
         }
         return closestKey
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
-        self.touchPoint = touch.preciseLocation(in: self.view)
+        self.touchPoint = touch.preciseLocation(in: self.keysView)
+        if self.touchPoint!.y < 0 {
+            return
+        }
         self.artificiallyFiredKey = getNearestKeyTo(self.touchPoint!)
         self.artificiallyFiredKey?.sendActions(for: UIControl.Event.touchDown)
     }
-    
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
-        let newTouchPoint = touch.preciseLocation(in: self.view)
-        let oldDist = hypot(self.touchPoint!.x - self.artificiallyFiredKey!.center.x, self.touchPoint!.y - self.artificiallyFiredKey!.center.y)
-        let newDist = hypot(newTouchPoint.x - self.artificiallyFiredKey!.center.x, newTouchPoint.y - self.artificiallyFiredKey!.center.y)
-        if newDist - oldDist > CGFloat(self.artificiallyFiredKey!.width)/2 {
-            self.artificiallyFiredKey?.sendActions(for: UIControl.Event.touchDragExit)
-        } else {
-            self.artificiallyFiredKey?.sendActions(for: UIControl.Event.touchUpInside)
+        let newTouchPoint = touch.preciseLocation(in: self.keysView)
+        if self.artificiallyFiredKey != nil {
+            let oldDist = hypot(self.touchPoint!.x - self.artificiallyFiredKey!.center.x, self.touchPoint!.y - self.artificiallyFiredKey!.center.y)
+            let newDist = hypot(newTouchPoint.x - self.artificiallyFiredKey!.center.x, newTouchPoint.y - self.artificiallyFiredKey!.center.y)
+            if newDist - oldDist > CGFloat(self.artificiallyFiredKey!.width)/2 {
+                self.artificiallyFiredKey!.sendActions(for: UIControl.Event.touchDragExit)
+            } else {
+                self.artificiallyFiredKey!.sendActions(for: UIControl.Event.touchUpInside)
+            }
         }
     }
 }

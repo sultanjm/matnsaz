@@ -28,7 +28,10 @@ class AutoCorrect {
         var possibleLetterCombinations : [String] = []
         var i = word.startIndex
         while i < word.endIndex {
-            let c = String(word[i])
+            var c = String(word[i])
+            if ["ئ","ؤ","أ"].contains(c) {
+                c = "ء"
+            }
             let neighbors = keys[c]!.neighbors
             for letter in neighbors! {
                 var combo = word
@@ -47,13 +50,13 @@ class AutoCorrect {
         }
         
         var result : [String] = []
-        while freqs.count > 0 {
+        result.append(word)
+        while freqs.count > 0 && result.count <= 3 {
             let mostCommonWord = freqs.max{ a, b in a.value < b.value }!.key
             freqs.removeValue(forKey: mostCommonWord)
             result.append(mostCommonWord)
         }
-        
-        return result
+        return Array<String>(result.prefix(3))
     }
     
 }

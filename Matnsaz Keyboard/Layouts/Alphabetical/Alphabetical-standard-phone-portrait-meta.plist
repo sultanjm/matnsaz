@@ -4,5 +4,7 @@
 <dict>
 	<key>primary-height</key>
 	<integer>268</integer>
+	<key>suggestions-height</key>
+	<integer>52</integer>
 </dict>
 </plist>
