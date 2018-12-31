@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		154B439F21D9B1DC002ADB40 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B439E21D9B1DC002ADB40 /* main.swift */; };
+		154B43A021D9B207002ADB40 /* ArabicScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15633338206A08C8004F823C /* ArabicScript.swift */; };
+		154B43A121D9B312002ADB40 /* WordCounter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 154B439721D9B1B2002ADB40 /* WordCounter */; };
+		154B43A621D9B811002ADB40 /* WordFrequency in Resources */ = {isa = PBXBuildFile; fileRef = 154B43A521D9B811002ADB40 /* WordFrequency */; };
 		155257A7203AA38100B57DE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA32032AD5100A84C7E /* Assets.xcassets */; };
 		1557161D20995D4200B0E7D4 /* Alphabetical-keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1557161C20995D4200B0E7D4 /* Alphabetical-keys.plist */; };
 		1557161F20995DB200B0E7D4 /* Alphabetical-standard-phone-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1557161E20995DB200B0E7D4 /* Alphabetical-standard-phone-portrait-layout-primary.plist */; };
@@ -55,52 +59,53 @@
 		15DE59BB2112551500FAA134 /* Return-Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DE59B32112551500FAA134 /* Return-Dark.png */; };
 		15DE59BC2112551500FAA134 /* Return-Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DE59B42112551500FAA134 /* Return-Light.png */; };
 		15DE59BD2112551500FAA134 /* Backspace-Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 15DE59B52112551500FAA134 /* Backspace-Light.png */; };
+		15ED8CED21D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CC221D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-meta.plist */; };
+		15ED8CEE21D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CC321D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-meta.plist */; };
+		15ED8CEF21D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CC421D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-meta.plist */; };
+		15ED8CF021D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CC521D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-meta.plist */; };
+		15ED8CF121D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CC621D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-layout-primary.plist */; };
+		15ED8CF221D9B957005448EC /* MappingToQWERTY-small-phone-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CC721D9B957005448EC /* MappingToQWERTY-small-phone-landscape-layout-secondary.plist */; };
+		15ED8CF321D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CC821D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-layout-primary.plist */; };
+		15ED8CF421D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CC921D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-layout-primary.plist */; };
+		15ED8CF521D9B957005448EC /* MappingToQWERTY-X-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CCA21D9B957005448EC /* MappingToQWERTY-X-phone-portrait-meta.plist */; };
+		15ED8CF621D9B957005448EC /* MappingToQWERTY-small-phone-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CCB21D9B957005448EC /* MappingToQWERTY-small-phone-landscape-layout-primary.plist */; };
+		15ED8CF721D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CCC21D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-meta.plist */; };
+		15ED8CF821D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CCD21D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-layout-secondary.plist */; };
+		15ED8CF921D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CCE21D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-layout-secondary.plist */; };
+		15ED8CFA21D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CCF21D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-layout-primary.plist */; };
+		15ED8CFB21D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CD021D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-layout-primary.plist */; };
+		15ED8CFC21D9B957005448EC /* MappingToQWERTY-X-phone-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CD121D9B957005448EC /* MappingToQWERTY-X-phone-portrait-layout-primary.plist */; };
+		15ED8CFD21D9B957005448EC /* MappingToQWERTY-keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CD221D9B957005448EC /* MappingToQWERTY-keys.plist */; };
+		15ED8CFE21D9B957005448EC /* MappingToQWERTY-X-phone-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CD321D9B957005448EC /* MappingToQWERTY-X-phone-landscape-layout-secondary.plist */; };
+		15ED8CFF21D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CD421D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-layout-primary.plist */; };
+		15ED8D0021D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CD521D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-meta.plist */; };
+		15ED8D0121D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CD621D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-layout-primary.plist */; };
+		15ED8D0221D9B957005448EC /* MappingToQWERTY-X-phone-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CD721D9B957005448EC /* MappingToQWERTY-X-phone-portrait-layout-secondary.plist */; };
+		15ED8D0321D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CD821D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-meta.plist */; };
+		15ED8D0421D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CD921D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-layout-secondary.plist */; };
+		15ED8D0521D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CDA21D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-meta.plist */; };
+		15ED8D0621D9B957005448EC /* MappingToQWERTY-X-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CDB21D9B957005448EC /* MappingToQWERTY-X-phone-landscape-meta.plist */; };
+		15ED8D0721D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CDC21D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-layout-secondary.plist */; };
+		15ED8D0821D9B957005448EC /* MappingToQWERTY-X-phone-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CDD21D9B957005448EC /* MappingToQWERTY-X-phone-landscape-layout-primary.plist */; };
+		15ED8D0921D9B957005448EC /* MappingToQWERTY-small-phone-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CDE21D9B957005448EC /* MappingToQWERTY-small-phone-portrait-layout-secondary.plist */; };
+		15ED8D0A21D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CDF21D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-layout-primary.plist */; };
+		15ED8D0B21D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CE021D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist */; };
+		15ED8D0C21D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CE121D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-layout-primary.plist */; };
+		15ED8D0D21D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CE221D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist */; };
+		15ED8D0E21D9B957005448EC /* MappingToQWERTY-small-phone-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CE321D9B957005448EC /* MappingToQWERTY-small-phone-portrait-layout-primary.plist */; };
+		15ED8D0F21D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CE421D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist */; };
+		15ED8D1021D9B957005448EC /* MappingToQWERTY-small-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CE521D9B957005448EC /* MappingToQWERTY-small-phone-landscape-meta.plist */; };
+		15ED8D1121D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CE621D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-layout-secondary.plist */; };
+		15ED8D1221D9B957005448EC /* MappingToQWERTY-small-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CE721D9B957005448EC /* MappingToQWERTY-small-phone-portrait-meta.plist */; };
+		15ED8D1321D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CE821D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist */; };
+		15ED8D1421D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CE921D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-secondary.plist */; };
+		15ED8D1521D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CEA21D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-meta.plist */; };
+		15ED8D1621D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CEB21D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-meta.plist */; };
+		15ED8D1721D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED8CEC21D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist */; };
+		15ED8D1921D9DE6C005448EC /* AutoCorrect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED8D1821D9DE6C005448EC /* AutoCorrect.swift */; };
 		15FCBAC321152B31006C9C85 /* Settings-Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBAC121152B31006C9C85 /* Settings-Light.png */; };
 		15FCBAC421152B31006C9C85 /* Settings-Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBAC221152B31006C9C85 /* Settings-Dark.png */; };
 		15FCBAC821157D72006C9C85 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FCBAC721157D72006C9C85 /* SettingsViewController.swift */; };
-		15FCBBA9211662D7006C9C85 /* MappingToQWERTY-X-phone-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB7E211662CF006C9C85 /* MappingToQWERTY-X-phone-portrait-layout-secondary.plist */; };
-		15FCBBAA211662D7006C9C85 /* MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB7F211662D0006C9C85 /* MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist */; };
-		15FCBBAB211662D7006C9C85 /* MappingToQWERTY-medium-tablet-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB80211662D0006C9C85 /* MappingToQWERTY-medium-tablet-landscape-meta.plist */; };
-		15FCBBAC211662D7006C9C85 /* MappingToQWERTY-plus-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB81211662D0006C9C85 /* MappingToQWERTY-plus-phone-portrait-meta.plist */; };
-		15FCBBAD211662D7006C9C85 /* MappingToQWERTY-small-phone-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB82211662D0006C9C85 /* MappingToQWERTY-small-phone-landscape-layout-primary.plist */; };
-		15FCBBAE211662D7006C9C85 /* MappingToQWERTY-standard-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB83211662D0006C9C85 /* MappingToQWERTY-standard-phone-landscape-meta.plist */; };
-		15FCBBAF211662D7006C9C85 /* MappingToQWERTY-standard-tablet-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB84211662D0006C9C85 /* MappingToQWERTY-standard-tablet-landscape-layout-primary.plist */; };
-		15FCBBB0211662D7006C9C85 /* MappingToQWERTY-plus-phone-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB85211662D0006C9C85 /* MappingToQWERTY-plus-phone-portrait-layout-primary.plist */; };
-		15FCBBB1211662D7006C9C85 /* MappingToQWERTY-small-phone-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB86211662D0006C9C85 /* MappingToQWERTY-small-phone-portrait-layout-primary.plist */; };
-		15FCBBB2211662D7006C9C85 /* MappingToQWERTY-standard-phone-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB87211662D0006C9C85 /* MappingToQWERTY-standard-phone-portrait-layout-secondary.plist */; };
-		15FCBBB3211662D7006C9C85 /* MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB88211662D0006C9C85 /* MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist */; };
-		15FCBBB4211662D7006C9C85 /* MappingToQWERTY-standard-phone-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB89211662D0006C9C85 /* MappingToQWERTY-standard-phone-portrait-layout-primary.plist */; };
-		15FCBBB5211662D7006C9C85 /* MappingToQWERTY-X-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB8A211662D0006C9C85 /* MappingToQWERTY-X-phone-portrait-meta.plist */; };
-		15FCBBB6211662D7006C9C85 /* MappingToQWERTY-medium-tablet-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB8B211662D1006C9C85 /* MappingToQWERTY-medium-tablet-portrait-layout-primary.plist */; };
-		15FCBBB7211662D7006C9C85 /* MappingToQWERTY-standard-tablet-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB8C211662D1006C9C85 /* MappingToQWERTY-standard-tablet-portrait-layout-primary.plist */; };
-		15FCBBB8211662D7006C9C85 /* MappingToQWERTY-medium-tablet-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB8D211662D1006C9C85 /* MappingToQWERTY-medium-tablet-portrait-meta.plist */; };
-		15FCBBB9211662D7006C9C85 /* MappingToQWERTY-standard-tablet-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB8E211662D1006C9C85 /* MappingToQWERTY-standard-tablet-portrait-meta.plist */; };
-		15FCBBBA211662D7006C9C85 /* MappingToQWERTY-X-phone-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB8F211662D1006C9C85 /* MappingToQWERTY-X-phone-landscape-layout-primary.plist */; };
-		15FCBBBB211662D7006C9C85 /* MappingToQWERTY-X-phone-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB90211662D1006C9C85 /* MappingToQWERTY-X-phone-portrait-layout-primary.plist */; };
-		15FCBBBC211662D7006C9C85 /* MappingToQWERTY-plus-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB91211662D1006C9C85 /* MappingToQWERTY-plus-phone-landscape-meta.plist */; };
-		15FCBBBD211662D7006C9C85 /* MappingToQWERTY-plus-phone-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB92211662D1006C9C85 /* MappingToQWERTY-plus-phone-portrait-layout-secondary.plist */; };
-		15FCBBBE211662D7006C9C85 /* MappingToQWERTY-small-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB93211662D1006C9C85 /* MappingToQWERTY-small-phone-landscape-meta.plist */; };
-		15FCBBBF211662D7006C9C85 /* MappingToQWERTY-small-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB94211662D2006C9C85 /* MappingToQWERTY-small-phone-portrait-meta.plist */; };
-		15FCBBC0211662D7006C9C85 /* MappingToQWERTY-large-tablet-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB95211662D2006C9C85 /* MappingToQWERTY-large-tablet-landscape-layout-secondary.plist */; };
-		15FCBBC1211662D7006C9C85 /* MappingToQWERTY-large-tablet-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB96211662D2006C9C85 /* MappingToQWERTY-large-tablet-landscape-layout-primary.plist */; };
-		15FCBBC2211662D7006C9C85 /* MappingToQWERTY-large-tablet-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB97211662D2006C9C85 /* MappingToQWERTY-large-tablet-portrait-layout-secondary.plist */; };
-		15FCBBC3211662D7006C9C85 /* MappingToQWERTY-large-tablet-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB98211662D2006C9C85 /* MappingToQWERTY-large-tablet-landscape-meta.plist */; };
-		15FCBBC4211662D7006C9C85 /* MappingToQWERTY-large-tablet-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB99211662D2006C9C85 /* MappingToQWERTY-large-tablet-portrait-meta.plist */; };
-		15FCBBC5211662D7006C9C85 /* MappingToQWERTY-small-phone-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB9A211662D2006C9C85 /* MappingToQWERTY-small-phone-portrait-layout-secondary.plist */; };
-		15FCBBC6211662D7006C9C85 /* MappingToQWERTY-large-tablet-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB9B211662D3006C9C85 /* MappingToQWERTY-large-tablet-portrait-layout-primary.plist */; };
-		15FCBBC7211662D7006C9C85 /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB9C211662D5006C9C85 /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist */; };
-		15FCBBC8211662D7006C9C85 /* MappingToQWERTY-keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB9D211662D5006C9C85 /* MappingToQWERTY-keys.plist */; };
-		15FCBBC9211662D7006C9C85 /* MappingToQWERTY-plus-phone-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB9E211662D5006C9C85 /* MappingToQWERTY-plus-phone-landscape-layout-primary.plist */; };
-		15FCBBCA211662D7006C9C85 /* MappingToQWERTY-plus-phone-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBB9F211662D5006C9C85 /* MappingToQWERTY-plus-phone-landscape-layout-secondary.plist */; };
-		15FCBBCB211662D7006C9C85 /* MappingToQWERTY-standard-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBBA0211662D5006C9C85 /* MappingToQWERTY-standard-phone-portrait-meta.plist */; };
-		15FCBBCC211662D7006C9C85 /* MappingToQWERTY-X-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBBA1211662D6006C9C85 /* MappingToQWERTY-X-phone-landscape-meta.plist */; };
-		15FCBBCD211662D7006C9C85 /* MappingToQWERTY-medium-tablet-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBBA2211662D6006C9C85 /* MappingToQWERTY-medium-tablet-landscape-layout-primary.plist */; };
-		15FCBBCE211662D7006C9C85 /* MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBBA3211662D6006C9C85 /* MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist */; };
-		15FCBBCF211662D7006C9C85 /* MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBBA4211662D6006C9C85 /* MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist */; };
-		15FCBBD0211662D7006C9C85 /* MappingToQWERTY-standard-tablet-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBBA5211662D6006C9C85 /* MappingToQWERTY-standard-tablet-landscape-meta.plist */; };
-		15FCBBD1211662D7006C9C85 /* MappingToQWERTY-standard-phone-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBBA6211662D7006C9C85 /* MappingToQWERTY-standard-phone-landscape-layout-secondary.plist */; };
-		15FCBBD2211662D7006C9C85 /* MappingToQWERTY-small-phone-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBBA7211662D7006C9C85 /* MappingToQWERTY-small-phone-landscape-layout-secondary.plist */; };
-		15FCBBD3211662D7006C9C85 /* MappingToQWERTY-X-phone-landscape-layout-secondary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBBA8211662D7006C9C85 /* MappingToQWERTY-X-phone-landscape-layout-secondary.plist */; };
 		15FCBBD62116650E006C9C85 /* Close-Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBBD42116650E006C9C85 /* Close-Dark.png */; };
 		15FCBBD72116650E006C9C85 /* Close-Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FCBBD52116650E006C9C85 /* Close-Light.png */; };
 		15FD2D22209998D900F41ED6 /* RasmLayout-Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2D21209998D900F41ED6 /* RasmLayout-Keys.plist */; };
@@ -132,6 +137,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		154B439521D9B1B2002ADB40 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "$(PROJECT_DIR)/bin";
+			dstSubfolderSpec = 0;
+			files = (
+				154B43A121D9B312002ADB40 /* WordCounter in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		15DB7CD92032ADC500A84C7E /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,6 +161,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		154B439721D9B1B2002ADB40 /* WordCounter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WordCounter; sourceTree = BUILT_PRODUCTS_DIR; };
+		154B439E21D9B1DC002ADB40 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		154B43A521D9B811002ADB40 /* WordFrequency */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordFrequency; sourceTree = "<group>"; };
 		155257A5203AA26C00B57DE7 /* Matnsaz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Matnsaz.entitlements; sourceTree = "<group>"; };
 		1557161C20995D4200B0E7D4 /* Alphabetical-keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Alphabetical-keys.plist"; sourceTree = "<group>"; };
 		1557161E20995DB200B0E7D4 /* Alphabetical-standard-phone-portrait-layout-primary.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Alphabetical-standard-phone-portrait-layout-primary.plist"; sourceTree = "<group>"; };
@@ -198,52 +216,53 @@
 		15DE59B32112551500FAA134 /* Return-Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Return-Dark.png"; sourceTree = "<group>"; };
 		15DE59B42112551500FAA134 /* Return-Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Return-Light.png"; sourceTree = "<group>"; };
 		15DE59B52112551500FAA134 /* Backspace-Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Backspace-Light.png"; sourceTree = "<group>"; };
+		15ED8CC221D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-medium-tablet-portrait-meta.plist"; sourceTree = "<group>"; };
+		15ED8CC321D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-plus-phone-landscape-meta.plist"; sourceTree = "<group>"; };
+		15ED8CC421D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-tablet-landscape-meta.plist"; sourceTree = "<group>"; };
+		15ED8CC521D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-phone-landscape-meta.plist"; sourceTree = "<group>"; };
+		15ED8CC621D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-large-tablet-portrait-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CC721D9B957005448EC /* MappingToQWERTY-small-phone-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-small-phone-landscape-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CC821D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-medium-tablet-portrait-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CC921D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-tablet-landscape-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CCA21D9B957005448EC /* MappingToQWERTY-X-phone-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-X-phone-portrait-meta.plist"; sourceTree = "<group>"; };
+		15ED8CCB21D9B957005448EC /* MappingToQWERTY-small-phone-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-small-phone-landscape-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CCC21D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-large-tablet-portrait-meta.plist"; sourceTree = "<group>"; };
+		15ED8CCD21D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-phone-portrait-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CCE21D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-large-tablet-portrait-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CCF21D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-plus-phone-landscape-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CD021D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-plus-phone-portrait-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CD121D9B957005448EC /* MappingToQWERTY-X-phone-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-X-phone-portrait-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CD221D9B957005448EC /* MappingToQWERTY-keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-keys.plist"; sourceTree = "<group>"; };
+		15ED8CD321D9B957005448EC /* MappingToQWERTY-X-phone-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-X-phone-landscape-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CD421D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-large-tablet-landscape-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CD521D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-phone-portrait-meta.plist"; sourceTree = "<group>"; };
+		15ED8CD621D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-phone-portrait-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CD721D9B957005448EC /* MappingToQWERTY-X-phone-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-X-phone-portrait-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CD821D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-large-tablet-landscape-meta.plist"; sourceTree = "<group>"; };
+		15ED8CD921D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-plus-phone-portrait-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CDA21D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-medium-tablet-landscape-meta.plist"; sourceTree = "<group>"; };
+		15ED8CDB21D9B957005448EC /* MappingToQWERTY-X-phone-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-X-phone-landscape-meta.plist"; sourceTree = "<group>"; };
+		15ED8CDC21D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-large-tablet-landscape-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CDD21D9B957005448EC /* MappingToQWERTY-X-phone-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-X-phone-landscape-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CDE21D9B957005448EC /* MappingToQWERTY-small-phone-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-small-phone-portrait-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CDF21D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-medium-tablet-landscape-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CE021D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CE121D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-tablet-portrait-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CE221D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CE321D9B957005448EC /* MappingToQWERTY-small-phone-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-small-phone-portrait-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8CE421D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CE521D9B957005448EC /* MappingToQWERTY-small-phone-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-small-phone-landscape-meta.plist"; sourceTree = "<group>"; };
+		15ED8CE621D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-plus-phone-landscape-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CE721D9B957005448EC /* MappingToQWERTY-small-phone-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-small-phone-portrait-meta.plist"; sourceTree = "<group>"; };
+		15ED8CE821D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CE921D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-phone-landscape-layout-secondary.plist"; sourceTree = "<group>"; };
+		15ED8CEA21D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-tablet-portrait-meta.plist"; sourceTree = "<group>"; };
+		15ED8CEB21D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-plus-phone-portrait-meta.plist"; sourceTree = "<group>"; };
+		15ED8CEC21D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MappingToQWERTY-standard-phone-landscape-layout-primary.plist"; sourceTree = "<group>"; };
+		15ED8D1821D9DE6C005448EC /* AutoCorrect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCorrect.swift; sourceTree = "<group>"; };
 		15FCBAC121152B31006C9C85 /* Settings-Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-Light.png"; sourceTree = "<group>"; };
 		15FCBAC221152B31006C9C85 /* Settings-Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-Dark.png"; sourceTree = "<group>"; };
 		15FCBAC721157D72006C9C85 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		15FCBB7E211662CF006C9C85 /* MappingToQWERTY-X-phone-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-X-phone-portrait-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-X-phone-portrait-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB7F211662D0006C9C85 /* MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB80211662D0006C9C85 /* MappingToQWERTY-medium-tablet-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-medium-tablet-landscape-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-medium-tablet-landscape-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB81211662D0006C9C85 /* MappingToQWERTY-plus-phone-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-plus-phone-portrait-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-plus-phone-portrait-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB82211662D0006C9C85 /* MappingToQWERTY-small-phone-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-small-phone-landscape-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-small-phone-landscape-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB83211662D0006C9C85 /* MappingToQWERTY-standard-phone-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-standard-phone-landscape-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-standard-phone-landscape-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB84211662D0006C9C85 /* MappingToQWERTY-standard-tablet-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-standard-tablet-landscape-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-standard-tablet-landscape-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB85211662D0006C9C85 /* MappingToQWERTY-plus-phone-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-plus-phone-portrait-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-plus-phone-portrait-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB86211662D0006C9C85 /* MappingToQWERTY-small-phone-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-small-phone-portrait-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-small-phone-portrait-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB87211662D0006C9C85 /* MappingToQWERTY-standard-phone-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-standard-phone-portrait-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-standard-phone-portrait-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB88211662D0006C9C85 /* MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB89211662D0006C9C85 /* MappingToQWERTY-standard-phone-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-standard-phone-portrait-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-standard-phone-portrait-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB8A211662D0006C9C85 /* MappingToQWERTY-X-phone-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-X-phone-portrait-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-X-phone-portrait-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB8B211662D1006C9C85 /* MappingToQWERTY-medium-tablet-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-medium-tablet-portrait-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-medium-tablet-portrait-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB8C211662D1006C9C85 /* MappingToQWERTY-standard-tablet-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-standard-tablet-portrait-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-standard-tablet-portrait-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB8D211662D1006C9C85 /* MappingToQWERTY-medium-tablet-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-medium-tablet-portrait-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-medium-tablet-portrait-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB8E211662D1006C9C85 /* MappingToQWERTY-standard-tablet-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-standard-tablet-portrait-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-standard-tablet-portrait-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB8F211662D1006C9C85 /* MappingToQWERTY-X-phone-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-X-phone-landscape-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-X-phone-landscape-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB90211662D1006C9C85 /* MappingToQWERTY-X-phone-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-X-phone-portrait-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-X-phone-portrait-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB91211662D1006C9C85 /* MappingToQWERTY-plus-phone-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-plus-phone-landscape-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-plus-phone-landscape-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB92211662D1006C9C85 /* MappingToQWERTY-plus-phone-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-plus-phone-portrait-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-plus-phone-portrait-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB93211662D1006C9C85 /* MappingToQWERTY-small-phone-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-small-phone-landscape-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-small-phone-landscape-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB94211662D2006C9C85 /* MappingToQWERTY-small-phone-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-small-phone-portrait-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-small-phone-portrait-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB95211662D2006C9C85 /* MappingToQWERTY-large-tablet-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-large-tablet-landscape-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-large-tablet-landscape-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB96211662D2006C9C85 /* MappingToQWERTY-large-tablet-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-large-tablet-landscape-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-large-tablet-landscape-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB97211662D2006C9C85 /* MappingToQWERTY-large-tablet-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-large-tablet-portrait-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-large-tablet-portrait-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB98211662D2006C9C85 /* MappingToQWERTY-large-tablet-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-large-tablet-landscape-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-large-tablet-landscape-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB99211662D2006C9C85 /* MappingToQWERTY-large-tablet-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-large-tablet-portrait-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-large-tablet-portrait-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB9A211662D2006C9C85 /* MappingToQWERTY-small-phone-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-small-phone-portrait-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-small-phone-portrait-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB9B211662D3006C9C85 /* MappingToQWERTY-large-tablet-portrait-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-large-tablet-portrait-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-large-tablet-portrait-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB9C211662D5006C9C85 /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-standard-phone-landscape-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-standard-phone-landscape-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB9D211662D5006C9C85 /* MappingToQWERTY-keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-keys.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-keys.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB9E211662D5006C9C85 /* MappingToQWERTY-plus-phone-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-plus-phone-landscape-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-plus-phone-landscape-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBB9F211662D5006C9C85 /* MappingToQWERTY-plus-phone-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-plus-phone-landscape-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-plus-phone-landscape-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBBA0211662D5006C9C85 /* MappingToQWERTY-standard-phone-portrait-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-standard-phone-portrait-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-standard-phone-portrait-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBBA1211662D6006C9C85 /* MappingToQWERTY-X-phone-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-X-phone-landscape-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-X-phone-landscape-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBBA2211662D6006C9C85 /* MappingToQWERTY-medium-tablet-landscape-layout-primary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-medium-tablet-landscape-layout-primary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-medium-tablet-landscape-layout-primary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBBA3211662D6006C9C85 /* MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBBA4211662D6006C9C85 /* MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBBA5211662D6006C9C85 /* MappingToQWERTY-standard-tablet-landscape-meta.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-standard-tablet-landscape-meta.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-standard-tablet-landscape-meta.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBBA6211662D7006C9C85 /* MappingToQWERTY-standard-phone-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-standard-phone-landscape-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-standard-phone-landscape-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBBA7211662D7006C9C85 /* MappingToQWERTY-small-phone-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-small-phone-landscape-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-small-phone-landscape-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
-		15FCBBA8211662D7006C9C85 /* MappingToQWERTY-X-phone-landscape-layout-secondary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MappingToQWERTY-X-phone-landscape-layout-secondary.plist"; path = "Matnsaz Keyboard/Layouts/MappingToQWERTY/MappingToQWERTY-X-phone-landscape-layout-secondary.plist"; sourceTree = SOURCE_ROOT; };
 		15FCBBD42116650E006C9C85 /* Close-Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Close-Dark.png"; sourceTree = "<group>"; };
 		15FCBBD52116650E006C9C85 /* Close-Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Close-Light.png"; sourceTree = "<group>"; };
 		15FD2D21209998D900F41ED6 /* RasmLayout-Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RasmLayout-Keys.plist"; sourceTree = "<group>"; };
@@ -265,6 +284,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		154B439421D9B1B2002ADB40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		15DB7C962032AD5100A84C7E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -282,11 +308,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		154B439821D9B1B2002ADB40 /* WordCounter */ = {
+			isa = PBXGroup;
+			children = (
+				154B439E21D9B1DC002ADB40 /* main.swift */,
+			);
+			path = WordCounter;
+			sourceTree = "<group>";
+		};
+		154B43A421D9B811002ADB40 /* Language Models */ = {
+			isa = PBXGroup;
+			children = (
+				154B43A521D9B811002ADB40 /* WordFrequency */,
+			);
+			path = "Language Models";
+			sourceTree = "<group>";
+		};
 		154F907E209825420068445F /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				15FCBACB211656BF006C9C85 /* MappingToQWERTY */,
 				1557161B20995D2500B0E7D4 /* Alphabetical */,
+				15ED8CC121D9B957005448EC /* MappingToQWERTY */,
 				15FD2D20209998B500F41ED6 /* Rasm */,
 			);
 			path = Layouts;
@@ -347,6 +389,7 @@
 			children = (
 				15DB7C9B2032AD5100A84C7E /* Matnsaz */,
 				15DB7CCF2032ADC500A84C7E /* Matnsaz Keyboard */,
+				154B439821D9B1B2002ADB40 /* WordCounter */,
 				15DB7C9A2032AD5100A84C7E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -356,6 +399,7 @@
 			children = (
 				15DB7C992032AD5100A84C7E /* Matnsaz.app */,
 				15DB7CCE2032ADC500A84C7E /* Matnsaz Keyboard.appex */,
+				154B439721D9B1B2002ADB40 /* WordCounter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -381,64 +425,65 @@
 				15AFD401209C08C600184F36 /* Matnsaz Keyboard.entitlements */,
 				154F907E209825420068445F /* Layouts */,
 				15DB7CD02032ADC500A84C7E /* KeyboardViewController.swift */,
+				15ED8D1821D9DE6C005448EC /* AutoCorrect.swift */,
 				15FCBAC721157D72006C9C85 /* SettingsViewController.swift */,
 				156333352068A9DC004F823C /* Key.swift */,
 				15DB7CD22032ADC500A84C7E /* Info.plist */,
 				15633338206A08C8004F823C /* ArabicScript.swift */,
 				15FD2D5D209C876200F41ED6 /* Button Images */,
+				154B43A421D9B811002ADB40 /* Language Models */,
 			);
 			path = "Matnsaz Keyboard";
 			sourceTree = "<group>";
 		};
-		15FCBACB211656BF006C9C85 /* MappingToQWERTY */ = {
+		15ED8CC121D9B957005448EC /* MappingToQWERTY */ = {
 			isa = PBXGroup;
 			children = (
-				15FCBB9D211662D5006C9C85 /* MappingToQWERTY-keys.plist */,
-				15FCBB96211662D2006C9C85 /* MappingToQWERTY-large-tablet-landscape-layout-primary.plist */,
-				15FCBB95211662D2006C9C85 /* MappingToQWERTY-large-tablet-landscape-layout-secondary.plist */,
-				15FCBB98211662D2006C9C85 /* MappingToQWERTY-large-tablet-landscape-meta.plist */,
-				15FCBB9B211662D3006C9C85 /* MappingToQWERTY-large-tablet-portrait-layout-primary.plist */,
-				15FCBB97211662D2006C9C85 /* MappingToQWERTY-large-tablet-portrait-layout-secondary.plist */,
-				15FCBB99211662D2006C9C85 /* MappingToQWERTY-large-tablet-portrait-meta.plist */,
-				15FCBBA2211662D6006C9C85 /* MappingToQWERTY-medium-tablet-landscape-layout-primary.plist */,
-				15FCBB7F211662D0006C9C85 /* MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist */,
-				15FCBB80211662D0006C9C85 /* MappingToQWERTY-medium-tablet-landscape-meta.plist */,
-				15FCBB8B211662D1006C9C85 /* MappingToQWERTY-medium-tablet-portrait-layout-primary.plist */,
-				15FCBBA4211662D6006C9C85 /* MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist */,
-				15FCBB8D211662D1006C9C85 /* MappingToQWERTY-medium-tablet-portrait-meta.plist */,
-				15FCBB9E211662D5006C9C85 /* MappingToQWERTY-plus-phone-landscape-layout-primary.plist */,
-				15FCBB9F211662D5006C9C85 /* MappingToQWERTY-plus-phone-landscape-layout-secondary.plist */,
-				15FCBB91211662D1006C9C85 /* MappingToQWERTY-plus-phone-landscape-meta.plist */,
-				15FCBB85211662D0006C9C85 /* MappingToQWERTY-plus-phone-portrait-layout-primary.plist */,
-				15FCBB92211662D1006C9C85 /* MappingToQWERTY-plus-phone-portrait-layout-secondary.plist */,
-				15FCBB81211662D0006C9C85 /* MappingToQWERTY-plus-phone-portrait-meta.plist */,
-				15FCBB82211662D0006C9C85 /* MappingToQWERTY-small-phone-landscape-layout-primary.plist */,
-				15FCBBA7211662D7006C9C85 /* MappingToQWERTY-small-phone-landscape-layout-secondary.plist */,
-				15FCBB93211662D1006C9C85 /* MappingToQWERTY-small-phone-landscape-meta.plist */,
-				15FCBB86211662D0006C9C85 /* MappingToQWERTY-small-phone-portrait-layout-primary.plist */,
-				15FCBB9A211662D2006C9C85 /* MappingToQWERTY-small-phone-portrait-layout-secondary.plist */,
-				15FCBB94211662D2006C9C85 /* MappingToQWERTY-small-phone-portrait-meta.plist */,
-				15FCBB9C211662D5006C9C85 /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist */,
-				15FCBBA6211662D7006C9C85 /* MappingToQWERTY-standard-phone-landscape-layout-secondary.plist */,
-				15FCBB83211662D0006C9C85 /* MappingToQWERTY-standard-phone-landscape-meta.plist */,
-				15FCBB89211662D0006C9C85 /* MappingToQWERTY-standard-phone-portrait-layout-primary.plist */,
-				15FCBB87211662D0006C9C85 /* MappingToQWERTY-standard-phone-portrait-layout-secondary.plist */,
-				15FCBBA0211662D5006C9C85 /* MappingToQWERTY-standard-phone-portrait-meta.plist */,
-				15FCBB84211662D0006C9C85 /* MappingToQWERTY-standard-tablet-landscape-layout-primary.plist */,
-				15FCBBA3211662D6006C9C85 /* MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist */,
-				15FCBBA5211662D6006C9C85 /* MappingToQWERTY-standard-tablet-landscape-meta.plist */,
-				15FCBB8C211662D1006C9C85 /* MappingToQWERTY-standard-tablet-portrait-layout-primary.plist */,
-				15FCBB88211662D0006C9C85 /* MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist */,
-				15FCBB8E211662D1006C9C85 /* MappingToQWERTY-standard-tablet-portrait-meta.plist */,
-				15FCBB8F211662D1006C9C85 /* MappingToQWERTY-X-phone-landscape-layout-primary.plist */,
-				15FCBBA8211662D7006C9C85 /* MappingToQWERTY-X-phone-landscape-layout-secondary.plist */,
-				15FCBBA1211662D6006C9C85 /* MappingToQWERTY-X-phone-landscape-meta.plist */,
-				15FCBB90211662D1006C9C85 /* MappingToQWERTY-X-phone-portrait-layout-primary.plist */,
-				15FCBB7E211662CF006C9C85 /* MappingToQWERTY-X-phone-portrait-layout-secondary.plist */,
-				15FCBB8A211662D0006C9C85 /* MappingToQWERTY-X-phone-portrait-meta.plist */,
+				15ED8CC221D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-meta.plist */,
+				15ED8CC321D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-meta.plist */,
+				15ED8CC421D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-meta.plist */,
+				15ED8CC521D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-meta.plist */,
+				15ED8CC621D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-layout-primary.plist */,
+				15ED8CC721D9B957005448EC /* MappingToQWERTY-small-phone-landscape-layout-secondary.plist */,
+				15ED8CC821D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-layout-primary.plist */,
+				15ED8CC921D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-layout-primary.plist */,
+				15ED8CCA21D9B957005448EC /* MappingToQWERTY-X-phone-portrait-meta.plist */,
+				15ED8CCB21D9B957005448EC /* MappingToQWERTY-small-phone-landscape-layout-primary.plist */,
+				15ED8CCC21D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-meta.plist */,
+				15ED8CCD21D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-layout-secondary.plist */,
+				15ED8CCE21D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-layout-secondary.plist */,
+				15ED8CCF21D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-layout-primary.plist */,
+				15ED8CD021D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-layout-primary.plist */,
+				15ED8CD121D9B957005448EC /* MappingToQWERTY-X-phone-portrait-layout-primary.plist */,
+				15ED8CD221D9B957005448EC /* MappingToQWERTY-keys.plist */,
+				15ED8CD321D9B957005448EC /* MappingToQWERTY-X-phone-landscape-layout-secondary.plist */,
+				15ED8CD421D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-layout-primary.plist */,
+				15ED8CD521D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-meta.plist */,
+				15ED8CD621D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-layout-primary.plist */,
+				15ED8CD721D9B957005448EC /* MappingToQWERTY-X-phone-portrait-layout-secondary.plist */,
+				15ED8CD821D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-meta.plist */,
+				15ED8CD921D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-layout-secondary.plist */,
+				15ED8CDA21D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-meta.plist */,
+				15ED8CDB21D9B957005448EC /* MappingToQWERTY-X-phone-landscape-meta.plist */,
+				15ED8CDC21D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-layout-secondary.plist */,
+				15ED8CDD21D9B957005448EC /* MappingToQWERTY-X-phone-landscape-layout-primary.plist */,
+				15ED8CDE21D9B957005448EC /* MappingToQWERTY-small-phone-portrait-layout-secondary.plist */,
+				15ED8CDF21D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-layout-primary.plist */,
+				15ED8CE021D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist */,
+				15ED8CE121D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-layout-primary.plist */,
+				15ED8CE221D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist */,
+				15ED8CE321D9B957005448EC /* MappingToQWERTY-small-phone-portrait-layout-primary.plist */,
+				15ED8CE421D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist */,
+				15ED8CE521D9B957005448EC /* MappingToQWERTY-small-phone-landscape-meta.plist */,
+				15ED8CE621D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-layout-secondary.plist */,
+				15ED8CE721D9B957005448EC /* MappingToQWERTY-small-phone-portrait-meta.plist */,
+				15ED8CE821D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist */,
+				15ED8CE921D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-secondary.plist */,
+				15ED8CEA21D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-meta.plist */,
+				15ED8CEB21D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-meta.plist */,
+				15ED8CEC21D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist */,
 			);
-			name = MappingToQWERTY;
-			path = "New Group";
+			path = MappingToQWERTY;
 			sourceTree = "<group>";
 		};
 		15FD2D20209998B500F41ED6 /* Rasm */ = {
@@ -472,6 +517,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		154B439621D9B1B2002ADB40 /* WordCounter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 154B439B21D9B1B2002ADB40 /* Build configuration list for PBXNativeTarget "WordCounter" */;
+			buildPhases = (
+				154B439321D9B1B2002ADB40 /* Sources */,
+				154B439421D9B1B2002ADB40 /* Frameworks */,
+				154B439521D9B1B2002ADB40 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WordCounter;
+			productName = WordCounter;
+			productReference = 154B439721D9B1B2002ADB40 /* WordCounter */;
+			productType = "com.apple.product-type.tool";
+		};
 		15DB7C982032AD5100A84C7E /* Matnsaz */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15DB7CC12032AD5100A84C7E /* Build configuration list for PBXNativeTarget "Matnsaz" */;
@@ -514,10 +576,14 @@
 		15DB7C912032AD5100A84C7E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Zeerak Ahmed";
 				TargetAttributes = {
+					154B439621D9B1B2002ADB40 = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+					};
 					15DB7C982032AD5100A84C7E = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1010;
@@ -555,6 +621,7 @@
 			targets = (
 				15DB7C982032AD5100A84C7E /* Matnsaz */,
 				15DB7CCD2032ADC500A84C7E /* Matnsaz Keyboard */,
+				154B439621D9B1B2002ADB40 /* WordCounter */,
 			);
 		};
 /* End PBXProject section */
@@ -576,103 +643,104 @@
 			buildActionMask = 2147483647;
 			files = (
 				15DE59B72112551500FAA134 /* KeyboardSelection-Light.png in Resources */,
+				15ED8D1721D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist in Resources */,
+				15ED8D0621D9B957005448EC /* MappingToQWERTY-X-phone-landscape-meta.plist in Resources */,
+				15ED8D1621D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-meta.plist in Resources */,
+				154B43A621D9B811002ADB40 /* WordFrequency in Resources */,
+				15ED8D0021D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-meta.plist in Resources */,
+				15ED8D1321D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist in Resources */,
+				15ED8CF221D9B957005448EC /* MappingToQWERTY-small-phone-landscape-layout-secondary.plist in Resources */,
+				15ED8D0D21D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist in Resources */,
 				15AFD405209C09E400184F36 /* Alphabetical-small-phone-portrait-layout-primary.plist in Resources */,
+				15ED8CFD21D9B957005448EC /* MappingToQWERTY-keys.plist in Resources */,
 				15FCBBD62116650E006C9C85 /* Close-Dark.png in Resources */,
 				15AFD41B209C1D0300184F36 /* Alphabetical-X-phone-portrait-layout-primary.plist in Resources */,
-				15FCBBB8211662D7006C9C85 /* MappingToQWERTY-medium-tablet-portrait-meta.plist in Resources */,
-				15FCBBBD211662D7006C9C85 /* MappingToQWERTY-plus-phone-portrait-layout-secondary.plist in Resources */,
 				1557161F20995DB200B0E7D4 /* Alphabetical-standard-phone-portrait-layout-primary.plist in Resources */,
 				15FD2D22209998D900F41ED6 /* RasmLayout-Keys.plist in Resources */,
-				15FCBBB6211662D7006C9C85 /* MappingToQWERTY-medium-tablet-portrait-layout-primary.plist in Resources */,
-				15FCBBB7211662D7006C9C85 /* MappingToQWERTY-standard-tablet-portrait-layout-primary.plist in Resources */,
-				15FCBBCC211662D7006C9C85 /* MappingToQWERTY-X-phone-landscape-meta.plist in Resources */,
-				15FCBBC5211662D7006C9C85 /* MappingToQWERTY-small-phone-portrait-layout-secondary.plist in Resources */,
-				15FCBBCA211662D7006C9C85 /* MappingToQWERTY-plus-phone-landscape-layout-secondary.plist in Resources */,
-				15FCBBBC211662D7006C9C85 /* MappingToQWERTY-plus-phone-landscape-meta.plist in Resources */,
+				15ED8D1521D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-meta.plist in Resources */,
 				15FD2D58209C818400F41ED6 /* Alphabetical-medium-tablet-landscape-layout-secondary.plist in Resources */,
 				15AFD40F209C0F1E00184F36 /* Alphabetical-small-phone-landscape-layout-primary.plist in Resources */,
+				15ED8D0A21D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-layout-primary.plist in Resources */,
+				15ED8D0E21D9B957005448EC /* MappingToQWERTY-small-phone-portrait-layout-primary.plist in Resources */,
 				15FD2D5B209C818400F41ED6 /* Alphabetical-standard-phone-portrait-layout-secondary.plist in Resources */,
 				15AFD3FC209BFBD100184F36 /* Alphabetical-standard-phone-portrait-meta.plist in Resources */,
-				15FCBBAC211662D7006C9C85 /* MappingToQWERTY-plus-phone-portrait-meta.plist in Resources */,
 				15AFD423209C3C4600184F36 /* Alphabetical-standard-tablet-portrait-layout-primary.plist in Resources */,
 				15AFD41D209C1EEA00184F36 /* Alphabetical-X-phone-landscape-meta.plist in Resources */,
 				15FD2D4F209C818400F41ED6 /* Alphabetical-plus-phone-portrait-layout-secondary.plist in Resources */,
+				15ED8CF121D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-layout-primary.plist in Resources */,
+				15ED8D0F21D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist in Resources */,
+				15ED8D0521D9B957005448EC /* MappingToQWERTY-medium-tablet-landscape-meta.plist in Resources */,
 				15C327D2209C4CCC008EC82C /* Alphabetical-large-tablet-landscape-layout-primary.plist in Resources */,
-				15FCBBCE211662D7006C9C85 /* MappingToQWERTY-standard-tablet-landscape-layout-secondary.plist in Resources */,
+				15ED8D0721D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-layout-secondary.plist in Resources */,
 				15FCBBD72116650E006C9C85 /* Close-Light.png in Resources */,
+				15ED8D0121D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-layout-primary.plist in Resources */,
 				15FD2D59209C818400F41ED6 /* Alphabetical-standard-phone-landscape-layout-secondary.plist in Resources */,
-				15FCBBA9211662D7006C9C85 /* MappingToQWERTY-X-phone-portrait-layout-secondary.plist in Resources */,
 				15FD2D5A209C818400F41ED6 /* Alphabetical-plus-phone-landscape-layout-secondary.plist in Resources */,
+				15ED8D0821D9B957005448EC /* MappingToQWERTY-X-phone-landscape-layout-primary.plist in Resources */,
 				15AFD415209C180D00184F36 /* Alphabetical-plus-phone-landscape-meta.plist in Resources */,
-				15FCBBC9211662D7006C9C85 /* MappingToQWERTY-plus-phone-landscape-layout-primary.plist in Resources */,
-				15FCBBD0211662D7006C9C85 /* MappingToQWERTY-standard-tablet-landscape-meta.plist in Resources */,
+				15ED8CFE21D9B957005448EC /* MappingToQWERTY-X-phone-landscape-layout-secondary.plist in Resources */,
 				15C327BD209C4588008EC82C /* Alphabetical-standard-tablet-landscape-layout-primary.plist in Resources */,
-				15FCBBB1211662D7006C9C85 /* MappingToQWERTY-small-phone-portrait-layout-primary.plist in Resources */,
-				15FCBBB2211662D7006C9C85 /* MappingToQWERTY-standard-phone-portrait-layout-secondary.plist in Resources */,
 				15FD2D2420999AAE00F41ED6 /* RasmLayout-w375.plist in Resources */,
-				15FCBBC0211662D7006C9C85 /* MappingToQWERTY-large-tablet-landscape-layout-secondary.plist in Resources */,
 				15C327BF209C47D6008EC82C /* Alphabetical-large-tablet-portrait-meta.plist in Resources */,
 				15AFD3FE209C008300184F36 /* Alphabetical-standard-phone-landscape-meta.plist in Resources */,
-				15FCBBBA211662D7006C9C85 /* MappingToQWERTY-X-phone-landscape-layout-primary.plist in Resources */,
 				15AFD41F209C1F0800184F36 /* Alphabetical-X-phone-landscape-layout-primary.plist in Resources */,
-				15FCBBB3211662D7006C9C85 /* MappingToQWERTY-standard-tablet-portrait-layout-secondary.plist in Resources */,
-				15FCBBB9211662D7006C9C85 /* MappingToQWERTY-standard-tablet-portrait-meta.plist in Resources */,
+				15ED8D1021D9B957005448EC /* MappingToQWERTY-small-phone-landscape-meta.plist in Resources */,
 				15DE59B82112551500FAA134 /* KeyboardSelection-Dark.png in Resources */,
+				15ED8CF421D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-layout-primary.plist in Resources */,
 				15AFD421209C3C3100184F36 /* Alphabetical-standard-tablet-portrait-meta.plist in Resources */,
-				15FCBBAB211662D7006C9C85 /* MappingToQWERTY-medium-tablet-landscape-meta.plist in Resources */,
-				15FCBBAA211662D7006C9C85 /* MappingToQWERTY-medium-tablet-landscape-layout-secondary.plist in Resources */,
 				1557161D20995D4200B0E7D4 /* Alphabetical-keys.plist in Resources */,
-				15FCBBCD211662D7006C9C85 /* MappingToQWERTY-medium-tablet-landscape-layout-primary.plist in Resources */,
 				15FD2D54209C818400F41ED6 /* Alphabetical-standard-tablet-landscape-layout-secondary.plist in Resources */,
 				15AFD400209C00B100184F36 /* Alphabetical-standard-phone-landscape-layout-primary.plist in Resources */,
+				15ED8D0B21D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist in Resources */,
 				15DE59BC2112551500FAA134 /* Return-Light.png in Resources */,
+				15ED8D0421D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-layout-secondary.plist in Resources */,
 				15FD2D57209C818400F41ED6 /* Alphabetical-large-tablet-landscape-layout-secondary.plist in Resources */,
+				15ED8D0221D9B957005448EC /* MappingToQWERTY-X-phone-portrait-layout-secondary.plist in Resources */,
 				15FCBAC421152B31006C9C85 /* Settings-Dark.png in Resources */,
-				15FCBBB5211662D7006C9C85 /* MappingToQWERTY-X-phone-portrait-meta.plist in Resources */,
-				15FCBBC7211662D7006C9C85 /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist in Resources */,
 				15AFD409209C0E5F00184F36 /* Alphabetical-small-phone-landscape-meta.plist in Resources */,
 				15AFD411209C138E00184F36 /* Alphabetical-plus-phone-portrait-meta.plist in Resources */,
-				15FCBBB0211662D7006C9C85 /* MappingToQWERTY-plus-phone-portrait-layout-primary.plist in Resources */,
+				15ED8CF621D9B957005448EC /* MappingToQWERTY-small-phone-landscape-layout-primary.plist in Resources */,
 				15FD2D5C209C818400F41ED6 /* Alphabetical-standard-tablet-portrait-layout-secondary.plist in Resources */,
 				155257A7203AA38100B57DE7 /* Assets.xcassets in Resources */,
+				15ED8CF721D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-meta.plist in Resources */,
 				15FD2D50209C818400F41ED6 /* Alphabetical-large-tablet-portrait-layout-secondary.plist in Resources */,
-				15FCBBBE211662D7006C9C85 /* MappingToQWERTY-small-phone-landscape-meta.plist in Resources */,
-				15FCBBC3211662D7006C9C85 /* MappingToQWERTY-large-tablet-landscape-meta.plist in Resources */,
+				15ED8CF821D9B957005448EC /* MappingToQWERTY-standard-phone-portrait-layout-secondary.plist in Resources */,
+				15ED8CFB21D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-layout-primary.plist in Resources */,
 				15C327C7209C492C008EC82C /* Alphabetical-medium-tablet-portrait-meta.plist in Resources */,
-				15FCBBC8211662D7006C9C85 /* MappingToQWERTY-keys.plist in Resources */,
+				15ED8CFF21D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-layout-primary.plist in Resources */,
+				15ED8D0C21D9B957005448EC /* MappingToQWERTY-standard-tablet-portrait-layout-primary.plist in Resources */,
 				15AFD417209C181E00184F36 /* Alphabetical-plus-phone-landscape-layout-primary.plist in Resources */,
-				15FCBBD2211662D7006C9C85 /* MappingToQWERTY-small-phone-landscape-layout-secondary.plist in Resources */,
+				15ED8D1121D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-layout-secondary.plist in Resources */,
 				15FD2D55209C818400F41ED6 /* Alphabetical-small-phone-portrait-layout-secondary.plist in Resources */,
+				15ED8D1221D9B957005448EC /* MappingToQWERTY-small-phone-portrait-meta.plist in Resources */,
 				15DE59BD2112551500FAA134 /* Backspace-Light.png in Resources */,
+				15ED8CF321D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-layout-primary.plist in Resources */,
 				15C327CE209C4BDD008EC82C /* Alphabetical-medium-tablet-portrait-layout-primary.plist in Resources */,
+				15ED8CEF21D9B957005448EC /* MappingToQWERTY-standard-tablet-landscape-meta.plist in Resources */,
 				15C327BB209C4572008EC82C /* Alphabetical-standard-tablet-landscape-meta.plist in Resources */,
 				15AFD413209C139800184F36 /* Alphabetical-plus-phone-portrait-layout-primary.plist in Resources */,
+				15ED8D0321D9B957005448EC /* MappingToQWERTY-large-tablet-landscape-meta.plist in Resources */,
 				15DE59BA2112551500FAA134 /* Backspace-Dark.png in Resources */,
 				15AFD403209C09B100184F36 /* Alphabetical-small-phone-portrait-meta.plist in Resources */,
 				15FCBAC321152B31006C9C85 /* Settings-Light.png in Resources */,
-				15FCBBB4211662D7006C9C85 /* MappingToQWERTY-standard-phone-portrait-layout-primary.plist in Resources */,
-				15FCBBBF211662D7006C9C85 /* MappingToQWERTY-small-phone-portrait-meta.plist in Resources */,
 				15C327C1209C47E1008EC82C /* Alphabetical-large-tablet-portrait-layout-primary.plist in Resources */,
-				15FCBBBB211662D7006C9C85 /* MappingToQWERTY-X-phone-portrait-layout-primary.plist in Resources */,
-				15FCBBAD211662D7006C9C85 /* MappingToQWERTY-small-phone-landscape-layout-primary.plist in Resources */,
-				15FCBBCF211662D7006C9C85 /* MappingToQWERTY-medium-tablet-portrait-layout-secondary.plist in Resources */,
-				15FCBBC4211662D7006C9C85 /* MappingToQWERTY-large-tablet-portrait-meta.plist in Resources */,
-				15FCBBD1211662D7006C9C85 /* MappingToQWERTY-standard-phone-landscape-layout-secondary.plist in Resources */,
-				15FCBBAF211662D7006C9C85 /* MappingToQWERTY-standard-tablet-landscape-layout-primary.plist in Resources */,
-				15FCBBC1211662D7006C9C85 /* MappingToQWERTY-large-tablet-landscape-layout-primary.plist in Resources */,
 				15FD2D52209C818400F41ED6 /* Alphabetical-small-phone-landscape-layout-secondary.plist in Resources */,
-				15FCBBAE211662D7006C9C85 /* MappingToQWERTY-standard-phone-landscape-meta.plist in Resources */,
-				15FCBBC6211662D7006C9C85 /* MappingToQWERTY-large-tablet-portrait-layout-primary.plist in Resources */,
 				15FD2D53209C818400F41ED6 /* Alphabetical-X-phone-landscape-layout-secondary.plist in Resources */,
+				15ED8D0921D9B957005448EC /* MappingToQWERTY-small-phone-portrait-layout-secondary.plist in Resources */,
 				15AFD419209C1C9E00184F36 /* Alphabetical-X-phone-portrait-meta.plist in Resources */,
-				15FCBBD3211662D7006C9C85 /* MappingToQWERTY-X-phone-landscape-layout-secondary.plist in Resources */,
+				15ED8CFC21D9B957005448EC /* MappingToQWERTY-X-phone-portrait-layout-primary.plist in Resources */,
+				15ED8CF021D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-meta.plist in Resources */,
+				15ED8CED21D9B957005448EC /* MappingToQWERTY-medium-tablet-portrait-meta.plist in Resources */,
 				15FD2D51209C818400F41ED6 /* Alphabetical-medium-tablet-portrait-layout-secondary.plist in Resources */,
-				15FCBBC2211662D7006C9C85 /* MappingToQWERTY-large-tablet-portrait-layout-secondary.plist in Resources */,
+				15ED8CFA21D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-layout-primary.plist in Resources */,
 				15C327D0209C4CC4008EC82C /* Alphabetical-large-tablet-landscape-meta.plist in Resources */,
 				15C327C3209C4800008EC82C /* Alphabetical-medium-tablet-landscape-meta.plist in Resources */,
-				15FCBBCB211662D7006C9C85 /* MappingToQWERTY-standard-phone-portrait-meta.plist in Resources */,
+				15ED8CEE21D9B957005448EC /* MappingToQWERTY-plus-phone-landscape-meta.plist in Resources */,
+				15ED8D1421D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-secondary.plist in Resources */,
+				15ED8CF521D9B957005448EC /* MappingToQWERTY-X-phone-portrait-meta.plist in Resources */,
 				15DE59B62112551500FAA134 /* DismissKeyboard-Dark.png in Resources */,
 				15FD2D56209C818400F41ED6 /* Alphabetical-X-phone-portrait-layout-secondary.plist in Resources */,
+				15ED8CF921D9B957005448EC /* MappingToQWERTY-large-tablet-portrait-layout-secondary.plist in Resources */,
 				15DE59BB2112551500FAA134 /* Return-Dark.png in Resources */,
 				15DE59B92112551500FAA134 /* DismissKeyboard-Light.png in Resources */,
 				15C327C5209C4807008EC82C /* Alphabetical-medium-tablet-landscape-layout-primary.plist in Resources */,
@@ -682,6 +750,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		154B439321D9B1B2002ADB40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				154B43A021D9B207002ADB40 /* ArabicScript.swift in Sources */,
+				154B439F21D9B1DC002ADB40 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		15DB7C952032AD5100A84C7E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -698,6 +775,7 @@
 				15DB7CD12032ADC500A84C7E /* KeyboardViewController.swift in Sources */,
 				15633339206A08C8004F823C /* ArabicScript.swift in Sources */,
 				156333372068A9E0004F823C /* Key.swift in Sources */,
+				15ED8D1921D9DE6C005448EC /* AutoCorrect.swift in Sources */,
 				15FCBAC821157D72006C9C85 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -732,6 +810,37 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		154B439C21D9B1B2002ADB40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NMWM6M9GTL;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		154B439D21D9B1B2002ADB40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NMWM6M9GTL;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 		15DB7CBF2032AD5100A84C7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -910,6 +1019,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		154B439B21D9B1B2002ADB40 /* Build configuration list for PBXNativeTarget "WordCounter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				154B439C21D9B1B2002ADB40 /* Debug */,
+				154B439D21D9B1B2002ADB40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		15DB7C942032AD5100A84C7E /* Build configuration list for PBXProject "Matnsaz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

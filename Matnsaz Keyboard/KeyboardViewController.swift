@@ -44,8 +44,7 @@ enum SavedDefaults: String {
 
 class KeyboardViewController: UIInputViewController {
 
-    var nextKeyboardButton: UIButton!
-    var keys: [Key]!
+    var keys: [Key] = []
     var spaceTimer: Timer!
     var backspaceTimer: Timer!
     var backspaceCount = 0
@@ -56,13 +55,18 @@ class KeyboardViewController: UIInputViewController {
     let tatweel: Character = "ـ"
     
     // references to keys
+    var nextKeyboardButton: UIButton!
     var spaceKey: Key?
     var zeroWidthNonJoinerKey: Key?
     var settingsKey: Key?
+    var letterKeys: [String: Key] = [:]
     
     // artificially firing a key if you didn't actually press one
     var artificiallyFiredKey: Key?
     var touchPoint: CGPoint?
+    
+    // autocorrect object
+    var autoCorrect = AutoCorrect()
     
     // Config
     var layout: KeyboardLayout!
@@ -159,7 +163,7 @@ class KeyboardViewController: UIInputViewController {
         // read plist and update layout
         let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
         if let dict = NSDictionary(contentsOfFile: path!) {
-            for key in keys {
+            for key in self.keys {
                 if let info = dict[key.name] as? Dictionary<String, Double> {
                     key.setLayout(x: info["x"]!, y: info["y"]!, width: info["width"]!, height: info["height"]!)
                 } else {
@@ -261,8 +265,8 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    func addKey(name: String, type: Key.KeyType, label: String) {
-        let key = Key(name: name, type: type, label: label, contextualFormsEnabled: self.contextualFormsEnabled, keyboardViewController: self)
+    func addKey(name: String, type: Key.KeyType, label: String, neighbors: Array<String>?) {
+        let key = Key(name: name, type: type, label: label, contextualFormsEnabled: self.contextualFormsEnabled, keyboardViewController: self, neighbors: neighbors)
         self.keys.append(key)
         self.view.addSubview(key)
         
@@ -288,6 +292,8 @@ class KeyboardViewController: UIInputViewController {
             self.zeroWidthNonJoinerKey = key
         case Key.KeyType.Settings:
             self.settingsKey = key
+        case Key.KeyType.Letter:
+            self.letterKeys[key.name] = key
         default:
             break
         }
@@ -311,6 +317,8 @@ class KeyboardViewController: UIInputViewController {
             if self.contextualFormsEnabled && ArabicScript.isForwardJoining(self.lastCharacter()!) {
                 self.textDocumentProxy.insertText(String(tatweel))
             }
+            let suggestions = self.autoCorrect.getSuggestions(word: self.currentWord(), keys: letterKeys)
+            print(suggestions)
         case Key.KeyType.SwitchToPrimaryMode,
              Key.KeyType.SwitchToSecondaryMode:
             self.switchKeyboardMode()
@@ -429,6 +437,23 @@ class KeyboardViewController: UIInputViewController {
         return char
     }
     
+    func currentWord() -> String {
+        var word = ""
+        if let text = self.textDocumentProxy.documentContextBeforeInput {
+            var reversed = String(text.reversed())
+            reversed = ArabicScript.removeDiacritics(reversed)
+            for char in reversed {
+                if ArabicScript.isLetter(char) {
+                    word += String(char)
+                } else {
+                    break
+                }
+            }
+        }
+        word = String(word.reversed())
+        return word
+    }
+    
     func deleteTatweelIfNeeded() {
         if self.contextualFormsEnabled {
             if self.textDocumentProxy.documentContextBeforeInput?.last == tatweel {
@@ -507,13 +532,12 @@ class KeyboardViewController: UIInputViewController {
         }
         
         // set label on every key
-        for key in keys {
+        for key in self.keys {
             key.setLabels(nextContextualForm: nextContextualForm)
         }
     }
     
     func setUpKeys() {
-        self.keys = []
         
         // filepath
         let fileName = self.layout.rawValue + "-keys"
@@ -523,8 +547,11 @@ class KeyboardViewController: UIInputViewController {
         if let dict = NSDictionary(contentsOfFile: path!) {
             // create key for every item in dictionary
             for (key, value) in dict {
-                let info = value as! Dictionary<String, String>
-                addKey(name: key as! String, type: Key.KeyType(rawValue: info["type"]!)!, label: info["label"]!)
+                let info = value as! Dictionary<String, Any>
+                addKey(name: key as! String,
+                       type: Key.KeyType(rawValue: info["type"] as! String)!,
+                       label: info["label"] as! String,
+                       neighbors: info["neighbors"] as? Array<String>)
             }
         }
     }

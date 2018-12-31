@@ -29,6 +29,7 @@ class Key: UIButton {
     var contextualFormsEnabled: Bool
     var mode: KeyboardColorMode
     var keyboardViewController: KeyboardViewController?
+    var neighbors: Array<String>?
     
     enum KeyType: String {
         case Letter
@@ -62,7 +63,7 @@ class Key: UIButton {
         static let shadowColor = UIColor(red: 0.1, green: 0.15, blue: 0.06, alpha: 0.36).cgColor
     }
     
-    init(name: String, type: KeyType, label: String, contextualFormsEnabled: Bool, keyboardViewController: KeyboardViewController) {
+    init(name: String, type: KeyType, label: String, contextualFormsEnabled: Bool, keyboardViewController: KeyboardViewController, neighbors: Array<String>?) {
         
         // instance setup
         self.type = type
@@ -76,6 +77,7 @@ class Key: UIButton {
         self.maskViewProperty = UIView()
         self.mode = KeyboardColorMode.Light
         self.keyboardViewController = keyboardViewController
+        self.neighbors = neighbors
         
         // other variables
         self.name = name
