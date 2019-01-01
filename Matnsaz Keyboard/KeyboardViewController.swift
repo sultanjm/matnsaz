@@ -35,6 +35,7 @@ enum KeyboardMode: String {
 struct Colors {
     static let lightModeBackgroundColor = UIColor(red: 209/255, green: 212/255, blue: 216/255, alpha: 1)
     static let darkModeBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.01)
+    static let suggestionDividerColor = UIColor(red: 192/255, green: 194/255, blue: 198/255, alpha: 1.0)
 }
 
 enum SavedDefaults: String {
@@ -74,6 +75,8 @@ class KeyboardViewController: UIInputViewController {
     
     // suggestions
     var suggestionButtons: [SuggestionButton] = []
+    var leftDividerLayer = CAShapeLayer()
+    var rightDividerLayer = CAShapeLayer()
     
     // artificially firing a key if you didn't actually press one
     var artificiallyFiredKey: Key?
@@ -527,6 +530,51 @@ class KeyboardViewController: UIInputViewController {
                                        marginTop: self.suggestionsMarginTop,
                                        marginLeft: self.suggestionsMarginSide,
                                        marginRight: 0)
+        self.layoutSuggestionDividers()
+    }
+    
+    func layoutSuggestionDividers() {
+        let leftButton = suggestionButtons[2]
+        let rightButton = suggestionButtons[0]
+        
+        let leftDividerRect = CGRect(x: leftButton.frame.maxX,
+                                     y: leftButton.frame.minY + CGFloat(self.suggestionsMarginTop) + 8,
+                                     width: 1,
+                                     height: leftButton.frame.height - CGFloat(self.suggestionsMarginTop) - 16)
+        let rightDividerRect = CGRect(x: rightButton.frame.minX,
+                                      y: rightButton.frame.minY + CGFloat(self.suggestionsMarginTop) + 8,
+                                      width: 1,
+                                      height: rightButton.frame.height - CGFloat(self.suggestionsMarginTop) - 16)
+        
+        let leftDividerPath = UIBezierPath(rect: leftDividerRect)
+        let rightDividerPath = UIBezierPath(rect: rightDividerRect)
+        
+        self.leftDividerLayer.path = leftDividerPath.cgPath
+        self.rightDividerLayer.path = rightDividerPath.cgPath
+        self.leftDividerLayer.fillColor = Colors.suggestionDividerColor.cgColor
+        self.rightDividerLayer.fillColor = Colors.suggestionDividerColor.cgColor
+        
+        self.showSuggestionDividers()
+    }
+    
+    func showSuggestionDividers() {
+        self.suggestionsView.layer.addSublayer(self.leftDividerLayer)
+        self.suggestionsView.layer.addSublayer(self.rightDividerLayer)
+    }
+    
+    func hideSuggestionDividers() {
+        self.leftDividerLayer.removeFromSuperlayer()
+        self.rightDividerLayer.removeFromSuperlayer()
+    }
+    
+    func hideSuggestionDividersIfNeeded() {
+        for button in suggestionButtons {
+            if button.suggestion != nil {
+                if !button.suggestion!.isUserTypedString && button.suggestion!.isDefault {
+                    hideSuggestionDividers()
+                }
+            }
+        }
     }
     
     func setUpSuggestionButtons() {
@@ -544,6 +592,7 @@ class KeyboardViewController: UIInputViewController {
         for button in suggestionButtons {
             button.reset()
         }
+        self.showSuggestionDividers()
     }
     
     func updateSuggestions() {
@@ -552,6 +601,7 @@ class KeyboardViewController: UIInputViewController {
         for i in 0..<suggestions.count {
             suggestionButtons[i].setSuggestion(suggestions[i])
         }
+        self.hideSuggestionDividersIfNeeded()
     }
     
     @objc func suggestionTouchUp(sender: SuggestionButton) {
@@ -567,6 +617,7 @@ class KeyboardViewController: UIInputViewController {
             if button == sender { button.showHighlight() }
             else { button.hideHighlight() }
         }
+        self.hideSuggestionDividers()
     }
     
     @objc func suggestionDragExit(sender: SuggestionButton) {
