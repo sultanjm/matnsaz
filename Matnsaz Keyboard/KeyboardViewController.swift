@@ -87,10 +87,9 @@ class KeyboardViewController: UIInputViewController {
     var contextualFormsEnabled: Bool!
     var DoubleTapSpaceBarShortcutActive = true
     
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
-        self.updateHeightConstraint()
-    }
+    //
+    //  View Controller Setup
+    //
     
     override func viewDidLoad() {
         
@@ -173,33 +172,14 @@ class KeyboardViewController: UIInputViewController {
         self.layoutSuggestions()
     }
     
-    func readSettings() {
-        
-        // layout
-        if let defaultLayout = UserDefaults.standard.value(forKey: SavedDefaults.KeyLayout.rawValue) {
-            self.layout = KeyboardLayout.init(rawValue: defaultLayout as! String)
-        } else {
-            self.layout = KeyboardLayout.Alphabetical
-            UserDefaults.standard.set(self.layout.rawValue, forKey: SavedDefaults.KeyLayout.rawValue)
-        }
-        
-        // labels
-        if let defaultLabels = UserDefaults.standard.value(forKey: SavedDefaults.KeyLabels.rawValue) {
-            self.contextualFormsEnabled = (defaultLabels as! Bool)
-        } else {
-            self.contextualFormsEnabled = true
-            UserDefaults.standard.set(self.contextualFormsEnabled, forKey: SavedDefaults.KeyLabels.rawValue)
-        }
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
+        self.updateHeightConstraint()
     }
     
-    func switchKeyboardMode() {
-        if self.keyboardMode == KeyboardMode.primary {
-            self.keyboardMode = KeyboardMode.secondary
-        } else {
-            self.keyboardMode = KeyboardMode.primary
-        }
-        self.layoutKeys()
-    }
+    //
+    //  General Keyboard Setup
+    //
     
     func setDimensions() {
         let layoutFileName = self.layout.rawValue + "-" + self.getDeviceType() + "-meta"
@@ -228,6 +208,15 @@ class KeyboardViewController: UIInputViewController {
             self.heightConstraint!.constant = self.viewHeight
         }
         self.view.addConstraint(heightConstraint!)
+    }
+    
+    func switchKeyboardMode() {
+        if self.keyboardMode == KeyboardMode.primary {
+            self.keyboardMode = KeyboardMode.secondary
+        } else {
+            self.keyboardMode = KeyboardMode.primary
+        }
+        self.layoutKeys()
     }
     
     //
@@ -330,6 +319,21 @@ class KeyboardViewController: UIInputViewController {
         for key in self.keys {
             key.setLabels(nextContextualForm: nextContextualForm)
         }
+    }
+    
+    func getNearestKeyTo(_ point: CGPoint) -> Key? {
+        var minDist = CGFloat.greatestFiniteMagnitude
+        var closestKey: Key?
+        for key in keys {
+            let xDist = point.x - key.center.x
+            let yDist = point.y - key.center.y
+            let dist = sqrt(xDist * xDist + yDist * yDist)
+            if dist < minDist {
+                minDist = dist
+                closestKey = key
+            }
+        }
+        return closestKey
     }
     
     //
@@ -532,6 +536,25 @@ class KeyboardViewController: UIInputViewController {
     //  Settings
     //
     
+    func readSettings() {
+        
+        // layout
+        if let defaultLayout = UserDefaults.standard.value(forKey: SavedDefaults.KeyLayout.rawValue) {
+            self.layout = KeyboardLayout.init(rawValue: defaultLayout as! String)
+        } else {
+            self.layout = KeyboardLayout.Alphabetical
+            UserDefaults.standard.set(self.layout.rawValue, forKey: SavedDefaults.KeyLayout.rawValue)
+        }
+        
+        // labels
+        if let defaultLabels = UserDefaults.standard.value(forKey: SavedDefaults.KeyLabels.rawValue) {
+            self.contextualFormsEnabled = (defaultLabels as! Bool)
+        } else {
+            self.contextualFormsEnabled = true
+            UserDefaults.standard.set(self.contextualFormsEnabled, forKey: SavedDefaults.KeyLabels.rawValue)
+        }
+    }
+    
     func showSettings() {
         // show settings
         self.settingsVC = SettingsViewController.init(frame: self.view.frame, colorMode: self.colorMode)
@@ -674,23 +697,8 @@ class KeyboardViewController: UIInputViewController {
     }
     
     //
-    //  Other Utility
+    //  Device Information
     //
-    
-    func getNearestKeyTo(_ point: CGPoint) -> Key? {
-        var minDist = CGFloat.greatestFiniteMagnitude
-        var closestKey: Key?
-        for key in keys {
-            let xDist = point.x - key.center.x
-            let yDist = point.y - key.center.y
-            let dist = sqrt(xDist * xDist + yDist * yDist)
-            if dist < minDist {
-                minDist = dist
-                closestKey = key
-            }
-        }
-        return closestKey
-    }
     
     func getDeviceType() -> String {
         
