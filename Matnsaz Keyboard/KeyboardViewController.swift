@@ -554,7 +554,7 @@ class KeyboardViewController: UIInputViewController {
         self.leftDividerLayer.fillColor = Colors.suggestionDividerColor.cgColor
         self.rightDividerLayer.fillColor = Colors.suggestionDividerColor.cgColor
         
-        self.showSuggestionDividers()
+        self.showSuggestionDividersIfNeeded()
     }
     
     func showSuggestionDividers() {
@@ -565,6 +565,18 @@ class KeyboardViewController: UIInputViewController {
     func hideSuggestionDividers() {
         self.leftDividerLayer.removeFromSuperlayer()
         self.rightDividerLayer.removeFromSuperlayer()
+    }
+    
+    func showSuggestionDividersIfNeeded() {
+        var noSuggestions = true
+        var noHighlight = true
+        for button in suggestionButtons {
+            if button.suggestion != nil { noSuggestions = false }
+            if button.highlightVisible == true { noHighlight = false }
+        }
+        if noSuggestions || noHighlight {
+            self.showSuggestionDividers()
+        }
     }
     
     func hideSuggestionDividersIfNeeded() {
