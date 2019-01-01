@@ -53,9 +53,13 @@ class KeyboardViewController: UIInputViewController {
     var colorMode = Key.KeyboardColorMode.Light
     var settingsVC: SettingsViewController!
     let tatweel: Character = "ـ"
+    
+    // dimensions
     var viewHeight: CGFloat!
     var keysViewHeight: CGFloat!
     var suggestionsViewHeight: CGFloat!
+    var suggestionsMarginTop: Double!
+    var suggestionsMarginSide: Double!
     
     // views
     var keysView: UIView!
@@ -105,7 +109,7 @@ class KeyboardViewController: UIInputViewController {
         
         // read settings
         self.readSettings()
-        self.setHeights()
+        self.setDimensions()
         
         // other view setup
         self.view.isUserInteractionEnabled = true
@@ -188,33 +192,6 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    func layoutKeys() {
-        // get layout file
-        let layoutFileName = self.layout.rawValue + "-" + self.getDeviceType() + "-layout-" + self.keyboardMode.rawValue
-        
-        // read plist and update layout
-        let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
-        if let dict = NSDictionary(contentsOfFile: path!) {
-            for key in self.keys {
-                if let info = dict[key.name] as? Dictionary<String, Double> {
-                    key.setLayout(x: info["x"]!, y: info["y"]!, width: info["width"]!, height: info["height"]!)
-                } else {
-                    key.hide()
-                }
-            }
-        }
-    }
-    
-    func layoutSuggestions() {
-        let totalWidth = Double(UIScreen.main.bounds.width)
-        let totalHeight = Double(self.suggestionsViewHeight!)
-        let suggestionWidth = totalWidth / 3
-        let suggestionHeight = totalHeight
-        suggestionButtons[0].setLayout(x: totalWidth - suggestionWidth, y: 0, width: suggestionWidth, height: suggestionHeight)
-        suggestionButtons[1].setLayout(x: suggestionWidth, y: 0, width: suggestionWidth, height: suggestionHeight)
-        suggestionButtons[2].setLayout(x: 0, y: 0, width: suggestionWidth, height: suggestionHeight)
-    }
-    
     func switchKeyboardMode() {
         if self.keyboardMode == KeyboardMode.primary {
             self.keyboardMode = KeyboardMode.secondary
@@ -224,72 +201,15 @@ class KeyboardViewController: UIInputViewController {
         self.layoutKeys()
     }
     
-    func getCurrentOrientation() -> Orientation {
-        if UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height {
-            return Orientation.portrait
-        } else {
-            return Orientation.landscape
-        }
-    }
-    
-    func getDeviceType() -> String {
-       
-        // get modelName
-        var modelName: String
-        if TARGET_OS_SIMULATOR != 0 {
-            modelName = ProcessInfo.processInfo.environment["SIMULATOR_MODEL_IDENTIFIER"] ?? ""
-        } else {
-            var size = 0
-            sysctlbyname("hw.machine", nil, &size, nil, 0)
-            var machine = [CChar](repeating: 0, count: size)
-            sysctlbyname("hw.machine", &machine, &size, nil, 0)
-            modelName = String(cString: machine)
-        }
-        
-        // switch model name to model type
-        var type: String
-        switch modelName {
-        case "iPhone3,1", "iPhone3,2", "iPhone3,3", "iPhone4,1", "iPhone5,1", "iPhone5,2", "iPhone5,3", "iPhone5,4", "iPhone6,1", "iPhone6,2", "iPhone8,4":
-            type = "small-phone"
-        case "iPhone7,2", "iPhone8,1", "iPhone9,1", "iPhone9,3", "iPhone10,1", "iPhone10,4":
-            type = "standard-phone"
-        case "iPhone7,1", "iPhone8,2", "iPhone9,2", "iPhone9,4", "iPhone10,2", "iPhone10,5":
-            type = "plus-phone"
-        case "iPhone10,3", "iPhone10,6":
-            type = "X-phone"
-        case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4", "iPad3,1", "iPad3,2", "iPad3,3", "iPad3,4", "iPad3,5", "iPad3,6", "iPad4,1", "iPad4,2", "iPad4,3", "iPad5,3", "iPad5,4", "iPad6,11", "iPad6,12",  "iPad7,5", "iPad7,6", "iPad2,5", "iPad2,6", "iPad2,7", "iPad4,4", "iPad4,5", "iPad4,6", "iPad4,7", "iPad4,8", "iPad4,9", "iPad5,1", "iPad5,2", "iPad6,3", "iPad6,4":
-            type = "standard-tablet"
-        case "iPad6,7", "iPad6,8", "iPad7,1", "iPad7,2":
-            type = "large-tablet"
-        case "iPad7,3", "iPad7,4":
-            type = "medium-tablet"
-        default:
-            type = "unknown"
-        }
-        
-        type += "-" + getCurrentOrientation().rawValue
-        return type
-    }
-    
-    func isPhone() -> Bool {
-        return getDeviceType().contains("phone")
-    }
-    
-    func isTablet() -> Bool {
-        return getDeviceType().contains("tablet")
-    }
-    
-    func setHeights() {
+    func setDimensions() {
         let layoutFileName = self.layout.rawValue + "-" + self.getDeviceType() + "-meta"
         let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
         if let dict = NSDictionary(contentsOfFile: path!) {
-            if let height = dict["primary-height"] as? CGFloat {
-                self.keysViewHeight = height
-            }
-            if let suggHeight = dict["suggestions-height"] as? CGFloat {
-                self.suggestionsViewHeight = suggHeight
-                self.viewHeight = self.keysViewHeight + self.suggestionsViewHeight
-            }
+            self.keysViewHeight = dict["primary-height"] as? CGFloat
+            self.suggestionsViewHeight = dict["suggestions-height"] as? CGFloat
+            self.viewHeight = self.keysViewHeight + self.suggestionsViewHeight
+            self.suggestionsMarginTop = dict["suggestions-margin-top"] as? Double
+            self.suggestionsMarginSide = dict["suggestions-margin-side"] as? Double
         }
     }
     
@@ -308,6 +228,46 @@ class KeyboardViewController: UIInputViewController {
             self.heightConstraint!.constant = self.viewHeight
         }
         self.view.addConstraint(heightConstraint!)
+    }
+    
+    //
+    //  Setup Keys
+    //
+    
+    func setUpKeys() {
+        
+        // filepath
+        let fileName = self.layout.rawValue + "-keys"
+        let path = Bundle.main.path(forResource: fileName, ofType: "plist")
+        
+        // read plist
+        if let dict = NSDictionary(contentsOfFile: path!) {
+            // create key for every item in dictionary
+            for (key, value) in dict {
+                let info = value as! Dictionary<String, Any>
+                addKey(name: key as! String,
+                       type: Key.KeyType(rawValue: info["type"] as! String)!,
+                       label: info["label"] as! String,
+                       neighbors: info["neighbors"] as? Array<String>)
+            }
+        }
+    }
+    
+    func layoutKeys() {
+        // get layout file
+        let layoutFileName = self.layout.rawValue + "-" + self.getDeviceType() + "-layout-" + self.keyboardMode.rawValue
+        
+        // read plist and update layout
+        let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
+        if let dict = NSDictionary(contentsOfFile: path!) {
+            for key in self.keys {
+                if let info = dict[key.name] as? Dictionary<String, Double> {
+                    key.setLayout(x: info["x"]!, y: info["y"]!, width: info["width"]!, height: info["height"]!)
+                } else {
+                    key.hide()
+                }
+            }
+        }
     }
     
     func addKey(name: String, type: Key.KeyType, label: String, neighbors: Array<String>?) {
@@ -343,6 +303,38 @@ class KeyboardViewController: UIInputViewController {
             break
         }
     }
+    
+    func hideAllKeys() {
+        for key in self.keys {
+            key.hide()
+        }
+    }
+    
+    func updateKeyTitles() {
+        
+        // figure out what contextual form the next letter should take
+        var nextContextualForm: ArabicScript.ContextualForm
+        if lastCharacter() == nil || followingSpace() || followingZeroWidthNonJoiner() || followingPunctuation() {
+            nextContextualForm = ArabicScript.ContextualForm.Initial
+        } else {
+            let precedingCharacter = lastCharacter()
+            let precedingLetter = ArabicScript.removeDiacritics(String(precedingCharacter!))
+            if ArabicScript.isForwardJoining(precedingLetter.first!) {
+                nextContextualForm = ArabicScript.ContextualForm.Medial
+            } else {
+                nextContextualForm = ArabicScript.ContextualForm.Initial
+            }
+        }
+        
+        // set label on every key
+        for key in self.keys {
+            key.setLabels(nextContextualForm: nextContextualForm)
+        }
+    }
+    
+    //
+    //  Key Interactions
+    //
     
     @objc func keyTouchUp(sender: Key) {
         // handle input
@@ -426,6 +418,10 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
+    //
+    //  Backspace
+    //
+    
     @objc func startBackspace(sender: Key) {
         self.textDocumentProxy.deleteBackward()
         self.backspaceTimer = Timer.scheduledTimer(timeInterval: 0.15, target: self, selector: #selector(backspaceTimerFired(timer:)), userInfo: nil, repeats: true)
@@ -466,6 +462,10 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
+    //
+    //  Space
+    //
+    
     func startSpaceTimer() {
         self.spaceTimer = Timer.scheduledTimer(timeInterval: 0.7, target: self, selector: #selector(spaceTimerFired(timer:)), userInfo: nil, repeats: false)
     }
@@ -473,6 +473,118 @@ class KeyboardViewController: UIInputViewController {
     @objc func spaceTimerFired(timer: Timer) {
         self.spaceTimer.invalidate()
     }
+    
+    //
+    //  Suggestions
+    //
+    
+    func layoutSuggestions() {
+        let totalWidth = Double(UIScreen.main.bounds.width)
+        let totalHeight = Double(self.suggestionsViewHeight!)
+        let suggestionWidth = totalWidth / 3
+        let suggestionHeight = totalHeight
+        suggestionButtons[0].setLayout(x: totalWidth - suggestionWidth,
+                                       y: 0,
+                                       width: suggestionWidth,
+                                       height: suggestionHeight,
+                                       marginTop: self.suggestionsMarginTop,
+                                       marginLeft: 0,
+                                       marginRight: self.suggestionsMarginSide)
+        suggestionButtons[1].setLayout(x: suggestionWidth,
+                                       y: 0,
+                                       width: suggestionWidth,
+                                       height: suggestionHeight,
+                                       marginTop: self.suggestionsMarginTop,
+                                       marginLeft: 0,
+                                       marginRight: 0)
+        suggestionButtons[2].setLayout(x: 0,
+                                       y: 0,
+                                       width: suggestionWidth,
+                                       height: suggestionHeight,
+                                       marginTop: self.suggestionsMarginTop,
+                                       marginLeft: self.suggestionsMarginSide,
+                                       marginRight: 0)
+    }
+    
+    func setUpSuggestionButtons() {
+        for _ in 1...3 {
+            let button = SuggestionButton()
+            self.suggestionsView.addSubview(button)
+            self.suggestionButtons.append(button)
+        }
+    }
+    
+    func resetSuggestions() {
+        for button in suggestionButtons {
+            button.reset()
+        }
+    }
+    
+    func updateSuggestions() {
+        let suggestions = self.autoCorrect.getSuggestions(word: self.currentWord(), keys: letterKeys)
+        resetSuggestions()
+        for i in 0..<suggestions.count {
+            suggestionButtons[i].setSuggestion(suggestions[i])
+        }
+    }
+    
+    //
+    //  Settings
+    //
+    
+    func showSettings() {
+        // show settings
+        self.settingsVC = SettingsViewController.init(frame: self.view.frame, colorMode: self.colorMode)
+        self.addChild(settingsVC)
+        self.view.addSubview(settingsVC.view)
+        self.settingsVC.didMove(toParent: self)
+        self.settingsVC.keyboardViewController = self
+    }
+    
+    func hideSettings() {
+        
+        // hide settings
+        self.settingsVC.willMove(toParent: nil)
+        self.settingsVC.view.removeFromSuperview()
+        self.settingsVC.removeFromParent()
+        
+        // redo keys
+        self.hideAllKeys()
+        self.readSettings()
+        self.setUpKeys()
+    }
+
+    //
+    //  Deal with touches
+    //
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        self.touchPoint = touch.preciseLocation(in: self.keysView)
+        if self.touchPoint!.y < 0 {
+            return
+        }
+        self.artificiallyFiredKey = getNearestKeyTo(self.touchPoint!)
+        self.artificiallyFiredKey?.sendActions(for: UIControl.Event.touchDown)
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let newTouchPoint = touch.preciseLocation(in: self.keysView)
+        if self.artificiallyFiredKey != nil {
+            let oldDist = hypot(self.touchPoint!.x - self.artificiallyFiredKey!.center.x, self.touchPoint!.y - self.artificiallyFiredKey!.center.y)
+            let newDist = hypot(newTouchPoint.x - self.artificiallyFiredKey!.center.x, newTouchPoint.y - self.artificiallyFiredKey!.center.y)
+            if newDist - oldDist > CGFloat(self.artificiallyFiredKey!.width)/2 {
+                self.artificiallyFiredKey!.sendActions(for: UIControl.Event.touchDragExit)
+            } else {
+                self.artificiallyFiredKey!.sendActions(for: UIControl.Event.touchUpInside)
+            }
+        }
+    }
+    
+    //
+    //  Deal with Text Document Proxy
+    //
     
     func lastCharacter() -> Optional<Character> {
         let text = self.textDocumentProxy.documentContextBeforeInput
@@ -487,8 +599,7 @@ class KeyboardViewController: UIInputViewController {
     func currentWord() -> String {
         var word = ""
         if let text = self.textDocumentProxy.documentContextBeforeInput {
-            var reversed = String(text.reversed())
-            reversed = ArabicScript.removeDiacritics(reversed)
+            let reversed = String(text.reversed())
             for char in reversed {
                 if ArabicScript.isLetter(char) {
                     word += String(char)
@@ -538,7 +649,7 @@ class KeyboardViewController: UIInputViewController {
             return s.rangeOfCharacter(from: NSCharacterSet.punctuationCharacters) != nil
         }
     }
-
+    
     func mergeHamzaForward(currentChar: String) {
         if inWord() && lastCharacter() == "ء" {
             self.textDocumentProxy.deleteBackward()
@@ -562,97 +673,9 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    func updateKeyTitles() {
-        
-        // figure out what contextual form the next letter should take
-        var nextContextualForm: ArabicScript.ContextualForm
-        if lastCharacter() == nil || followingSpace() || followingZeroWidthNonJoiner() || followingPunctuation() {
-            nextContextualForm = ArabicScript.ContextualForm.Initial
-        } else {
-            let precedingCharacter = lastCharacter()
-            let precedingLetter = ArabicScript.removeDiacritics(String(precedingCharacter!))
-            if ArabicScript.isForwardJoining(precedingLetter.first!) {
-                nextContextualForm = ArabicScript.ContextualForm.Medial
-            } else {
-                nextContextualForm = ArabicScript.ContextualForm.Initial
-            }
-        }
-        
-        // set label on every key
-        for key in self.keys {
-            key.setLabels(nextContextualForm: nextContextualForm)
-        }
-    }
-    
-    func setUpKeys() {
-        
-        // filepath
-        let fileName = self.layout.rawValue + "-keys"
-        let path = Bundle.main.path(forResource: fileName, ofType: "plist")
-        
-        // read plist
-        if let dict = NSDictionary(contentsOfFile: path!) {
-            // create key for every item in dictionary
-            for (key, value) in dict {
-                let info = value as! Dictionary<String, Any>
-                addKey(name: key as! String,
-                       type: Key.KeyType(rawValue: info["type"] as! String)!,
-                       label: info["label"] as! String,
-                       neighbors: info["neighbors"] as? Array<String>)
-            }
-        }
-    }
-    
-    func setUpSuggestionButtons() {
-        
-        for i in 1...3 {
-            let button = SuggestionButton()
-            if i == 1 {
-                button.isUserInputSuggestion = true
-            }
-            self.suggestionsView.addSubview(button)
-            self.suggestionButtons.append(button)
-        }
-    }
-    
-    func updateSuggestions() {
-        let suggestions = self.autoCorrect.getSuggestions(word: self.currentWord(), keys: letterKeys)
-        print(suggestions)
-        for i in 0..<suggestionButtons.count {
-            suggestionButtons[i].setLabel("")
-        }
-        for i in 0..<suggestions.count {
-            suggestionButtons[i].setLabel(suggestions[i])
-        }
-    }
-    
-    func hideAllKeys() {
-        for key in self.keys {
-            key.hide()
-        }
-    }
-    
-    func showSettings() {
-        // show settings
-        self.settingsVC = SettingsViewController.init(frame: self.view.frame, colorMode: self.colorMode)
-        self.addChild(settingsVC)
-        self.view.addSubview(settingsVC.view)
-        self.settingsVC.didMove(toParent: self)
-        self.settingsVC.keyboardViewController = self
-    }
-    
-    func hideSettings() {
-        
-        // hide settings
-        self.settingsVC.willMove(toParent: nil)
-        self.settingsVC.view.removeFromSuperview()
-        self.settingsVC.removeFromParent()
-        
-        // redo keys
-        self.hideAllKeys()
-        self.readSettings()
-        self.setUpKeys()
-    }
+    //
+    //  Other Utility
+    //
     
     func getNearestKeyTo(_ point: CGPoint) -> Key? {
         var minDist = CGFloat.greatestFiniteMagnitude
@@ -668,28 +691,60 @@ class KeyboardViewController: UIInputViewController {
         }
         return closestKey
     }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
-        self.touchPoint = touch.preciseLocation(in: self.keysView)
-        if self.touchPoint!.y < 0 {
-            return
+    
+    func getDeviceType() -> String {
+        
+        // get modelName
+        var modelName: String
+        if TARGET_OS_SIMULATOR != 0 {
+            modelName = ProcessInfo.processInfo.environment["SIMULATOR_MODEL_IDENTIFIER"] ?? ""
+        } else {
+            var size = 0
+            sysctlbyname("hw.machine", nil, &size, nil, 0)
+            var machine = [CChar](repeating: 0, count: size)
+            sysctlbyname("hw.machine", &machine, &size, nil, 0)
+            modelName = String(cString: machine)
         }
-        self.artificiallyFiredKey = getNearestKeyTo(self.touchPoint!)
-        self.artificiallyFiredKey?.sendActions(for: UIControl.Event.touchDown)
+        
+        // switch model name to model type
+        var type: String
+        switch modelName {
+        case "iPhone3,1", "iPhone3,2", "iPhone3,3", "iPhone4,1", "iPhone5,1", "iPhone5,2", "iPhone5,3", "iPhone5,4", "iPhone6,1", "iPhone6,2", "iPhone8,4":
+            type = "small-phone"
+        case "iPhone7,2", "iPhone8,1", "iPhone9,1", "iPhone9,3", "iPhone10,1", "iPhone10,4":
+            type = "standard-phone"
+        case "iPhone7,1", "iPhone8,2", "iPhone9,2", "iPhone9,4", "iPhone10,2", "iPhone10,5":
+            type = "plus-phone"
+        case "iPhone10,3", "iPhone10,6":
+            type = "X-phone"
+        case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4", "iPad3,1", "iPad3,2", "iPad3,3", "iPad3,4", "iPad3,5", "iPad3,6", "iPad4,1", "iPad4,2", "iPad4,3", "iPad5,3", "iPad5,4", "iPad6,11", "iPad6,12",  "iPad7,5", "iPad7,6", "iPad2,5", "iPad2,6", "iPad2,7", "iPad4,4", "iPad4,5", "iPad4,6", "iPad4,7", "iPad4,8", "iPad4,9", "iPad5,1", "iPad5,2", "iPad6,3", "iPad6,4":
+            type = "standard-tablet"
+        case "iPad6,7", "iPad6,8", "iPad7,1", "iPad7,2":
+            type = "large-tablet"
+        case "iPad7,3", "iPad7,4":
+            type = "medium-tablet"
+        default:
+            type = "unknown"
+        }
+        
+        type += "-" + getCurrentOrientation().rawValue
+        return type
     }
-
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
-        let newTouchPoint = touch.preciseLocation(in: self.keysView)
-        if self.artificiallyFiredKey != nil {
-            let oldDist = hypot(self.touchPoint!.x - self.artificiallyFiredKey!.center.x, self.touchPoint!.y - self.artificiallyFiredKey!.center.y)
-            let newDist = hypot(newTouchPoint.x - self.artificiallyFiredKey!.center.x, newTouchPoint.y - self.artificiallyFiredKey!.center.y)
-            if newDist - oldDist > CGFloat(self.artificiallyFiredKey!.width)/2 {
-                self.artificiallyFiredKey!.sendActions(for: UIControl.Event.touchDragExit)
-            } else {
-                self.artificiallyFiredKey!.sendActions(for: UIControl.Event.touchUpInside)
-            }
+    
+    func isPhone() -> Bool {
+        return getDeviceType().contains("phone")
+    }
+    
+    func isTablet() -> Bool {
+        return getDeviceType().contains("tablet")
+    }
+    
+    func getCurrentOrientation() -> Orientation {
+        if UIScreen.main.bounds.size.width < UIScreen.main.bounds.size.height {
+            return Orientation.portrait
+        } else {
+            return Orientation.landscape
         }
     }
+    
 }

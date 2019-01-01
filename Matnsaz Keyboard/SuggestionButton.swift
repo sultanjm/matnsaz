@@ -8,11 +8,19 @@
 
 import UIKit
 
+struct Suggestion {
+    var text: String
+    var isDefault: Bool
+    var isUserTypedString: Bool
+}
+
 class SuggestionButton: UIButton {
     
-    var suggestion = ""
+    var suggestion: Suggestion?
     var label = UILabel()
-    var isUserInputSuggestion: Bool = false
+    var highlightPath = UIBezierPath()
+    var highlightLayer = CAShapeLayer()
+    var highlightVisible = false
     
     init() {
         super.init(frame: CGRect.zero)
@@ -23,24 +31,70 @@ class SuggestionButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setLayout(x: Double, y: Double, width: Double, height: Double) {
+    func setLayout(x: Double, y: Double, width: Double, height: Double, marginTop: Double, marginLeft: Double, marginRight: Double) {
         
-        // frame
+        // frames
         super.frame = CGRect(x: x, y: y, width: width, height: height)
+        let labelFrameRect = CGRect(x: 0 + marginLeft,
+                                    y: 0 + marginTop,
+                                    width: width - marginLeft - marginRight,
+                                    height: height - marginTop)
+        
         
         // set up label
         self.label.font = UIFont.systemFont(ofSize: CGFloat(height * 0.3))
-        self.label.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        self.label.frame = labelFrameRect
         self.label.textAlignment = NSTextAlignment.center
         self.addSubview(self.label)
-    
+        
+        // set up highlight
+        self.highlightPath = UIBezierPath(roundedRect: labelFrameRect, cornerRadius: 8)
+        self.highlightLayer.path = self.highlightPath.cgPath
+        self.highlightLayer.fillColor = UIColor(white: 1.0, alpha: 1.0).cgColor
     }
     
-    func setLabel(_ t: String) {
-        var text = t
-        if self.isUserInputSuggestion && t != "" {
+    func setSuggestion(_ s: Suggestion) {
+        self.suggestion = s
+        var text = s.text
+        if self.suggestion!.isUserTypedString && self.suggestion!.text != "" {
             text = "\"" + text + "\""
+        }
+        if self.suggestion!.isDefault && !self.suggestion!.isUserTypedString {
+            self.showHighlight()
         }
         self.label.text = text
     }
+    
+    func reset() {
+        self.suggestion = nil
+        self.label.text = ""
+        self.hideHighlight()
+    }
+    
+    func showHighlight() {
+        if !self.highlightVisible {
+            self.layer.insertSublayer(self.highlightLayer, below: self.label.layer)
+            self.highlightVisible = true
+        }
+    }
+    
+    func hideHighlight() {
+        if self.highlightVisible {
+            self.highlightLayer.removeFromSuperlayer()
+            self.highlightVisible = false
+        }
+    }
+    
+    override open var isHighlighted: Bool {
+        didSet {
+            if isHighlighted {
+                if self.suggestion != nil {
+                    self.showHighlight()
+                }
+            } else {
+                self.hideHighlight()
+            }
+        }
+    }
 }
+

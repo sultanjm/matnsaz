@@ -6,5 +6,9 @@
 	<integer>268</integer>
 	<key>suggestions-height</key>
 	<integer>52</integer>
+	<key>suggestions-margin-top</key>
+	<integer>10</integer>
+	<key>suggestions-margin-side</key>
+	<integer>3</integer>
 </dict>
 </plist>
