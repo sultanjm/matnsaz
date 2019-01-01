@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		154B439F21D9B1DC002ADB40 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154B439E21D9B1DC002ADB40 /* main.swift */; };
-		154B43A021D9B207002ADB40 /* ArabicScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15633338206A08C8004F823C /* ArabicScript.swift */; };
 		154B43A121D9B312002ADB40 /* WordCounter in CopyFiles */ = {isa = PBXBuildFile; fileRef = 154B439721D9B1B2002ADB40 /* WordCounter */; };
 		154B43A621D9B811002ADB40 /* WordFrequency in Resources */ = {isa = PBXBuildFile; fileRef = 154B43A521D9B811002ADB40 /* WordFrequency */; };
 		155257A7203AA38100B57DE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CA32032AD5100A84C7E /* Assets.xcassets */; };
@@ -16,6 +15,8 @@
 		1557161F20995DB200B0E7D4 /* Alphabetical-standard-phone-portrait-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1557161E20995DB200B0E7D4 /* Alphabetical-standard-phone-portrait-layout-primary.plist */; };
 		156333372068A9E0004F823C /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156333352068A9DC004F823C /* Key.swift */; };
 		15633339206A08C8004F823C /* ArabicScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15633338206A08C8004F823C /* ArabicScript.swift */; };
+		156BD5FA21DBA79400CEBC04 /* ArabicScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15633338206A08C8004F823C /* ArabicScript.swift */; };
+		156BD5FB21DBA7A800CEBC04 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DB7CD22032ADC500A84C7E /* Info.plist */; };
 		15AFD3FC209BFBD100184F36 /* Alphabetical-standard-phone-portrait-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD3FB209BFBD100184F36 /* Alphabetical-standard-phone-portrait-meta.plist */; };
 		15AFD3FE209C008300184F36 /* Alphabetical-standard-phone-landscape-meta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD3FD209C008300184F36 /* Alphabetical-standard-phone-landscape-meta.plist */; };
 		15AFD400209C00B100184F36 /* Alphabetical-standard-phone-landscape-layout-primary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15AFD3FF209C00B100184F36 /* Alphabetical-standard-phone-landscape-layout-primary.plist */; };
@@ -647,6 +648,7 @@
 			files = (
 				15DE59B72112551500FAA134 /* KeyboardSelection-Light.png in Resources */,
 				15ED8D1721D9B957005448EC /* MappingToQWERTY-standard-phone-landscape-layout-primary.plist in Resources */,
+				156BD5FB21DBA7A800CEBC04 /* Info.plist in Resources */,
 				15ED8D0621D9B957005448EC /* MappingToQWERTY-X-phone-landscape-meta.plist in Resources */,
 				15ED8D1621D9B957005448EC /* MappingToQWERTY-plus-phone-portrait-meta.plist in Resources */,
 				154B43A621D9B811002ADB40 /* WordFrequency in Resources */,
@@ -757,7 +759,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				154B43A021D9B207002ADB40 /* ArabicScript.swift in Sources */,
+				156BD5FA21DBA79400CEBC04 /* ArabicScript.swift in Sources */,
 				154B439F21D9B1DC002ADB40 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

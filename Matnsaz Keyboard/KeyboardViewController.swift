@@ -341,8 +341,9 @@ class KeyboardViewController: UIInputViewController {
     //
     
     @objc func keyTouchUp(sender: Key) {
-        // handle input
+        
         switch sender.type {
+        
         case Key.KeyType.Letter,
              Key.KeyType.Number,
              Key.KeyType.Punctuation,
@@ -359,14 +360,17 @@ class KeyboardViewController: UIInputViewController {
                 self.textDocumentProxy.insertText(String(tatweel))
             }
             self.updateSuggestions()
+        
         case Key.KeyType.SwitchToPrimaryMode,
              Key.KeyType.SwitchToSecondaryMode:
             self.switchKeyboardMode()
+        
         case Key.KeyType.DismissKeyboard:
             self.dismissKeyboard()
+        
         case Key.KeyType.Space:
             self.deleteTatweelIfNeeded()
-            let action = " "
+            
             // "." shortcut
             if DoubleTapSpaceBarShortcutActive {
                 let precedingCharacter = self.textDocumentProxy.documentContextBeforeInput?.suffix(1)
@@ -382,15 +386,30 @@ class KeyboardViewController: UIInputViewController {
                     self.startSpaceTimer()
                 }
             }
-            self.textDocumentProxy.insertText(action)
+            
+            // insert text of default suggestion
+            for button in suggestionButtons {
+                if button.suggestion != nil {
+                    if button.suggestion!.isDefault {
+                        self.deleteCurrentWord()
+                        self.textDocumentProxy.insertText(button.suggestion!.text)
+                    }
+                }
+            }
+            self.textDocumentProxy.insertText(" ")
+            self.resetSuggestions()
+        
         case Key.KeyType.ZeroWidthNonJoiner:
             self.deleteTatweelIfNeeded()
             self.textDocumentProxy.insertText("‌")
             self.updateSuggestions()
+        
         case Key.KeyType.Return:
             self.textDocumentProxy.insertText("\n")
+        
         case Key.KeyType.Settings:
             self.showSettings()
+        
         default:
             break
         }
@@ -515,6 +534,9 @@ class KeyboardViewController: UIInputViewController {
             let button = SuggestionButton()
             self.suggestionsView.addSubview(button)
             self.suggestionButtons.append(button)
+            button.addTarget(self, action: #selector(suggestionTouchUp(sender:)), for: .touchUpInside)
+            button.addTarget(self, action: #selector(suggestionTouchDown(sender:)), for: .touchDown)
+            button.addTarget(self, action: #selector(suggestionDragExit(sender:)), for: .touchDragExit)
         }
     }
     
@@ -530,6 +552,25 @@ class KeyboardViewController: UIInputViewController {
         for i in 0..<suggestions.count {
             suggestionButtons[i].setSuggestion(suggestions[i])
         }
+    }
+    
+    @objc func suggestionTouchUp(sender: SuggestionButton) {
+        if (sender.suggestion != nil) {
+            self.deleteCurrentWord()
+            self.textDocumentProxy.insertText(sender.suggestion!.text + " ")
+            self.resetSuggestions()
+        }
+    }
+    
+    @objc func suggestionTouchDown(sender: SuggestionButton) {
+        for button in suggestionButtons {
+            if button == sender { button.showHighlight() }
+            else { button.hideHighlight() }
+        }
+    }
+    
+    @objc func suggestionDragExit(sender: SuggestionButton) {
+        sender.hideHighlight()
     }
     
     //
@@ -578,7 +619,7 @@ class KeyboardViewController: UIInputViewController {
     }
 
     //
-    //  Deal with touches
+    //  Deal with touches to keyboard view
     //
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -633,6 +674,13 @@ class KeyboardViewController: UIInputViewController {
         }
         word = String(word.reversed())
         return word
+    }
+    
+    func deleteCurrentWord() {
+        if currentWord().count == 0 { return }
+        for _ in 1...currentWord().count {
+            self.textDocumentProxy.deleteBackward()
+        }
     }
     
     func deleteTatweelIfNeeded() {
