@@ -4,11 +4,20 @@
 <dict>
 	<key>primary-height</key>
 	<integer>268</integer>
-	<key>suggestions-height</key>
-	<integer>52</integer>
-	<key>suggestions-margin-top</key>
-	<integer>10</integer>
-	<key>suggestions-margin-side</key>
-	<integer>3</integer>
+	<key>suggestions</key>
+	<dict>
+		<key>x</key>
+		<real>0</real>
+		<key>y</key>
+		<real>0</real>
+		<key>width</key>
+		<real>375</real>
+		<key>height</key>
+		<integer>52</integer>
+		<key>margin-top</key>
+		<real>10</real>
+		<key>margin-side</key>
+		<real>3</real>
+	</dict>
 </dict>
 </plist>

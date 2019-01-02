@@ -58,9 +58,12 @@ class KeyboardViewController: UIInputViewController {
     // dimensions
     var viewHeight: CGFloat!
     var keysViewHeight: CGFloat!
+    var suggestionsViewX: CGFloat!
+    var suggestionsViewY: CGFloat!
+    var suggestionsViewWidth: CGFloat!
     var suggestionsViewHeight: CGFloat!
-    var suggestionsMarginTop: Double!
-    var suggestionsMarginSide: Double!
+    var suggestionsMarginTop: CGFloat!
+    var suggestionsMarginSide: CGFloat!
     
     // views
     var keysView: UIView!
@@ -77,6 +80,8 @@ class KeyboardViewController: UIInputViewController {
     var suggestionButtons: [SuggestionButton] = []
     var leftDividerLayer = CAShapeLayer()
     var rightDividerLayer = CAShapeLayer()
+    var leftDividerVisible = false
+    var rightDividerVisible = false
     
     // artificially firing a key if you didn't actually press one
     var artificiallyFiredKey: Key?
@@ -189,10 +194,14 @@ class KeyboardViewController: UIInputViewController {
         let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
         if let dict = NSDictionary(contentsOfFile: path!) {
             self.keysViewHeight = dict["primary-height"] as? CGFloat
-            self.suggestionsViewHeight = dict["suggestions-height"] as? CGFloat
+            let suggestionsDict = dict["suggestions"] as! Dictionary<String, CGFloat>
+            self.suggestionsViewX = suggestionsDict["x"]
+            self.suggestionsViewY = suggestionsDict["y"]
+            self.suggestionsViewWidth = suggestionsDict["width"]
+            self.suggestionsViewHeight = suggestionsDict["height"]
             self.viewHeight = self.keysViewHeight + self.suggestionsViewHeight
-            self.suggestionsMarginTop = dict["suggestions-margin-top"] as? Double
-            self.suggestionsMarginSide = dict["suggestions-margin-side"] as? Double
+            self.suggestionsMarginTop = suggestionsDict["margin-top"]
+            self.suggestionsMarginSide = suggestionsDict["margin-side"]
         }
     }
     
@@ -505,28 +514,25 @@ class KeyboardViewController: UIInputViewController {
     //
     
     func layoutSuggestions() {
-        let totalWidth = Double(UIScreen.main.bounds.width)
-        let totalHeight = Double(self.suggestionsViewHeight!)
-        let suggestionWidth = totalWidth / 3
-        let suggestionHeight = totalHeight
-        suggestionButtons[0].setLayout(x: totalWidth - suggestionWidth,
-                                       y: 0,
-                                       width: suggestionWidth,
-                                       height: suggestionHeight,
+        let buttonWidth = self.suggestionsViewWidth / 3
+        suggestionButtons[0].setLayout(x: self.suggestionsViewX + self.suggestionsViewWidth - buttonWidth,
+                                       y: self.suggestionsViewY,
+                                       width: buttonWidth,
+                                       height: self.suggestionsViewHeight,
                                        marginTop: self.suggestionsMarginTop,
                                        marginLeft: 0,
                                        marginRight: self.suggestionsMarginSide)
-        suggestionButtons[1].setLayout(x: suggestionWidth,
-                                       y: 0,
-                                       width: suggestionWidth,
-                                       height: suggestionHeight,
+        suggestionButtons[1].setLayout(x: self.suggestionsViewX + buttonWidth,
+                                       y: self.suggestionsViewY,
+                                       width: buttonWidth,
+                                       height: self.suggestionsViewHeight,
                                        marginTop: self.suggestionsMarginTop,
                                        marginLeft: 0,
                                        marginRight: 0)
-        suggestionButtons[2].setLayout(x: 0,
-                                       y: 0,
-                                       width: suggestionWidth,
-                                       height: suggestionHeight,
+        suggestionButtons[2].setLayout(x: self.suggestionsViewX,
+                                       y: self.suggestionsViewY,
+                                       width: buttonWidth,
+                                       height: self.suggestionsViewHeight,
                                        marginTop: self.suggestionsMarginTop,
                                        marginLeft: self.suggestionsMarginSide,
                                        marginRight: 0)
@@ -554,39 +560,42 @@ class KeyboardViewController: UIInputViewController {
         self.leftDividerLayer.fillColor = Colors.suggestionDividerColor.cgColor
         self.rightDividerLayer.fillColor = Colors.suggestionDividerColor.cgColor
         
-        self.showSuggestionDividersIfNeeded()
+        self.updateSuggestionDividerVisibility()
     }
     
-    func showSuggestionDividers() {
-        self.suggestionsView.layer.addSublayer(self.leftDividerLayer)
-        self.suggestionsView.layer.addSublayer(self.rightDividerLayer)
-    }
-    
-    func hideSuggestionDividers() {
-        self.leftDividerLayer.removeFromSuperlayer()
-        self.rightDividerLayer.removeFromSuperlayer()
-    }
-    
-    func showSuggestionDividersIfNeeded() {
-        var noSuggestions = true
-        var noHighlight = true
-        for button in suggestionButtons {
-            if button.suggestion != nil { noSuggestions = false }
-            if button.highlightVisible == true { noHighlight = false }
-        }
-        if noSuggestions || noHighlight {
-            self.showSuggestionDividers()
+    func showLeftDivider() {
+        if !self.leftDividerVisible {
+            self.suggestionsView.layer.addSublayer(self.leftDividerLayer)
+            self.leftDividerVisible = true
         }
     }
     
-    func hideSuggestionDividersIfNeeded() {
-        for button in suggestionButtons {
-            if button.suggestion != nil {
-                if !button.suggestion!.isUserTypedString && button.suggestion!.isDefault {
-                    hideSuggestionDividers()
-                }
-            }
+    func hideLeftDivider() {
+        if self.leftDividerVisible {
+            self.leftDividerLayer.removeFromSuperlayer()
+            self.leftDividerVisible = false
         }
+    }
+    
+    func showRightDivider() {
+        if !self.rightDividerVisible {
+            self.suggestionsView.layer.addSublayer(self.rightDividerLayer)
+            self.rightDividerVisible = true
+        }
+    }
+    
+    func hideRightDivider() {
+        if self.rightDividerVisible {
+            self.rightDividerLayer.removeFromSuperlayer()
+            self.rightDividerVisible = false
+        }
+    }
+    
+    func updateSuggestionDividerVisibility() {
+        if suggestionButtons[0].highlightVisible || suggestionButtons[1].highlightVisible { self.hideRightDivider() }
+        else { self.showRightDivider() }
+        if suggestionButtons[1].highlightVisible || suggestionButtons[2].highlightVisible { self.hideLeftDivider() }
+        else { self.showLeftDivider() }
     }
     
     func setUpSuggestionButtons() {
@@ -604,7 +613,7 @@ class KeyboardViewController: UIInputViewController {
         for button in suggestionButtons {
             button.reset()
         }
-        self.showSuggestionDividers()
+        self.updateSuggestionDividerVisibility()
     }
     
     func updateSuggestions() {
@@ -613,7 +622,7 @@ class KeyboardViewController: UIInputViewController {
         for i in 0..<suggestions.count {
             suggestionButtons[i].setSuggestion(suggestions[i])
         }
-        self.hideSuggestionDividersIfNeeded()
+        self.updateSuggestionDividerVisibility()
     }
     
     @objc func suggestionTouchUp(sender: SuggestionButton) {
@@ -629,11 +638,12 @@ class KeyboardViewController: UIInputViewController {
             if button == sender { button.showHighlight() }
             else { button.hideHighlight() }
         }
-        self.hideSuggestionDividers()
+        self.updateSuggestionDividerVisibility()
     }
     
     @objc func suggestionDragExit(sender: SuggestionButton) {
         sender.hideHighlight()
+        self.updateSuggestionDividerVisibility()
     }
     
     //

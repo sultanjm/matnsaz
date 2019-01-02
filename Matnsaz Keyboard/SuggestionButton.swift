@@ -31,7 +31,7 @@ class SuggestionButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setLayout(x: Double, y: Double, width: Double, height: Double, marginTop: Double, marginLeft: Double, marginRight: Double) {
+    func setLayout(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, marginTop: CGFloat, marginLeft: CGFloat, marginRight: CGFloat) {
         
         // frames
         super.frame = CGRect(x: x, y: y, width: width, height: height)
@@ -72,7 +72,7 @@ class SuggestionButton: UIButton {
     }
     
     func showHighlight() {
-        if !self.highlightVisible {
+        if !self.highlightVisible && self.suggestion != nil {
             self.layer.insertSublayer(self.highlightLayer, below: self.label.layer)
             self.highlightVisible = true
         }
