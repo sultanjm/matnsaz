@@ -4,5 +4,22 @@
 <dict>
 	<key>primary-height</key>
 	<integer>204</integer>
+	<key>pop-up-height-hang</key>
+	<real>58</real>
+	<key>suggestions</key>
+	<dict>
+		<key>x</key>
+		<real>72</real>
+		<key>y</key>
+		<real>0</real>
+		<key>width</key>
+		<real>524</real>
+		<key>height</key>
+		<real>52</real>
+		<key>margin-top</key>
+		<real>8</real>
+		<key>margin-side</key>
+		<real>0</real>
+	</dict>
 </dict>
 </plist>

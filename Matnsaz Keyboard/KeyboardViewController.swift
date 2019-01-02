@@ -33,7 +33,7 @@ enum KeyboardMode: String {
 }
 
 struct Colors {
-    static let lightModeBackgroundColor = UIColor(red: 209/255, green: 212/255, blue: 216/255, alpha: 1)
+    static let lightModeBackgroundColor = UIColor(red: 208/255, green: 211/255, blue: 216/255, alpha: 1)
     static let darkModeBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.01)
     static let suggestionDividerColor = UIColor(red: 192/255, green: 194/255, blue: 198/255, alpha: 1.0)
 }
@@ -64,6 +64,7 @@ class KeyboardViewController: UIInputViewController {
     var suggestionsViewHeight: CGFloat!
     var suggestionsMarginTop: CGFloat!
     var suggestionsMarginSide: CGFloat!
+    var popUpHeightHang: CGFloat!
     
     // views
     var keysView: UIView!
@@ -114,36 +115,30 @@ class KeyboardViewController: UIInputViewController {
         transparentView.translatesAutoresizingMaskIntoConstraints = false;
         transparentView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -4.0).isActive = true
         
-        // read settings
-        self.readSettings()
-        self.setDimensions()
-        
         // other view setup
         self.view.isUserInteractionEnabled = true
         self.view.isMultipleTouchEnabled = false
         self.view.backgroundColor = Colors.lightModeBackgroundColor
-        self.updateViewConstraints()
         
         // set up key views
-        self.keysView = UIView.init(frame: CGRect(
-            origin: CGPoint.init(x: 0, y: self.suggestionsViewHeight),
-            size: CGSize.init(width: UIScreen.main.bounds.width, height: self.keysViewHeight)))
+        self.keysView = UIView(frame: CGRect.zero)
         self.keysView.isUserInteractionEnabled = true
         self.keysView.isMultipleTouchEnabled = false
         self.view.addSubview(self.keysView)
         
         // set up suggestions views
-        self.suggestionsView = UIView.init(frame: CGRect(
-            origin: CGPoint.init(x: 0, y: 0),
-            size: CGSize.init(width: UIScreen.main.bounds.width, height: self.suggestionsViewHeight)))
+        self.suggestionsView = UIView(frame: CGRect.zero)
         self.suggestionsView.isUserInteractionEnabled = true
         self.suggestionsView.isMultipleTouchEnabled = false
         self.view.addSubview(self.suggestionsView)
         
-        // set up keys
+        // read settings
+        self.readSettings()
+        self.setDimensions()
+        self.updateViewConstraints()
+        
+        // set up buttons
         self.setUpKeys()
-
-        // set up suggestion buttons
         self.setUpSuggestionButtons()
     }
     
@@ -182,6 +177,7 @@ class KeyboardViewController: UIInputViewController {
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
+        self.setDimensions()
         self.updateHeightConstraint()
     }
     
@@ -194,6 +190,7 @@ class KeyboardViewController: UIInputViewController {
         let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
         if let dict = NSDictionary(contentsOfFile: path!) {
             self.keysViewHeight = dict["primary-height"] as? CGFloat
+            self.popUpHeightHang = dict["pop-up-height-hang"] as? CGFloat
             let suggestionsDict = dict["suggestions"] as! Dictionary<String, CGFloat>
             self.suggestionsViewX = suggestionsDict["x"]
             self.suggestionsViewY = suggestionsDict["y"]
@@ -203,6 +200,10 @@ class KeyboardViewController: UIInputViewController {
             self.suggestionsMarginTop = suggestionsDict["margin-top"]
             self.suggestionsMarginSide = suggestionsDict["margin-side"]
         }
+        self.keysView.frame = CGRect(origin: CGPoint.init(x: 0, y: self.suggestionsViewHeight),
+                                     size: CGSize.init(width: UIScreen.main.bounds.width, height: self.keysViewHeight))
+        self.suggestionsView.frame = CGRect(origin: CGPoint.init(x: 0, y: 0),
+                                            size: CGSize.init(width: UIScreen.main.bounds.width, height: self.suggestionsViewHeight))
     }
     
     func updateHeightConstraint() {
@@ -735,14 +736,15 @@ class KeyboardViewController: UIInputViewController {
     
     func currentWord() -> String {
         var word = ""
-        if let text = self.textDocumentProxy.documentContextBeforeInput {
-            let reversed = String(text.reversed())
-            for char in reversed {
-                if ArabicScript.isLetter(char) {
-                    word += String(char)
-                } else {
-                    break
-                }
+        var text = self.textDocumentProxy.documentContextBeforeInput
+        if text == nil || text!.count == 0 { return word }
+        if text?.last == tatweel { text?.removeLast() }
+        let reversed = String(text!.reversed())
+        for char in reversed {
+            if ArabicScript.isLetter(char) {
+                word += String(char)
+            } else {
+                break
             }
         }
         word = String(word.reversed())
@@ -750,6 +752,7 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func deleteCurrentWord() {
+        self.deleteTatweelIfNeeded()
         if currentWord().count == 0 { return }
         for _ in 1...currentWord().count {
             self.textDocumentProxy.deleteBackward()

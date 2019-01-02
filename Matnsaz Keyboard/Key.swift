@@ -267,7 +267,7 @@ class Key: UIButton {
             popUpWidthHangRight = 0
         }
         
-        let popUpHeightHang = max(self.height, self.width) + 18.0 // how far in total the pop up goes above the key
+        let popUpHeightHang = Double(self.keyboardViewController!.popUpHeightHang) // how far in total the pop up goes above the key
         let popUpBaselineDistance = 16.0 // the bottom edge of the pop up (where the corners of the curve are)
         let popUpCornerRadius = 12.0
         let popUpTextBaselineOffset = 4.0 // how much lower than the bottom edge of the pop up the baseline of the text should be

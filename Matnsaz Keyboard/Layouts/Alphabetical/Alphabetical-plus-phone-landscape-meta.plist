@@ -3,6 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>primary-height</key>
-	<integer>204</integer>
+	<real>204</real>
+	<key>pop-up-height-hang</key>
+	<real>52</real>
+	<key>suggestions</key>
+	<dict>
+		<key>x</key>
+		<real>78</real>
+		<key>y</key>
+		<real>0</real>
+		<key>width</key>
+		<real>584</real>
+		<key>height</key>
+		<real>48</real>
+		<key>margin-top</key>
+		<real>6</real>
+		<key>margin-side</key>
+		<real>0</real>
+	</dict>
 </dict>
 </plist>
