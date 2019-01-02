@@ -630,6 +630,7 @@ class KeyboardViewController: UIInputViewController {
         if (sender.suggestion != nil) {
             self.deleteCurrentWord()
             self.textDocumentProxy.insertText(sender.suggestion!.text + " ")
+            self.updateKeyTitles()
             self.resetSuggestions()
         }
     }
