@@ -1364,6 +1364,7 @@ class ArabicScript {
     
     class func isLetter(_ char: Character) -> Bool {
         let scalars = self.removeDiacritics(String(char)).unicodeScalars
+        if scalars.count == 0 { return false }
         let scalar = UnicodeScalar(scalars[scalars.startIndex].value)!
         return isLetter(scalar)
     }

@@ -32,10 +32,27 @@ enum KeyboardMode: String {
     case secondary
 }
 
+enum KeyboardColorMode: String {
+    case Light
+    case Dark
+}
+
 struct Colors {
-    static let lightModeBackgroundColor = UIColor(red: 208/255, green: 211/255, blue: 216/255, alpha: 1)
-    static let darkModeBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.01)
-    static let suggestionDividerColor = UIColor(red: 192/255, green: 194/255, blue: 198/255, alpha: 1.0)
+    // background
+    static let lightModeBackground = UIColor(red: 208/255, green: 211/255, blue: 216/255, alpha: 1)
+    static let darkModeBackground = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.01)
+    // suggestions
+    static let lightModeSuggestionDivider = UIColor(red: 177/255, green: 180/255, blue: 186/255, alpha: 1.0)
+    static let darkModeSuggestionDivider = UIColor(white: 1.0, alpha: 0.06)
+    // keys
+    static let lightModeKeyText = UIColor.black
+    static let lightModeKeyBackground = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    static let lightModeSpecialKeyBackground = UIColor(red: 0.67, green: 0.71, blue: 0.75, alpha: 1.0)
+    static let darkModeKeyText = UIColor.white
+    static let darkModeKeyBackground = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.30)
+    static let darkModeSpecialKeyBackground = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.12)
+    static let disabledKeyText = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+    static let KeyShadow = UIColor(red: 0.1, green: 0.15, blue: 0.06, alpha: 0.36).cgColor
 }
 
 enum SavedDefaults: String {
@@ -51,7 +68,7 @@ class KeyboardViewController: UIInputViewController {
     var backspaceCount = 0
     var heightConstraint: NSLayoutConstraint?
     var keyboardMode = KeyboardMode.primary
-    var colorMode = Key.KeyboardColorMode.Light
+    var colorMode = KeyboardColorMode.Light
     var settingsVC: SettingsViewController!
     let tatweel: Character = "ـ"
     
@@ -118,7 +135,7 @@ class KeyboardViewController: UIInputViewController {
         // other view setup
         self.view.isUserInteractionEnabled = true
         self.view.isMultipleTouchEnabled = false
-        self.view.backgroundColor = Colors.lightModeBackgroundColor
+        self.view.backgroundColor = Colors.lightModeBackground
         
         // set up key views
         self.keysView = UIView(frame: CGRect.zero)
@@ -158,11 +175,12 @@ class KeyboardViewController: UIInputViewController {
 
         // dark mode
         if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
-            self.colorMode = Key.KeyboardColorMode.Dark
-            self.view.backgroundColor = Colors.darkModeBackgroundColor
-            for key in self.keys {
-                key.handleDarkMode()
-            }
+            self.colorMode = KeyboardColorMode.Dark
+            self.view.backgroundColor = Colors.darkModeBackground
+            self.leftDividerLayer.fillColor = Colors.darkModeSuggestionDivider.cgColor
+            self.rightDividerLayer.fillColor = Colors.darkModeSuggestionDivider.cgColor
+            for key in self.keys { key.handleDarkMode() }
+            for button in self.suggestionButtons { button.handleDarkMode() }
         }
     }
     
@@ -230,6 +248,12 @@ class KeyboardViewController: UIInputViewController {
             self.keyboardMode = KeyboardMode.primary
         }
         self.layoutKeys()
+    }
+    
+    func switchToPrimaryMode() {
+        if self.keyboardMode != KeyboardMode.primary {
+            self.switchKeyboardMode()
+        }
     }
     
     //
@@ -318,9 +342,12 @@ class KeyboardViewController: UIInputViewController {
         var nextContextualForm: ArabicScript.ContextualForm
         if lastCharacter() == nil || followingSpace() || followingZeroWidthNonJoiner() || followingPunctuation() {
             nextContextualForm = ArabicScript.ContextualForm.Initial
-        } else {
-            let precedingCharacter = lastCharacter()
-            let precedingLetter = ArabicScript.removeDiacritics(String(precedingCharacter!))
+        }
+        else if ArabicScript.removeDiacritics(String(lastCharacter()!)).count == 0 {
+            nextContextualForm = ArabicScript.ContextualForm.Initial
+        }
+        else {
+            let precedingLetter = ArabicScript.removeDiacritics(String(lastCharacter()!))
             if ArabicScript.isForwardJoining(precedingLetter.first!) {
                 nextContextualForm = ArabicScript.ContextualForm.Medial
             } else {
@@ -359,11 +386,8 @@ class KeyboardViewController: UIInputViewController {
         
         case Key.KeyType.Letter,
              Key.KeyType.Number,
-             Key.KeyType.Punctuation,
              Key.KeyType.Diacritic:
-            if isPhone() {
-                sender.hidePopUp()
-            }
+            sender.hidePopUp()
             var action = sender.name
             mergeHamzaForward(currentChar: sender.name)
             action = mergeHamzaBackward(currentChar: sender.name)
@@ -374,6 +398,14 @@ class KeyboardViewController: UIInputViewController {
             }
             self.updateSuggestions()
         
+        case Key.KeyType.Punctuation:
+            sender.hidePopUp()
+            let action = sender.name
+            self.deleteTatweelIfNeeded()
+            self.textDocumentProxy.insertText(action)
+            self.updateSuggestions()
+            self.switchToPrimaryMode()
+            
         case Key.KeyType.SwitchToPrimaryMode,
              Key.KeyType.SwitchToSecondaryMode:
             self.switchKeyboardMode()
@@ -411,6 +443,7 @@ class KeyboardViewController: UIInputViewController {
             }
             self.textDocumentProxy.insertText(" ")
             self.resetSuggestions()
+            self.switchToPrimaryMode()
         
         case Key.KeyType.ZeroWidthNonJoiner:
             self.deleteTatweelIfNeeded()
@@ -558,8 +591,8 @@ class KeyboardViewController: UIInputViewController {
         
         self.leftDividerLayer.path = leftDividerPath.cgPath
         self.rightDividerLayer.path = rightDividerPath.cgPath
-        self.leftDividerLayer.fillColor = Colors.suggestionDividerColor.cgColor
-        self.rightDividerLayer.fillColor = Colors.suggestionDividerColor.cgColor
+        self.leftDividerLayer.fillColor = Colors.lightModeSuggestionDivider.cgColor
+        self.rightDividerLayer.fillColor = Colors.lightModeSuggestionDivider.cgColor
         
         self.updateSuggestionDividerVisibility()
     }
@@ -739,16 +772,18 @@ class KeyboardViewController: UIInputViewController {
         if self.textDocumentProxy.documentContextBeforeInput == nil { return "" }
         var text = self.textDocumentProxy.documentContextBeforeInput!
         if text.count == 0 { return "" }
-        if text.last == " " { return "" }
+        if ArabicScript.removeDiacritics(String(text.last!)) == " " { return "" }
         if text.last?.unicodeScalars.last?.value == 0x200C { return "" }
         if NSCharacterSet.punctuationCharacters.contains(text.last!.unicodeScalars.last!) { return "" }
         if text.last == tatweel { text.removeLast() }
         var word = ""
         let reversed = String(text.reversed())
         for char in reversed {
-            if char == " " { break }
-            if char.unicodeScalars.last?.value == 0x200C { break }
-            if NSCharacterSet.punctuationCharacters.contains(char.unicodeScalars.last!) { break }
+            let cleanedChar = ArabicScript.removeDiacritics(String(char))
+            if cleanedChar.count == 0 { break }
+            if cleanedChar == " " { break }
+            if cleanedChar.unicodeScalars.last?.value == 0x200C { break }
+            if NSCharacterSet.punctuationCharacters.contains(cleanedChar.unicodeScalars.last!) { break }
             word += String(char)
         }
         return String(word.reversed())

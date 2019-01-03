@@ -47,22 +47,6 @@ class Key: UIButton {
         case Settings
     }
     
-    enum KeyboardColorMode: String {
-        case Light
-        case Dark
-    }
-    
-    struct Colors {
-        static let lightModeTextColor = UIColor.black
-        static let lightModeBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        static let lightModeSpecialKeyBackgroundColor = UIColor(red: 0.67, green: 0.71, blue: 0.75, alpha: 1.0)
-        static let darkModeTextColor = UIColor.white
-        static let darkModeBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.30)
-        static let darkModeSpecialKeyBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.12)
-        static let disabledTextColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        static let shadowColor = UIColor(red: 0.1, green: 0.15, blue: 0.06, alpha: 0.36).cgColor
-    }
-    
     init(name: String, type: KeyType, label: String, contextualFormsEnabled: Bool, keyboardViewController: KeyboardViewController, neighbors: Array<String>?) {
         
         // instance setup
@@ -93,7 +77,7 @@ class Key: UIButton {
         self.setLabels(nextContextualForm: ArabicScript.ContextualForm.Initial)
         
         // shadow
-        self.layer.shadowColor = Colors.shadowColor
+        self.layer.shadowColor = Colors.KeyShadow
         self.layer.shadowOpacity = 1.0
         self.layer.shadowRadius = 0
         self.layer.shadowOffset = CGSize(width: 0, height: 1.0)
@@ -103,7 +87,7 @@ class Key: UIButton {
         self.setColors()
         
         // popUp shadow
-        self.popUpBackgroundLayer.strokeColor = Colors.shadowColor
+        self.popUpBackgroundLayer.strokeColor = Colors.KeyShadow
         self.popUpBackgroundLayer.lineWidth = 0.5
     }
     
@@ -227,28 +211,28 @@ class Key: UIButton {
     
     func setLabelColor() {
         if self.mode == KeyboardColorMode.Light {
-            self.buttonLabel.textColor = Colors.lightModeTextColor
-            self.popUpLabel.textColor = Colors.lightModeTextColor
+            self.buttonLabel.textColor = Colors.lightModeKeyText
+            self.popUpLabel.textColor = Colors.lightModeKeyText
         } else {
-            self.buttonLabel.textColor = Colors.darkModeTextColor
-            self.popUpLabel.textColor = Colors.darkModeTextColor
+            self.buttonLabel.textColor = Colors.darkModeKeyText
+            self.popUpLabel.textColor = Colors.darkModeKeyText
         }
     }
     
     func setBackgroundColor() {
         if self.mode == KeyboardColorMode.Light {
             if self.isSpecialKey() {
-                self.backgroundColor = Colors.lightModeSpecialKeyBackgroundColor
+                self.backgroundColor = Colors.lightModeSpecialKeyBackground
             } else {
-                self.backgroundColor = Colors.lightModeBackgroundColor
-                self.popUpBackgroundLayer.fillColor = Colors.lightModeBackgroundColor.cgColor
+                self.backgroundColor = Colors.lightModeKeyBackground
+                self.popUpBackgroundLayer.fillColor = Colors.lightModeKeyBackground.cgColor
             }
         } else {
             if self.isSpecialKey() {
-                self.backgroundColor = Colors.darkModeSpecialKeyBackgroundColor
+                self.backgroundColor = Colors.darkModeSpecialKeyBackground
             } else {
-                self.backgroundColor = Colors.darkModeBackgroundColor
-                self.popUpBackgroundLayer.fillColor = Colors.darkModeBackgroundColor.cgColor
+                self.backgroundColor = Colors.darkModeKeyBackground
+                self.popUpBackgroundLayer.fillColor = Colors.darkModeKeyBackground.cgColor
             }
         }
     }
@@ -400,9 +384,9 @@ class Key: UIButton {
                      KeyType.DismissKeyboard,
                      KeyType.Settings:
                     if self.mode == KeyboardColorMode.Light {
-                        self.backgroundColor = Colors.lightModeBackgroundColor
+                        self.backgroundColor = Colors.lightModeKeyBackground
                     } else {
-                        self.backgroundColor = Colors.darkModeBackgroundColor
+                        self.backgroundColor = Colors.darkModeKeyBackground
                     }
                 default:
                     break

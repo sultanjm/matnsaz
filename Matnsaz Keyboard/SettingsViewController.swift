@@ -18,10 +18,10 @@ class SettingsViewController: UITableViewController {
     
     private let headerHeight: CGFloat = 42.0
     
-    private var colorMode: Key.KeyboardColorMode
+    private var colorMode: KeyboardColorMode
     var keyboardViewController: KeyboardViewController?
     
-    init(frame: CGRect, colorMode: Key.KeyboardColorMode) {
+    init(frame: CGRect, colorMode: KeyboardColorMode) {
         
         // instance variables
         self.colorMode = colorMode

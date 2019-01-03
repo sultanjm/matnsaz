@@ -44,13 +44,12 @@ class AutoCorrect {
     func getSuggestions(word: String, keys: [String: Key]) -> [Suggestion] {
         
         var result : [Suggestion] = []
+        var matches : [String:Int] = [:]
         
-        if word == "" {
+        let cleanedWord = ArabicScript.removeDiacritics(word)
+        if cleanedWord == "" {
             return result
         }
-        
-        var matches : [String:Int] = [:]
-        let cleanedWord = ArabicScript.removeDiacritics(word)
         
         // go through ever item in dictionary
         for item in wordFrequency {
@@ -68,7 +67,7 @@ class AutoCorrect {
                     c = "ء"
                 }
                 let d = String(item.key[i])
-                if d != c && !keys[c]!.neighbors!.contains(d)  {
+                if d != c && !(keys[c]?.neighbors?.contains(d) ?? false)  {
                     match = false
                 }
                 i = cleanedWord.index(after: i)

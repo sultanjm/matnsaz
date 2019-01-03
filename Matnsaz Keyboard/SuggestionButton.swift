@@ -21,10 +21,11 @@ class SuggestionButton: UIButton {
     var highlightPath = UIBezierPath()
     var highlightLayer = CAShapeLayer()
     var highlightVisible = false
+    var colorMode = KeyboardColorMode.Light
     
     init() {
         super.init(frame: CGRect.zero)
-        self.backgroundColor = Colors.lightModeBackgroundColor
+        self.setColors()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +51,6 @@ class SuggestionButton: UIButton {
         // set up highlight
         self.highlightPath = UIBezierPath(roundedRect: labelFrameRect, cornerRadius: 8)
         self.highlightLayer.path = self.highlightPath.cgPath
-        self.highlightLayer.fillColor = UIColor(white: 1.0, alpha: 1.0).cgColor
     }
     
     func setSuggestion(_ s: Suggestion) {
@@ -94,6 +94,23 @@ class SuggestionButton: UIButton {
             } else {
                 self.hideHighlight()
             }
+        }
+    }
+    
+    func handleDarkMode() {
+        self.colorMode = KeyboardColorMode.Dark
+        self.setColors()
+    }
+    
+    func setColors() {
+        if self.colorMode == KeyboardColorMode.Light {
+            self.backgroundColor = Colors.lightModeBackground
+            self.label.textColor = Colors.lightModeKeyText
+            self.highlightLayer.fillColor = Colors.lightModeKeyBackground.cgColor
+        } else {
+            self.backgroundColor = Colors.darkModeBackground
+            self.label.textColor = Colors.darkModeKeyText
+            self.highlightLayer.fillColor = Colors.darkModeKeyBackground.cgColor
         }
     }
 }
