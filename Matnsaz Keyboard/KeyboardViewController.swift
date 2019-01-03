@@ -736,26 +736,26 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func currentWord() -> String {
+        if self.textDocumentProxy.documentContextBeforeInput == nil { return "" }
+        var text = self.textDocumentProxy.documentContextBeforeInput!
+        if text.count == 0 { return "" }
+        if text.last == " " { return "" }
+        if text.last?.unicodeScalars.last?.value == 0x200C { return "" }
+        if NSCharacterSet.punctuationCharacters.contains(text.last!.unicodeScalars.last!) { return "" }
+        if text.last == tatweel { text.removeLast() }
         var word = ""
-        var text = self.textDocumentProxy.documentContextBeforeInput
-        if text == nil || text!.count == 0 { return word }
-        if text?.last == tatweel { text?.removeLast() }
-        let reversed = String(text!.reversed())
+        let reversed = String(text.reversed())
         for char in reversed {
-            if ArabicScript.isLetter(char) {
-                word += String(char)
-            } else {
-                break
-            }
+            if char == " " { break }
+            if char.unicodeScalars.last?.value == 0x200C { break }
+            if NSCharacterSet.punctuationCharacters.contains(char.unicodeScalars.last!) { break }
+            word += String(char)
         }
-        word = String(word.reversed())
-        return word
+        return String(word.reversed())
     }
     
     func deleteCurrentWord() {
-        self.deleteTatweelIfNeeded()
-        if currentWord().count == 0 { return }
-        for _ in 1...currentWord().count {
+        while self.inWord() {
             self.textDocumentProxy.deleteBackward()
         }
     }
@@ -769,17 +769,15 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func inWord() -> Bool {
-        if followingSpace() {
-            return false
-        }
-        if followingPunctuation() {
-            return false
-        }
+        if self.lastCharacter() == nil { return false }
+        if self.followingSpace() { return false }
+        if self.followingZeroWidthNonJoiner() { return false }
+        if self.followingPunctuation() { return false }
         return true
     }
     
     func followingSpace() -> Bool {
-        return lastCharacter() == " "
+        return self.lastCharacter() == " "
     }
     
     func followingZeroWidthNonJoiner() -> Bool {
@@ -788,18 +786,18 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func followingPunctuation() -> Bool {
-        if lastCharacter() == nil {
+        if self.lastCharacter() == nil {
             return false
         }
         else {
             var s = String()
-            s.append(lastCharacter()!)
+            s.append(self.lastCharacter()!)
             return s.rangeOfCharacter(from: NSCharacterSet.punctuationCharacters) != nil
         }
     }
     
     func mergeHamzaForward(currentChar: String) {
-        if inWord() && lastCharacter() == "ء" {
+        if self.inWord() && self.lastCharacter() == "ء" {
             self.textDocumentProxy.deleteBackward()
             self.textDocumentProxy.insertText("ئ")
         }
@@ -809,7 +807,7 @@ class KeyboardViewController: UIInputViewController {
         if currentChar != "ء" {
             return currentChar
         }
-        switch lastCharacter() {
+        switch self.lastCharacter() {
         case "و":
             self.textDocumentProxy.deleteBackward()
             return "ؤ"
