@@ -145,23 +145,8 @@ class Key: UIButton {
                     label = "ئ"
                 }
                 title = ArabicScript.addTatweelTo(label, toDisplay: nextContextualForm)
-            case KeyType.Space,
-                 KeyType.ZeroWidthNonJoiner:
-                let lastCharacter = self.keyboardViewController?.lastCharacter()
-                if (lastCharacter != nil) {
-                    // only display label on space and zwnj if the last character is a letter whose form will change
-                    if ArabicScript.isLetter(lastCharacter!) && ArabicScript.isForwardJoining(lastCharacter!) {
-                        var formToDisplay = ArabicScript.ContextualForm.Final
-                        var text = self.keyboardViewController!.textDocumentProxy.documentContextBeforeInput!
-                        text.removeLast()
-                        var secondLastChar: Character?
-                        if text.count > 1 { secondLastChar = text[text.index(text.endIndex, offsetBy: -2)] }
-                        if secondLastChar == nil || !ArabicScript.isForwardJoining(secondLastChar!) {
-                            formToDisplay = ArabicScript.ContextualForm.Isolated
-                        }
-                        title = ArabicScript.addTatweelTo(String(lastCharacter!), toDisplay: formToDisplay)
-                    }
-                }
+            // if turning autosuggest off bring back labels for space and zwnj
+            // ref commit 00791e3
             default:
                 title = self.label
             }
