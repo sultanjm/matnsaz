@@ -11,7 +11,7 @@ import Foundation
 class AutoCorrect {
     
     var wordFrequency : [String:Int]
-    var auralNeighbours = [
+    var auralNeighbors = [
         "ا": ["ع"],
         "ت": ["ط"],
         "ث": ["س", "ص"],
@@ -59,13 +59,24 @@ class AutoCorrect {
             var i = cleanedWord.startIndex
             var match = true
             while i < cleanedWord.endIndex {
+                // character from word
                 var c = String(cleanedWord[i])
                 if ["ئ","ؤ","أ"].contains(c) {
                     c = "ء"
                 }
+                // character from dictionary item
                 let d = String(refWord[i])
-                if d != c && !(keys[c]?.neighbors?.contains(d) ?? false)  {
+                // potential characters that the user may have meant
+                var potentialCharacterMatches: [String] = []
+                potentialCharacterMatches.append(c)
+                if keys[c]?.neighbors != nil { potentialCharacterMatches += keys[c]!.neighbors! }
+                for i in potentialCharacterMatches {
+                    if auralNeighbors[i] != nil { potentialCharacterMatches += auralNeighbors[i]! }
+                }
+                // if no match ignore word
+                if !potentialCharacterMatches.contains(d)  {
                     match = false
+                    break
                 }
                 i = cleanedWord.index(after: i)
             }
@@ -73,8 +84,6 @@ class AutoCorrect {
                 matches[entry.key] = entry.value
             }
         }
-        
-        print(matches)
         
         // append word as is for first suggestion
         result.append(Suggestion.init(text: word,
