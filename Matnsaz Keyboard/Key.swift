@@ -152,17 +152,12 @@ class Key: UIButton {
                     // only display label on space and zwnj if the last character is a letter whose form will change
                     if ArabicScript.isLetter(lastCharacter!) && ArabicScript.isForwardJoining(lastCharacter!) {
                         var formToDisplay = ArabicScript.ContextualForm.Final
-                        let text = self.keyboardViewController!.textDocumentProxy.documentContextBeforeInput!
-                        // if first character in string just display isolated form
-                        if text.count == 1 {
+                        var text = self.keyboardViewController!.textDocumentProxy.documentContextBeforeInput!
+                        text.removeLast()
+                        var secondLastChar: Character?
+                        if text.count > 1 { secondLastChar = text[text.index(text.endIndex, offsetBy: -2)] }
+                        if secondLastChar == nil || !ArabicScript.isForwardJoining(secondLastChar!) {
                             formToDisplay = ArabicScript.ContextualForm.Isolated
-                        }
-                        // otherwise display final, but change to isolated if character before is not forward joining
-                        else {
-                            let secondLastChar = text[text.index(text.endIndex, offsetBy: -2)]
-                            if (!ArabicScript.isForwardJoining(secondLastChar)) {
-                                formToDisplay = ArabicScript.ContextualForm.Isolated
-                            }
                         }
                         title = ArabicScript.addTatweelTo(String(lastCharacter!), toDisplay: formToDisplay)
                     }
