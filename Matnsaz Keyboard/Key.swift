@@ -147,6 +147,15 @@ class Key: UIButton {
                 title = ArabicScript.addTatweelTo(label, toDisplay: nextContextualForm)
             // if turning autosuggest off bring back labels for space and zwnj
             // ref commit 00791e3
+            case Key.KeyType.Space,
+                 Key.KeyType.ZeroWidthNonJoiner:
+                var label = ""
+                for button in self.keyboardViewController!.suggestionButtons {
+                    if button.suggestion?.isDefault ?? false {
+                        label = String(button.suggestion!.text.last!)
+                    }
+                }
+                title = label
             default:
                 title = self.label
             }
