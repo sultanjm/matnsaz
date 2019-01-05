@@ -74,6 +74,8 @@ class AutoCorrect {
             }
         }
         
+        print(matches)
+        
         // append word as is for first suggestion
         result.append(Suggestion.init(text: word,
                                       isDefault: true,
