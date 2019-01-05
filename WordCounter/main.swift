@@ -25,7 +25,7 @@ var text = ""
 while let line = readLine() {
     text += line
 }
-text = ArabicScript.removeDiacritics(text)
+text = ArabicScript.removeDiacritics(text, ofType: ArabicScript.DiacriticType.NonEssential)
 
 var word = ""
 var words = 0
@@ -38,7 +38,7 @@ for char in text {
         word += String(char)
     }
     
-    // add to dictionary if end of letter
+    // add to dictionary if end of word
     else if char == " " {
         if wordCount.index(forKey: word) == nil {
             wordCount[word] = 1

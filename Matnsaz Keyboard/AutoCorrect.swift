@@ -52,29 +52,25 @@ class AutoCorrect {
         }
         
         // go through ever item in dictionary
-        for item in wordFrequency {
-            
-            // ignore if length is different
-            if item.key.count != cleanedWord.count { continue }
-            
+        for entry in wordFrequency {
+            let refWord = ArabicScript.removeDiacritics(entry.key)
+            if refWord.count != cleanedWord.count { continue }
             // add to matches if each character is one in the typed sequence or its neighbors
             var i = cleanedWord.startIndex
             var match = true
-            
             while i < cleanedWord.endIndex {
                 var c = String(cleanedWord[i])
                 if ["ئ","ؤ","أ"].contains(c) {
                     c = "ء"
                 }
-                let d = String(item.key[i])
+                let d = String(refWord[i])
                 if d != c && !(keys[c]?.neighbors?.contains(d) ?? false)  {
                     match = false
                 }
                 i = cleanedWord.index(after: i)
             }
-            
             if match {
-                matches[item.key] = item.value
+                matches[entry.key] = entry.value
             }
         }
         

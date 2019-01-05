@@ -22,6 +22,12 @@ class ArabicScript {
         case LetterDoesNotHaveRequestedForm
     }
     
+    enum DiacriticType {
+        case All
+        case Essential
+        case NonEssential
+    }
+    
     static let letters: [UInt32] = [
         0x0621, // ARABIC LETTER HAMZA
         0x0622, // ARABIC LETTER ALEF WITH MADDA ABOVE
@@ -329,6 +335,11 @@ class ArabicScript {
         0x08FD, // ARABIC RIGHT ARROWHEAD ABOVE WITH DOT
         0x08FE, // ARABIC DAMMA WITH DOT
         0x08FF  // ARABIC MARK SIDEWAYS NOON GHUNNA
+    ]
+    
+    static let essentialDiacritics: [UInt32] = [
+        0x0653, // ARABIC MADDAH ABOVE
+        0x0670, // ARABIC LETTER SUPERSCRIPT ALEF
     ]
     
     class func getCharacter(_ scalar: UnicodeScalar, inContextualForm form: ContextualForm) throws -> Character {
@@ -1377,13 +1388,28 @@ class ArabicScript {
         return self.diacritics.contains(scalar.value)
     }
     
-    class func removeDiacritics(_ string: String) -> String {
+    class func isEssentialDiacritic(_ scalar: UnicodeScalar) -> Bool {
+        return self.essentialDiacritics.contains(scalar.value)
+    }
+    
+    class func isNonEssentialDiacritic(_ scalar: UnicodeScalar) -> Bool {
+        return self.diacritics.contains(scalar.value) && !self.essentialDiacritics.contains(scalar.value)
+    }
+    
+    class func removeDiacritics(_ string: String, ofType type: DiacriticType = DiacriticType.All) -> String {
         let scalars = string.unicodeScalars
         var result = ""
         for scalar in scalars {
-            if !isDiacritic(scalar) {
-                result.append(Character(scalar))
+            var keepChar = true
+            switch type {
+            case DiacriticType.All:
+                if isDiacritic(scalar) { keepChar = false }
+            case DiacriticType.Essential:
+                if isEssentialDiacritic(scalar) { keepChar = false }
+            case DiacriticType.NonEssential:
+                if isNonEssentialDiacritic(scalar) { keepChar = false }
             }
+            if keepChar { result.append(Character(scalar)) }
         }
         return result
     }
