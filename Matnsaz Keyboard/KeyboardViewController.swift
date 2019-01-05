@@ -882,7 +882,7 @@ class KeyboardViewController: UIInputViewController {
             type = "standard-phone"
         case "iPhone7,1", "iPhone8,2", "iPhone9,2", "iPhone9,4", "iPhone10,2", "iPhone10,5":
             type = "plus-phone"
-        case "iPhone10,3", "iPhone10,6":
+        case "iPhone10,3", "iPhone10,6", "iPhone11,2":
             type = "X-phone"
         case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4", "iPad3,1", "iPad3,2", "iPad3,3", "iPad3,4", "iPad3,5", "iPad3,6", "iPad4,1", "iPad4,2", "iPad4,3", "iPad5,3", "iPad5,4", "iPad6,11", "iPad6,12",  "iPad7,5", "iPad7,6", "iPad2,5", "iPad2,6", "iPad2,7", "iPad4,4", "iPad4,5", "iPad4,6", "iPad4,7", "iPad4,8", "iPad4,9", "iPad5,1", "iPad5,2", "iPad6,3", "iPad6,4":
             type = "standard-tablet"
