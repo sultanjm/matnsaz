@@ -176,9 +176,8 @@ class KeyboardViewController: UIInputViewController {
         // dark mode
         if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
             self.colorMode = KeyboardColorMode.Dark
+            self.setSuggestionDividerColors()
             self.view.backgroundColor = Colors.darkModeBackground
-            self.leftDividerLayer.fillColor = Colors.darkModeSuggestionDivider.cgColor
-            self.rightDividerLayer.fillColor = Colors.darkModeSuggestionDivider.cgColor
             for key in self.keys { key.handleDarkMode() }
             for button in self.suggestionButtons { button.handleDarkMode() }
         }
@@ -418,8 +417,7 @@ class KeyboardViewController: UIInputViewController {
             
             // "." shortcut
             if DoubleTapSpaceBarShortcutActive {
-                let precedingCharacter = self.textDocumentProxy.documentContextBeforeInput?.suffix(1)
-                if precedingCharacter == " " {
+                if lastCharacter() == " " {
                     if self.spaceTimer != nil {
                         if self.spaceTimer.isValid {
                             self.textDocumentProxy.deleteBackward()
@@ -427,7 +425,7 @@ class KeyboardViewController: UIInputViewController {
                             self.spaceTimer.invalidate()
                         }
                     }
-                } else if precedingCharacter?.rangeOfCharacter(from: NSCharacterSet.punctuationCharacters) == nil {
+                } else if lastCharacter() != nil && String(lastCharacter()!).rangeOfCharacter(from: NSCharacterSet.punctuationCharacters) == nil {
                     self.startSpaceTimer()
                 }
             }
@@ -460,7 +458,7 @@ class KeyboardViewController: UIInputViewController {
             break
         }
         
-        // update titles
+        sender.isHighlighted = false
         if self.contextualFormsEnabled {
             self.updateKeyTitles()
         }
@@ -478,12 +476,14 @@ class KeyboardViewController: UIInputViewController {
         default:
             break
         }
+        sender.isHighlighted = true
     }
     
     @objc func keyDragExit(sender: Key) {
         switch sender.type {
         default:
             sender.hidePopUp()
+            sender.isHighlighted = false
         }
     }
     
@@ -492,24 +492,21 @@ class KeyboardViewController: UIInputViewController {
     //
     
     @objc func startBackspace(sender: Key) {
+        sender.isHighlighted = true
         self.textDocumentProxy.deleteBackward()
         self.backspaceTimer = Timer.scheduledTimer(timeInterval: 0.15, target: self, selector: #selector(backspaceTimerFired(timer:)), userInfo: nil, repeats: true)
     }
 
     @objc func stopBackspace(sender: Key) {
-        endBackspace()
+        sender.isHighlighted = false
+        self.endBackspace()
     }
     
     func endBackspace() {
         self.backspaceTimer.invalidate()
         backspaceCount = 0
-        
-        // update titles
-        if self.contextualFormsEnabled {
-            self.updateKeyTitles()
-        }
-        
         self.updateSuggestions()
+        if self.contextualFormsEnabled { self.updateKeyTitles() }
     }
     
     @objc func backspaceTimerFired(timer: Timer) {
@@ -517,14 +514,10 @@ class KeyboardViewController: UIInputViewController {
             self.textDocumentProxy.deleteBackward()
             backspaceCount += 1
         } else {
-            if lastCharacter() == " " {
-                self.textDocumentProxy.deleteBackward()
-            }
+            if lastCharacter() == " " { self.textDocumentProxy.deleteBackward() }
             if let words = self.textDocumentProxy.documentContextBeforeInput?.components(separatedBy: " ") {
                 let charsToDelete = words.last!.count + 1
-                for _ in 1...charsToDelete {
-                    self.textDocumentProxy.deleteBackward()
-                }
+                for _ in 1...charsToDelete { self.textDocumentProxy.deleteBackward() }
             } else {
                 endBackspace()
             }
@@ -591,10 +584,18 @@ class KeyboardViewController: UIInputViewController {
         
         self.leftDividerLayer.path = leftDividerPath.cgPath
         self.rightDividerLayer.path = rightDividerPath.cgPath
-        self.leftDividerLayer.fillColor = Colors.lightModeSuggestionDivider.cgColor
-        self.rightDividerLayer.fillColor = Colors.lightModeSuggestionDivider.cgColor
-        
+        self.setSuggestionDividerColors()
         self.updateSuggestionDividerVisibility()
+    }
+    
+    func setSuggestionDividerColors() {
+        if self.colorMode == KeyboardColorMode.Light {
+            self.leftDividerLayer.fillColor = Colors.lightModeSuggestionDivider.cgColor
+            self.rightDividerLayer.fillColor = Colors.lightModeSuggestionDivider.cgColor
+        } else {
+            self.leftDividerLayer.fillColor = Colors.darkModeSuggestionDivider.cgColor
+            self.rightDividerLayer.fillColor = Colors.darkModeSuggestionDivider.cgColor
+        }
     }
     
     func showLeftDivider() {
