@@ -62,17 +62,13 @@ enum SavedDefaults: String {
 
 class KeyboardViewController: UIInputViewController {
 
+    // basic components
     var keys: [Key] = []
-    var spaceTimer: Timer!
-    var backspaceTimer: Timer!
-    var backspaceCount = 0
-    var heightConstraint: NSLayoutConstraint?
     var keyboardMode = KeyboardMode.primary
     var colorMode = KeyboardColorMode.Light
-    var settingsVC: SettingsViewController!
-    let tatweel: Character = "ـ"
     
     // dimensions
+    var heightConstraint: NSLayoutConstraint?
     var viewHeight: CGFloat!
     var keysViewHeight: CGFloat!
     var suggestionsViewX: CGFloat!
@@ -83,9 +79,10 @@ class KeyboardViewController: UIInputViewController {
     var suggestionsMarginSide: CGFloat!
     var popUpHeightHang: CGFloat!
     
-    // views
+    // views and view controllers
     var keysView: UIView!
     var suggestionsView: UIView!
+    var settingsVC: SettingsViewController!
     
     // references to keys
     var nextKeyboardButton: UIButton!
@@ -93,6 +90,11 @@ class KeyboardViewController: UIInputViewController {
     var zeroWidthNonJoinerKey: Key?
     var settingsKey: Key?
     var letterKeys: [String: Key] = [:]
+    
+    // timers and counts
+    var spaceTimer: Timer!
+    var backspaceTimer: Timer!
+    var backspaceCount = 0
     
     // suggestions
     var suggestionButtons: [SuggestionButton] = []
@@ -113,6 +115,9 @@ class KeyboardViewController: UIInputViewController {
     var contextualFormsEnabled: Bool!
     var DoubleTapSpaceBarShortcutActive = true
     
+    // random helper
+    let tatweel: Character = "ـ"
+    
     //
     //  View Controller Setup
     //
@@ -122,17 +127,7 @@ class KeyboardViewController: UIInputViewController {
         // boilerplate setup
         super.viewDidLoad()
         
-        // add transparent view so autolayout works, have to enable user interaction so superview's user interaction also works
-        let guide = inputView!.layoutMarginsGuide
-        let transparentView = UIView.init(frame: CGRect(
-            origin: CGPoint.init(x: 0, y: 0),
-            size: CGSize.init(width: 0, height: 0)))
-        self.view.addSubview(transparentView)
-        transparentView.isUserInteractionEnabled = true
-        transparentView.translatesAutoresizingMaskIntoConstraints = false;
-        transparentView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -4.0).isActive = true
-        
-        // other view setup
+        // view setup
         self.view.isUserInteractionEnabled = true
         self.view.isMultipleTouchEnabled = false
         self.view.backgroundColor = Colors.lightModeBackground
@@ -149,9 +144,17 @@ class KeyboardViewController: UIInputViewController {
         self.suggestionsView.isMultipleTouchEnabled = false
         self.view.addSubview(self.suggestionsView)
         
+        // add transparent view so autolayout works, have to enable user interaction so superview's user interaction also works
+        let transparentView = UIView.init(frame: CGRect(
+            origin: CGPoint.init(x: 0, y: 0),
+            size: CGSize.init(width: 0, height: 0)))
+        self.view.addSubview(transparentView)
+        transparentView.isUserInteractionEnabled = true
+        transparentView.translatesAutoresizingMaskIntoConstraints = false;
+        transparentView.bottomAnchor.constraint(equalTo: inputView!.layoutMarginsGuide.bottomAnchor, constant: -4.0).isActive = true
+        
         // read settings
         self.readSettings()
-        self.setDimensions()
         self.updateViewConstraints()
         
         // set up buttons
@@ -170,11 +173,7 @@ class KeyboardViewController: UIInputViewController {
     
     override func textDidChange(_ textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
-        
-        let proxy = self.textDocumentProxy
-
-        // dark mode
-        if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
+        if self.textDocumentProxy.keyboardAppearance == UIKeyboardAppearance.dark {
             self.colorMode = KeyboardColorMode.Dark
             self.setSuggestionDividerColors()
             self.view.backgroundColor = Colors.darkModeBackground
@@ -193,9 +192,9 @@ class KeyboardViewController: UIInputViewController {
     }
     
     override func updateViewConstraints() {
-        super.updateViewConstraints()
         self.setDimensions()
         self.updateHeightConstraint()
+        super.updateViewConstraints()
     }
     
     //
@@ -281,7 +280,6 @@ class KeyboardViewController: UIInputViewController {
     func layoutKeys() {
         // get layout file
         let layoutFileName = self.layout.rawValue + "-" + self.getDeviceType() + "-layout-" + self.keyboardMode.rawValue
-        
         // read plist and update layout
         let path = Bundle.main.path(forResource: layoutFileName, ofType: "plist")
         if let dict = NSDictionary(contentsOfFile: path!) {
@@ -296,6 +294,7 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func addKey(name: String, type: Key.KeyType, label: String, neighbors: Array<String>?) {
+        
         let key = Key(name: name, type: type, label: label, contextualFormsEnabled: self.contextualFormsEnabled, keyboardViewController: self, neighbors: neighbors)
         self.keys.append(key)
         self.keysView.addSubview(key)
@@ -330,9 +329,7 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func hideAllKeys() {
-        for key in self.keys {
-            key.hide()
-        }
+        for key in self.keys { key.hide() }
     }
     
     func updateKeyTitles() {
