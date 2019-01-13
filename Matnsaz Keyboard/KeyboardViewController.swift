@@ -398,9 +398,9 @@ class KeyboardViewController: UIInputViewController {
             sender.hidePopUp()
             let action = sender.name
             self.deleteTatweelIfNeeded()
+            self.insertDefaultSuggestedWord()
             self.textDocumentProxy.insertText(action)
-            self.updateSuggestions()
-            self.switchToPrimaryMode()
+            self.resetSuggestions()
             
         case Key.KeyType.SwitchToPrimaryMode,
              Key.KeyType.SwitchToSecondaryMode:
@@ -427,15 +427,7 @@ class KeyboardViewController: UIInputViewController {
                 }
             }
             
-            // insert text of default suggestion
-            for button in suggestionButtons {
-                if button.suggestion != nil {
-                    if button.suggestion!.isDefault {
-                        self.deleteCurrentWord()
-                        self.textDocumentProxy.insertText(button.suggestion!.text)
-                    }
-                }
-            }
+            self.insertDefaultSuggestedWord()
             self.textDocumentProxy.insertText(" ")
             self.resetSuggestions()
             self.switchToPrimaryMode()
@@ -830,6 +822,17 @@ class KeyboardViewController: UIInputViewController {
         if self.inWord() && self.lastCharacter() == "ء" {
             self.textDocumentProxy.deleteBackward()
             self.textDocumentProxy.insertText("ئ")
+        }
+    }
+    
+    func insertDefaultSuggestedWord() {
+        for button in suggestionButtons {
+            if button.suggestion != nil {
+                if button.suggestion!.isDefault {
+                    self.deleteCurrentWord()
+                    self.textDocumentProxy.insertText(button.suggestion!.text)
+                }
+            }
         }
     }
     
