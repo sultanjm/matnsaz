@@ -20,6 +20,7 @@ class ArabicScript {
     enum ArabicScriptError: Error {
         case UnknownCharacter
         case LetterDoesNotHaveRequestedForm
+        case CharacterIsNotDecomposable
     }
     
     enum DiacriticType {
@@ -337,9 +338,21 @@ class ArabicScript {
         0x08FF  // ARABIC MARK SIDEWAYS NOON GHUNNA
     ]
     
+    static let decompositions = [
+        0x0622: [0x0627, 0x0653], // ARABIC LETTER ALEF WITH MADDA ABOVE
+        0x0623: [0x0627, 0x0654], // ARABIC LETTER ALEF WITH HAMZA ABOVE
+        0x0624: [0x0648, 0x0654], // ARABIC LETTER WAW WITH HAMZA ABOVE
+        0x0625: [0x0627, 0x0655], // ARABIC LETTER ALEF WITH HAMZA BELOW
+        0x0626: [0x064A, 0x0654], // ARABIC LETTER YEH WITH HAMZA ABOVE
+        0x06C0: [0x06D5, 0x0654], // ARABIC LETTER HEH WITH YEH ABOVE
+        0x06C2: [0x06C1, 0x0654], // ARABIC LETTER HEH GOAL WITH HAMZA ABOVE
+        0x06D3: [0x06D2, 0x0654], // ARABIC LETTER YEH BARREE WITH HAMZA ABOVE
+    ]
+    
     static let essentialDiacritics: Set = [
         0x0653, // ARABIC MADDAH ABOVE
         0x0670, // ARABIC LETTER SUPERSCRIPT ALEF
+        0x0654, // ARABIC HAMZA ABOVE
     ]
     
     class func getCharacter(_ scalar: UnicodeScalar, inContextualForm form: ContextualForm) throws -> Character {
@@ -1413,6 +1426,54 @@ class ArabicScript {
             if keep { resultScalars.append(scalar) }
         }
         result.unicodeScalars.append(contentsOf: resultScalars)
+        return result
+    }
+    
+    class func isDecomposable(_ char: Character) -> Bool {
+        let scalars = self.removeDiacritics(String(char)).unicodeScalars
+        for s in scalars {
+            if self.isDecomposable(s) { return true }
+        }
+        return false
+    }
+    
+    class func isDecomposable(_ scalar: UnicodeScalar) -> Bool {
+        return self.decompositions[Int(scalar.value)] != nil
+    }
+
+    class func decompose(_ char: Character) -> Character {
+        
+        // base case
+        let scalars = char.unicodeScalars
+        let decomposedScalars = self.decompose(char.unicodeScalars)
+        if scalars.count == decomposedScalars.count { return char }
+        
+        // recurse
+        else {
+            var s = ""
+            s.unicodeScalars.append(contentsOf: decomposedScalars)
+            return self.decompose(s.first!)
+        }
+    }
+    
+    class func decompose(_ scalars: Character.UnicodeScalarView) -> [UnicodeScalar] {
+        var result: [UnicodeScalar] = []
+        for scalar in scalars {
+            result.append(contentsOf: self.decompose(scalar))
+        }
+        return result
+    }
+    
+    class func decompose(_ scalar: UnicodeScalar) -> [UnicodeScalar] {
+        var result: [UnicodeScalar] = []
+        let decomposition = self.decompositions[Int(scalar.value)]
+        if decomposition == nil { result.append(scalar) }
+        else {
+            for d in decomposition! {
+                let ds = UnicodeScalar(d)!
+                result.append(ds)
+            }
+        }
         return result
     }
     

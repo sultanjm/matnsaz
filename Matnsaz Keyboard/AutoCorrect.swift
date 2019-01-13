@@ -64,9 +64,7 @@ class AutoCorrect {
                 
                 // character from word
                 var c = String(cleanedWord[i])
-                if ["ئ","ؤ","أ"].contains(c) {
-                    c = "ء"
-                }
+                if c == "ئ" { c = "ء" }
                 
                 // character from dictionary item
                 let d = String(refWord[i])

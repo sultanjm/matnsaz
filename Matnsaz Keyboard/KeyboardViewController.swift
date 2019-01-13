@@ -385,9 +385,8 @@ class KeyboardViewController: UIInputViewController {
              Key.KeyType.Number,
              Key.KeyType.Diacritic:
             sender.hidePopUp()
-            var action = sender.name
+            let action = sender.name
             mergeHamzaForward(currentChar: sender.name)
-            action = mergeHamzaBackward(currentChar: sender.name)
             self.deleteTatweelIfNeeded()
             self.textDocumentProxy.insertText(action)
             if self.contextualFormsEnabled && ArabicScript.isForwardJoining(self.lastCharacter()!) {
@@ -831,22 +830,6 @@ class KeyboardViewController: UIInputViewController {
         if self.inWord() && self.lastCharacter() == "ء" {
             self.textDocumentProxy.deleteBackward()
             self.textDocumentProxy.insertText("ئ")
-        }
-    }
-    
-    func mergeHamzaBackward(currentChar: String) -> String {
-        if currentChar != "ء" {
-            return currentChar
-        }
-        switch self.lastCharacter() {
-        case "و":
-            self.textDocumentProxy.deleteBackward()
-            return "ؤ"
-        case "ا":
-            self.textDocumentProxy.deleteBackward()
-            return "أ"
-        default:
-            return currentChar
         }
     }
     

@@ -33,13 +33,16 @@ var words = 0
 // go through each character
 for char in text {
     
+    var c = char
+    
     // add to word if letter
-    if ArabicScript.isLetter(char) {
-        word += String(char)
+    if ArabicScript.isLetter(c) {
+        if ArabicScript.isDecomposable(c) { c = ArabicScript.decompose(c) }
+        word += String(c)
     }
     
     // add to dictionary if end of word
-    else if char == " " {
+    else if c == " " {
         if wordCount.index(forKey: word) == nil {
             wordCount[word] = 1
         } else {
