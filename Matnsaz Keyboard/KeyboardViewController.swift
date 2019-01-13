@@ -173,6 +173,7 @@ class KeyboardViewController: UIInputViewController {
     
     override func textDidChange(_ textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
+        self.updateSuggestions()
         if self.textDocumentProxy.keyboardAppearance == UIKeyboardAppearance.dark {
             self.colorMode = KeyboardColorMode.Dark
             self.setSuggestionDividerColors()
