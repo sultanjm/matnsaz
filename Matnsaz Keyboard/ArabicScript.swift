@@ -28,7 +28,7 @@ class ArabicScript {
         case NonEssential
     }
     
-    static let letters: [UInt32] = [
+    static let letters: Set = [
         0x0621, // ARABIC LETTER HAMZA
         0x0622, // ARABIC LETTER ALEF WITH MADDA ABOVE
         0x0623, // ARABIC LETTER ALEF WITH HAMZA ABOVE
@@ -256,7 +256,7 @@ class ArabicScript {
         0x08BD  // ARABIC LETTER AFRICAN NOON
     ]
     
-    static let diacritics: [UInt32] = [
+    static let diacritics: Set = [
         0x0610, // ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM
         0x0611, // ARABIC SIGN ALAYHE ASSALLAM
         0x0612, // ARABIC SIGN RAHMATULLAH ALAYHE
@@ -337,7 +337,7 @@ class ArabicScript {
         0x08FF  // ARABIC MARK SIDEWAYS NOON GHUNNA
     ]
     
-    static let essentialDiacritics: [UInt32] = [
+    static let essentialDiacritics: Set = [
         0x0653, // ARABIC MADDAH ABOVE
         0x0670, // ARABIC LETTER SUPERSCRIPT ALEF
     ]
@@ -1381,36 +1381,38 @@ class ArabicScript {
     }
     
     class func isLetter(_ scalar: UnicodeScalar) -> Bool {
-        return self.letters.contains(scalar.value)
+        return self.letters.contains(Int(scalar.value))
     }
     
     class func isDiacritic(_ scalar: UnicodeScalar) -> Bool {
-        return self.diacritics.contains(scalar.value)
+        return self.diacritics.contains(Int(scalar.value))
     }
     
     class func isEssentialDiacritic(_ scalar: UnicodeScalar) -> Bool {
-        return self.essentialDiacritics.contains(scalar.value)
+        return self.essentialDiacritics.contains(Int(scalar.value))
     }
     
     class func isNonEssentialDiacritic(_ scalar: UnicodeScalar) -> Bool {
-        return self.diacritics.contains(scalar.value) && !self.essentialDiacritics.contains(scalar.value)
+        return self.diacritics.contains(Int(scalar.value)) && !self.essentialDiacritics.contains(Int(scalar.value))
     }
     
     class func removeDiacritics(_ string: String, ofType type: DiacriticType = DiacriticType.All) -> String {
         let scalars = string.unicodeScalars
+        var resultScalars: [UnicodeScalar] = []
         var result = ""
         for scalar in scalars {
-            var keepChar = true
+            var keep = true
             switch type {
             case DiacriticType.All:
-                if isDiacritic(scalar) { keepChar = false }
+                if isDiacritic(scalar) { keep = false }
             case DiacriticType.Essential:
-                if isEssentialDiacritic(scalar) { keepChar = false }
+                if isEssentialDiacritic(scalar) { keep = false }
             case DiacriticType.NonEssential:
-                if isNonEssentialDiacritic(scalar) { keepChar = false }
+                if isNonEssentialDiacritic(scalar) { keep = false }
             }
-            if keepChar { result.append(Character(scalar)) }
+            if keep { resultScalars.append(scalar) }
         }
+        result.unicodeScalars.append(contentsOf: resultScalars)
         return result
     }
     

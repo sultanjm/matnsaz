@@ -53,19 +53,24 @@ class AutoCorrect {
         
         // go through ever item in dictionary
         for entry in wordFrequency {
+            
             let refWord = ArabicScript.removeDiacritics(entry.key)
             if refWord.count != cleanedWord.count { continue }
+            
             // add to matches if each character is one in the typed sequence or its neighbors
             var i = cleanedWord.startIndex
             var match = true
             while i < cleanedWord.endIndex {
+                
                 // character from word
                 var c = String(cleanedWord[i])
                 if ["ئ","ؤ","أ"].contains(c) {
                     c = "ء"
                 }
+                
                 // character from dictionary item
                 let d = String(refWord[i])
+                
                 // potential characters that the user may have meant
                 var potentialCharacterMatches: [String] = []
                 potentialCharacterMatches.append(c)
@@ -73,16 +78,21 @@ class AutoCorrect {
                 for i in potentialCharacterMatches {
                     if auralNeighbors[i] != nil { potentialCharacterMatches += auralNeighbors[i]! }
                 }
+                
                 // if no match ignore word
                 if !potentialCharacterMatches.contains(d)  {
                     match = false
                     break
                 }
+                
                 i = cleanedWord.index(after: i)
+                
             }
+            
             if match {
                 matches[entry.key] = entry.value
             }
+            
         }
         
         // append word as is for first suggestion
