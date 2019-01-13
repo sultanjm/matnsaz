@@ -304,7 +304,7 @@ class KeyboardViewController: UIInputViewController {
         case Key.KeyType.KeyboardSelection:
             key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
         case Key.KeyType.Backspace:
-            let cancelEvents: UIControl.Event = [UIControl.Event.touchUpInside, UIControl.Event.touchUpInside, UIControl.Event.touchDragExit, UIControl.Event.touchUpOutside, UIControl.Event.touchCancel, UIControl.Event.touchDragOutside]
+            let cancelEvents: UIControl.Event = [UIControl.Event.touchUpInside, UIControl.Event.touchDragExit, UIControl.Event.touchUpOutside, UIControl.Event.touchCancel, UIControl.Event.touchDragOutside]
             key.addTarget(self, action: #selector(startBackspace(sender:)), for: .touchDown)
             key.addTarget(self, action: #selector(stopBackspace(sender:)), for: cancelEvents)
         default:
@@ -477,11 +477,8 @@ class KeyboardViewController: UIInputViewController {
     }
     
     @objc func keyDragExit(sender: Key) {
-        switch sender.type {
-        default:
-            sender.hidePopUp()
-            sender.isHighlighted = false
-        }
+        sender.hidePopUp()
+        sender.isHighlighted = false
     }
     
     //
