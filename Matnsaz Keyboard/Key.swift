@@ -342,6 +342,20 @@ class Key: UIButton {
         self.maskViewProperty.layer.addSublayer(self.maskLayer)
     }
     
+    func showPopUpIfNeeded() {
+        switch self.type {
+        case KeyType.Letter,
+             KeyType.Number,
+             KeyType.Punctuation,
+             KeyType.Diacritic:
+            if self.keyboardViewController!.isPhone() {
+                self.showPopUp()
+            }
+        default:
+            break
+        }
+    }
+    
     func showPopUp() {
         self.superview?.superview?.mask = self.maskViewProperty
         self.superview?.superview?.superview?.layer.addSublayer(self.popUpBackgroundLayer)
@@ -362,29 +376,27 @@ class Key: UIButton {
         }
     }
     
-    override open var isHighlighted: Bool {
-        didSet {
-            if isHighlighted {
-                // for some special keys change background color on press
-                switch self.type {
-                case KeyType.Backspace,
-                     KeyType.KeyboardSelection,
-                     KeyType.Return,
-                     KeyType.DismissKeyboard,
-                     KeyType.Settings:
-                    if self.mode == KeyboardColorMode.Light {
-                        self.backgroundColor = Colors.lightModeKeyBackground
-                    } else {
-                        self.backgroundColor = Colors.darkModeKeyBackground
-                    }
-                default:
-                    break
-                }
+    func highlight() {
+        switch self.type {
+        case KeyType.Backspace,
+             KeyType.KeyboardSelection,
+             KeyType.Return,
+             KeyType.DismissKeyboard,
+             KeyType.Settings:
+            if self.mode == KeyboardColorMode.Light {
+                self.backgroundColor = Colors.lightModeKeyBackground
             } else {
-                // reset all background colors
-                setBackgroundColor()
+                self.backgroundColor = Colors.darkModeKeyBackground
             }
+        default:
+            break
         }
+        self.showPopUpIfNeeded()
+    }
+    
+    func unHighlight() {
+        setBackgroundColor()
+        self.hidePopUp()
     }
     
     func alignDiacritics(label:UILabel) {
@@ -421,5 +433,21 @@ class Key: UIButton {
         default:
             return true
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.keyboardViewController!.touchesBegan(touches, with: event)
+    }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.keyboardViewController!.touchesMoved(touches, with: event)
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.keyboardViewController!.touchesEnded(touches, with: event)
+    }
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.keyboardViewController!.touchesCancelled(touches, with: event)
     }
 }

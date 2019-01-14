@@ -85,7 +85,7 @@ class KeyboardViewController: UIInputViewController {
     var settingsVC: SettingsViewController!
     
     // references to keys
-    var nextKeyboardButton: UIButton!
+    var keyboardSelectionKey: Key?
     var spaceKey: Key?
     var zeroWidthNonJoinerKey: Key?
     var settingsKey: Key?
@@ -93,7 +93,7 @@ class KeyboardViewController: UIInputViewController {
     
     // timers and counts
     var spaceTimer: Timer!
-    var backspaceTimer: Timer!
+    var backspaceTimer: Timer?
     var backspaceCount = 0
     
     // suggestions
@@ -103,9 +103,8 @@ class KeyboardViewController: UIInputViewController {
     var leftDividerVisible = false
     var rightDividerVisible = false
     
-    // artificially firing a key if you didn't actually press one
-    var artificiallyFiredKey: Key?
-    var touchPoint: CGPoint?
+    // active key
+    var activeKey: Key?
     
     // autocorrect object
     var autoCorrect = AutoCorrect()
@@ -300,20 +299,6 @@ class KeyboardViewController: UIInputViewController {
         self.keys.append(key)
         self.keysView.addSubview(key)
         
-        // add targets
-        switch key.type {
-        case Key.KeyType.KeyboardSelection:
-            key.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-        case Key.KeyType.Backspace:
-            let cancelEvents: UIControl.Event = [UIControl.Event.touchUpInside, UIControl.Event.touchDragExit, UIControl.Event.touchUpOutside, UIControl.Event.touchCancel, UIControl.Event.touchDragOutside]
-            key.addTarget(self, action: #selector(startBackspace(sender:)), for: .touchDown)
-            key.addTarget(self, action: #selector(stopBackspace(sender:)), for: cancelEvents)
-        default:
-            key.addTarget(self, action: #selector(keyTouchUp(sender:)), for: .touchUpInside)
-            key.addTarget(self, action: #selector(keyTouchDown(sender:)), for: .touchDown)
-            key.addTarget(self, action: #selector(keyDragExit(sender:)), for: .touchDragExit)
-        }
-        
         // store references
         switch key.type {
         case Key.KeyType.Space:
@@ -324,6 +309,8 @@ class KeyboardViewController: UIInputViewController {
             self.settingsKey = key
         case Key.KeyType.Letter:
             self.letterKeys[key.name] = key
+        case Key.KeyType.KeyboardSelection:
+            self.keyboardSelectionKey = key
         default:
             break
         }
@@ -374,19 +361,62 @@ class KeyboardViewController: UIInputViewController {
     }
     
     //
+    //  Deal with touches to keyboard view
+    //
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let touchPoint = touch.preciseLocation(in: self.keysView)
+        if touchPoint.y < 0 { return }
+        self.activeKey = getNearestKeyTo(touchPoint)
+        self.activeKey?.highlight()
+        self.keyTouchDown(sender: self.activeKey, event: event)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.activeKey?.unHighlight()
+        self.keyTouchUp(sender: self.activeKey)
+        self.activeKey = nil
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let touchPoint = touch.preciseLocation(in: self.keysView)
+        if touchPoint.y < 0 {
+            self.activeKey?.unHighlight()
+            self.activeKey = nil
+            return
+        }
+        let nearestKey = getNearestKeyTo(touchPoint)
+        if nearestKey != self.activeKey {
+            self.activeKey?.unHighlight()
+            self.activeKey = nearestKey
+            self.activeKey?.highlight()
+        }
+        self.keyTouchDown(sender: self.activeKey, event: event)
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.activeKey?.unHighlight()
+        self.activeKey = nil
+    }
+    
+    //
     //  Key Interactions
     //
     
-    @objc func keyTouchUp(sender: Key) {
+    @objc func keyTouchUp(sender: Key?) {
         
-        switch sender.type {
+        if sender == nil { return }
+        
+        switch sender!.type {
         
         case Key.KeyType.Letter,
              Key.KeyType.Number,
              Key.KeyType.Diacritic:
-            sender.hidePopUp()
-            let action = sender.name
-            mergeHamzaForward(currentChar: sender.name)
+            sender!.hidePopUp()
+            let action = sender!.name
+            mergeHamzaForward(currentChar: sender!.name)
             self.deleteTatweelIfNeeded()
             self.textDocumentProxy.insertText(action)
             if self.contextualFormsEnabled && ArabicScript.isForwardJoining(self.lastCharacter()!) {
@@ -395,8 +425,8 @@ class KeyboardViewController: UIInputViewController {
             self.updateSuggestions()
         
         case Key.KeyType.Punctuation:
-            sender.hidePopUp()
-            let action = sender.name
+            sender!.hidePopUp()
+            let action = sender!.name
             self.deleteTatweelIfNeeded()
             self.insertDefaultSuggestedWord()
             self.textDocumentProxy.insertText(action)
@@ -443,70 +473,58 @@ class KeyboardViewController: UIInputViewController {
         case Key.KeyType.Settings:
             self.showSettings()
         
-        default:
-            break
-        }
+        case Key.KeyType.Backspace:
+            self.stopBackspace()
         
-        sender.isHighlighted = false
-        if self.contextualFormsEnabled {
-            self.updateKeyTitles()
-        }
-    }
-    
-    @objc func keyTouchDown(sender: Key) {
-        switch sender.type {
-        case Key.KeyType.Letter,
-             Key.KeyType.Number,
-             Key.KeyType.Punctuation,
-             Key.KeyType.Diacritic:
-            if isPhone() {
-                sender.showPopUp()
-            }
         default:
             break
         }
-        sender.isHighlighted = true
+
+        if self.contextualFormsEnabled { self.updateKeyTitles() }
     }
     
-    @objc func keyDragExit(sender: Key) {
-        sender.hidePopUp()
-        sender.isHighlighted = false
+    @objc func keyTouchDown(sender: Key?, event: UIEvent?) {
+        if sender == nil { return }
+        switch sender!.type {
+        case Key.KeyType.Backspace:
+            self.startBackspace()
+        case Key.KeyType.KeyboardSelection:
+            self.handleInputModeList(from: self.keyboardSelectionKey!, with: event!)
+        default:
+            break
+        }
     }
     
     //
     //  Backspace
     //
     
-    @objc func startBackspace(sender: Key) {
-        sender.isHighlighted = true
-        self.textDocumentProxy.deleteBackward()
-        self.backspaceTimer = Timer.scheduledTimer(timeInterval: 0.15, target: self, selector: #selector(backspaceTimerFired(timer:)), userInfo: nil, repeats: true)
+    func startBackspace() {
+        if self.textDocumentProxy.documentContextBeforeInput?.count == 0 { return }
+        if self.backspaceTimer == nil || !self.backspaceTimer!.isValid {
+            self.textDocumentProxy.deleteBackward()
+            self.backspaceTimer = Timer.scheduledTimer(timeInterval: 0.15, target: self, selector: #selector(backspaceTimerFired(timer:)), userInfo: nil, repeats: true)
+        }
     }
 
-    @objc func stopBackspace(sender: Key) {
-        sender.isHighlighted = false
-        self.endBackspace()
-    }
-    
-    func endBackspace() {
-        self.backspaceTimer.invalidate()
-        backspaceCount = 0
+    func stopBackspace() {
+        self.backspaceTimer?.invalidate()
+        self.backspaceCount = 0
         self.updateSuggestions()
         if self.contextualFormsEnabled { self.updateKeyTitles() }
     }
     
     @objc func backspaceTimerFired(timer: Timer) {
-        if (backspaceCount < 15) {
+        if (self.backspaceCount < 15) {
             self.textDocumentProxy.deleteBackward()
-            backspaceCount += 1
+            self.backspaceCount += 1
         } else {
-            if lastCharacter() == " " { self.textDocumentProxy.deleteBackward() }
+            self.textDocumentProxy.deleteBackward()
             if let words = self.textDocumentProxy.documentContextBeforeInput?.components(separatedBy: " ") {
                 let charsToDelete = words.last!.count + 1
                 for _ in 1...charsToDelete { self.textDocumentProxy.deleteBackward() }
-            } else {
-                endBackspace()
             }
+            if self.textDocumentProxy.documentContextBeforeInput?.count == 0 { self.stopBackspace() }
         }
     }
     
@@ -711,34 +729,6 @@ class KeyboardViewController: UIInputViewController {
         self.hideAllKeys()
         self.readSettings()
         self.setUpKeys()
-    }
-
-    //
-    //  Deal with touches to keyboard view
-    //
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
-        self.touchPoint = touch.preciseLocation(in: self.keysView)
-        if self.touchPoint!.y < 0 {
-            return
-        }
-        self.artificiallyFiredKey = getNearestKeyTo(self.touchPoint!)
-        self.artificiallyFiredKey?.sendActions(for: UIControl.Event.touchDown)
-    }
-
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
-        let newTouchPoint = touch.preciseLocation(in: self.keysView)
-        if self.artificiallyFiredKey != nil {
-            let oldDist = hypot(self.touchPoint!.x - self.artificiallyFiredKey!.center.x, self.touchPoint!.y - self.artificiallyFiredKey!.center.y)
-            let newDist = hypot(newTouchPoint.x - self.artificiallyFiredKey!.center.x, newTouchPoint.y - self.artificiallyFiredKey!.center.y)
-            if newDist - oldDist > CGFloat(self.artificiallyFiredKey!.width)/2 {
-                self.artificiallyFiredKey!.sendActions(for: UIControl.Event.touchDragExit)
-            } else {
-                self.artificiallyFiredKey!.sendActions(for: UIControl.Event.touchUpInside)
-            }
-        }
     }
     
     //
