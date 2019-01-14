@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 class AutoCorrect {
     
-    var wordFrequency : [String:Int]
+    var wordFrequency : [String:Double]
     var auralNeighbors = [
         "ا": ["ع"],
         "ت": ["ط"],
@@ -30,6 +31,20 @@ class AutoCorrect {
         "ھ": ["ح", "ہ"],
         ]
     
+    enum CharacterMatchType {
+        case NoMatch
+        case ExactMatch
+        case PhysicalNeighbor
+        case AuralNeighbor
+        case AuralNeighborOfPhysicalNeighbor
+    }
+    
+    struct WordMatch {
+        var rawString: String
+        var cleanedString: String
+        var score: Double
+        var characterMatchTypes: [CharacterMatchType]
+    }
     
     init() {
         // read wordFrequency file into memory
@@ -37,58 +52,114 @@ class AutoCorrect {
         let path = Bundle.main.path(forResource: fileName, ofType: "")
         let inputStream = InputStream.init(fileAtPath: path!)
         inputStream?.open()
-        wordFrequency =  try! JSONSerialization.jsonObject(with: inputStream!, options: []) as! [String : Int]
+        wordFrequency =  try! JSONSerialization.jsonObject(with: inputStream!, options: []) as! [String : Double]
         inputStream?.close()
     }
     
-    func getSuggestions(word: String, keys: [String: Key]) -> [Suggestion] {
+    func getSuggestions(word: String, keys: [String: Key], touchPoints: [CGPoint]?) -> [Suggestion] {
         
-        var result : [Suggestion] = []
-        var matches : [String:Int] = [:]
+        var result: [Suggestion] = []
+        var matches: [WordMatch] = []
         
-        let cleanedWord = ArabicScript.removeDiacritics(word)
+        var cleanedWord = ArabicScript.removeDiacritics(word)
+        cleanedWord = cleanedWord.replacingOccurrences(of: "ئ", with: "ء")
         if cleanedWord == "" {
             return result
         }
         
-        // go through ever item in dictionary
         for entry in wordFrequency {
+
+            // create match object
+            var match = WordMatch(rawString: entry.key,
+                                  cleanedString: ArabicScript.removeDiacritics(entry.key).replacingOccurrences(of: "ئ", with: "ء"),
+                                  score: entry.value,
+                                  characterMatchTypes: [])
             
-            let refWord = ArabicScript.removeDiacritics(entry.key)
-            if refWord.count != cleanedWord.count { continue }
+            // ignore if lengths don't match
+            if match.cleanedString.count != cleanedWord.count { continue }
             
-            // add to matches if each character is one in the typed sequence or its neighbors
             var i = cleanedWord.startIndex
-            var match = true
+            var j = 0
+            var isMatch = true
+            var nudgeDistance = 0.0
+            
+            // for each character
             while i < cleanedWord.endIndex {
                 
-                // character from word
-                var c = String(cleanedWord[i])
-                if c == "ئ" { c = "ء" }
+                let c = String(cleanedWord[i])
+                let d = String(match.cleanedString[i])
                 
-                // character from dictionary item
-                let d = String(refWord[i])
+                var charMatch = CharacterMatchType.NoMatch
                 
-                // potential characters that the user may have meant
-                var potentialCharacterMatches: [String] = []
-                potentialCharacterMatches.append(c)
-                if keys[c]?.neighbors != nil { potentialCharacterMatches += keys[c]!.neighbors! }
-                for i in potentialCharacterMatches {
-                    if auralNeighbors[i] != nil { potentialCharacterMatches += auralNeighbors[i]! }
+                // create potential match sets
+                var physicalNeighbors: [String] = []
+                var auralNeighbors: [String] = []
+                var auralNeighborsOfPhysicalNeighbors: [String] = []
+                
+                if keys[c]?.neighbors != nil {
+                    physicalNeighbors.append(contentsOf: keys[c]!.neighbors!)
+                }
+                if self.auralNeighbors[c] != nil {
+                    auralNeighbors.append(contentsOf: self.auralNeighbors[c]!)
+                }
+                for n in physicalNeighbors {
+                    if self.auralNeighbors[n] != nil {
+                        auralNeighborsOfPhysicalNeighbors.append(contentsOf: self.auralNeighbors[n]!)
+                    }
                 }
                 
-                // if no match ignore word
-                if !potentialCharacterMatches.contains(d)  {
-                    match = false
+                // identify type of match
+                if d == c {
+                    charMatch = CharacterMatchType.ExactMatch
+                } else if physicalNeighbors.contains(d) {
+                    charMatch = CharacterMatchType.PhysicalNeighbor
+                } else if auralNeighbors.contains(d) {
+                    charMatch = CharacterMatchType.AuralNeighbor
+                } else if auralNeighborsOfPhysicalNeighbors.contains(d) {
+                    charMatch = CharacterMatchType.AuralNeighborOfPhysicalNeighbor
+                }
+                
+                // save or ignore match
+                if charMatch == CharacterMatchType.NoMatch {
+                    isMatch = false
                     break
+                } else {
+                    match.characterMatchTypes.append(charMatch)
+                }
+                
+                // calculate distances
+                if touchPoints != nil {
+                    switch match.characterMatchTypes.last! {
+                    case CharacterMatchType.ExactMatch,
+                         CharacterMatchType.PhysicalNeighbor:
+                        let keyLocation = keys[d]?.center
+                        nudgeDistance += distance(from: touchPoints![j], to: keyLocation!)
+                    case CharacterMatchType.AuralNeighbor:
+                        let keyLocation = keys[c]?.center
+                        nudgeDistance += distance(from: touchPoints![j], to: keyLocation!)
+                    case CharacterMatchType.AuralNeighborOfPhysicalNeighbor:
+                        // find which neighbor
+                        var s: String?
+                        for p in physicalNeighbors {
+                            if self.auralNeighbors[p]?.contains(d) ?? false {
+                                s = p
+                                break
+                            }
+                        }
+                        let keyLocation = keys[s!]?.center
+                        nudgeDistance += distance(from: touchPoints![j], to: keyLocation!)
+                    default:
+                        break
+                    }
                 }
                 
                 i = cleanedWord.index(after: i)
-                
+                j += 1
             }
             
-            if match {
-                matches[entry.key] = entry.value
+            if isMatch {
+                match.score /= nudgeDistance * 2
+                matches.append(match)
             }
             
         }
@@ -100,10 +171,11 @@ class AutoCorrect {
         
         // add two more words, checking for duplicates
         while matches.count > 0 && result.count <= 3 {
-            let mostCommonWord = matches.max{ a, b in a.value < b.value }!.key
-            matches.removeValue(forKey: mostCommonWord)
-            if mostCommonWord != cleanedWord {
-                result.append(Suggestion.init(text: mostCommonWord,
+            let topMatch = matches.max{ a, b in a.score < b.score }!
+            let topWord = topMatch.rawString
+            matches.removeAll(where: { $0.rawString == topWord })
+            if topWord != cleanedWord {
+                result.append(Suggestion.init(text: topWord,
                                               isDefault: false,
                                               isUserTypedString: false))
             }
@@ -116,6 +188,13 @@ class AutoCorrect {
         }
         
         return Array<Suggestion>(result.prefix(3))
+    }
+    
+    func distance(from: CGPoint?, to: CGPoint?) -> Double {
+        if from == nil || to == nil { return Double.greatestFiniteMagnitude }
+        let x = pow(Double(from!.x - to!.x), 2)
+        let y = pow(Double(from!.y - to!.y), 2)
+        return sqrt(x + y)
     }
     
 }

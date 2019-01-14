@@ -109,6 +109,9 @@ class KeyboardViewController: UIInputViewController {
     // autocorrect object
     var autoCorrect = AutoCorrect()
     
+    // touch array for autocorrect
+    var touchPoints: [CGPoint] = []
+    
     // Config
     var layout: KeyboardLayout!
     var contextualFormsEnabled: Bool!
@@ -367,21 +370,29 @@ class KeyboardViewController: UIInputViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         let touchPoint = touch.preciseLocation(in: self.keysView)
-        if touchPoint.y < 0 { return }
-        self.activeKey = getNearestKeyTo(touchPoint)
-        self.activeKey?.highlight()
+        self.highlightNearestKey(touchPoint: touchPoint)
         self.keyTouchDown(sender: self.activeKey, event: event)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.activeKey?.unHighlight()
-        self.keyTouchUp(sender: self.activeKey)
+        self.keyTouchUp(sender: self.activeKey, touches: touches, event: event)
         self.activeKey = nil
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         let touchPoint = touch.preciseLocation(in: self.keysView)
+        self.highlightNearestKey(touchPoint: touchPoint)
+        self.keyTouchDown(sender: self.activeKey, event: event)
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.activeKey?.unHighlight()
+        self.activeKey = nil
+    }
+    
+    func highlightNearestKey(touchPoint: CGPoint) {
         if touchPoint.y < 0 {
             self.activeKey?.unHighlight()
             self.activeKey = nil
@@ -393,28 +404,19 @@ class KeyboardViewController: UIInputViewController {
             self.activeKey = nearestKey
             self.activeKey?.highlight()
         }
-        self.keyTouchDown(sender: self.activeKey, event: event)
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.activeKey?.unHighlight()
-        self.activeKey = nil
     }
     
     //
     //  Key Interactions
     //
     
-    @objc func keyTouchUp(sender: Key?) {
+    @objc func keyTouchUp(sender: Key?, touches: Set<UITouch>, event: UIEvent?) {
         
         if sender == nil { return }
         
         switch sender!.type {
         
-        case Key.KeyType.Letter,
-             Key.KeyType.Number,
-             Key.KeyType.Diacritic:
-            sender!.hidePopUp()
+        case Key.KeyType.Letter:
             let action = sender!.name
             mergeHamzaForward(currentChar: sender!.name)
             self.deleteTatweelIfNeeded()
@@ -422,7 +424,18 @@ class KeyboardViewController: UIInputViewController {
             if self.contextualFormsEnabled && ArabicScript.isForwardJoining(self.lastCharacter()!) {
                 self.textDocumentProxy.insertText(String(tatweel))
             }
+            self.touchPoints.append(touches.first!.preciseLocation(in: self.keysView))
             self.updateSuggestions()
+            
+        case Key.KeyType.Number:
+            let action = sender!.name
+            self.deleteTatweelIfNeeded()
+            self.textDocumentProxy.insertText(action)
+            self.updateSuggestions()
+            
+        case Key.KeyType.Diacritic:
+            let action = sender!.name
+            self.textDocumentProxy.insertText(action)
         
         case Key.KeyType.Punctuation:
             sender!.hidePopUp()
@@ -461,6 +474,7 @@ class KeyboardViewController: UIInputViewController {
             self.textDocumentProxy.insertText(" ")
             self.resetSuggestions()
             self.switchToPrimaryMode()
+            self.touchPoints.removeAll()
         
         case Key.KeyType.ZeroWidthNonJoiner:
             self.deleteTatweelIfNeeded()
@@ -469,6 +483,8 @@ class KeyboardViewController: UIInputViewController {
         
         case Key.KeyType.Return:
             self.textDocumentProxy.insertText("\n")
+            self.resetSuggestions()
+            self.touchPoints.removeAll()
         
         case Key.KeyType.Settings:
             self.showSettings()
@@ -488,6 +504,7 @@ class KeyboardViewController: UIInputViewController {
         switch sender!.type {
         case Key.KeyType.Backspace:
             self.startBackspace()
+            self.touchPoints.removeAll()
         case Key.KeyType.KeyboardSelection:
             self.handleInputModeList(from: self.keyboardSelectionKey!, with: event!)
         default:
@@ -656,7 +673,12 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func updateSuggestions() {
-        let suggestions = self.autoCorrect.getSuggestions(word: self.currentWord(), keys: letterKeys)
+        let word = self.currentWord()
+        var points: [CGPoint]?
+        if self.touchPoints.count >= word.count {
+            points = Array.init(self.touchPoints.suffix(word.count))
+        }
+        let suggestions = self.autoCorrect.getSuggestions(word: word, keys: letterKeys, touchPoints: points)
         resetSuggestions()
         for i in 0..<suggestions.count {
             suggestionButtons[i].setSuggestion(suggestions[i])
